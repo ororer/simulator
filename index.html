@@ -294,7 +294,6 @@
             background: #0369a1;
         }
 
-        /* מודאל התחברות צף */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -337,7 +336,7 @@
             </div>
         </div>
 
-        <!-- כרטיסי תיקים ומדד ייחוס (גלויים תמיד) -->
+        <!-- כרטיסי תיקים ומדד ייחוס -->
         <div class="grid-main">
             <!-- כרטיס תיק עצמאי -->
             <div class="card">
@@ -348,11 +347,11 @@
                 </div>
                 <div id="custom-auth-view" style="display: none;">
                     <div class="stat-row">
-                        <span>שווי תיק:</span>
+                        <span>שווי תיק (חי):</span>
                         <span id="custom-equity" class="stat-value">$0</span>
                     </div>
                     <div class="stat-row">
-                        <span>תשואה מצטברת:</span>
+                        <span>תשואה כוללת:</span>
                         <span id="custom-return" class="stat-value">0%</span>
                     </div>
                     <div class="stat-row">
@@ -365,15 +364,15 @@
                 </div>
             </div>
 
-            <!-- כרטיס תיק סורק (גלוי תמיד) -->
+            <!-- כרטיס תיק סורק -->
             <div class="card">
                 <h2>🔍 תיק סורק</h2>
                 <div class="stat-row">
-                    <span>שווי תיק:</span>
+                    <span>שווי תיק (חי):</span>
                     <span id="screener-equity" class="stat-value">$0</span>
                 </div>
                 <div class="stat-row">
-                    <span>תשואה מצטברת:</span>
+                    <span>תשואה כוללת:</span>
                     <span id="screener-return" class="stat-value">0%</span>
                 </div>
                 <div class="stat-row">
@@ -385,7 +384,7 @@
                 <div id="screener-positions" class="pos-list"></div>
             </div>
 
-            <!-- כרטיס מדד ייחוס (גלוי תמיד) -->
+            <!-- כרטיס מדד ייחוס -->
             <div class="card">
                 <h2>📊 מדד ייחוס (SPY)</h2>
                 <div class="stat-row">
@@ -410,7 +409,7 @@
             </div>
         </div>
 
-        <!-- אזור הזנת טרייד ידני (מוצג רק לאחר התחברות) -->
+        <!-- אזור הזנת טרייד ידני -->
         <div id="trade-form-section" class="form-section" style="display: none;">
             <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
             <div class="form-grid">
@@ -486,7 +485,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAn30p5A0sdGS3pnq2e2urb2omCrxSdqyA",
@@ -503,8 +502,9 @@
 
         let currentUser = null;
         let currentPortfolio = null;
-        let screenerData = { cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
+        let screenerData = { initial_balance: 10000, cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
         let unsubscribeCustom = null;
+        let livePrices = {};
 
         const defaultPortfolio = {
             initial_balance: 10000,
@@ -602,6 +602,34 @@
             }
         });
 
+        async function fetchLiveTickerPrice(ticker) {
+            try {
+                const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`);
+                const data = await res.json();
+                return data.chart.result[0].meta.regularMarketPrice;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function updateAllLivePrices() {
+            const tickers = new Set();
+            if (currentPortfolio && currentPortfolio.positions) {
+                Object.keys(currentPortfolio.positions).forEach(t => tickers.add(t));
+            }
+            if (screenerData && screenerData.positions) {
+                Object.keys(screenerData.positions).forEach(t => tickers.add(t));
+            }
+
+            for (const ticker of tickers) {
+                const price = await fetchLiveTickerPrice(ticker);
+                if (price) livePrices[ticker] = price;
+            }
+
+            if (currentPortfolio) renderCard('custom', currentPortfolio);
+            if (screenerData) renderCard('screener', screenerData);
+        }
+
         async function loadPublicData() {
             try {
                 const resScreener = await fetch(`data/portfolio_screener.json?t=${Date.now()}`);
@@ -614,6 +642,7 @@
                 console.error("שגיאה בטעינת תיק סורק:", e);
             }
             fetchSpyBenchmark();
+            await updateAllLivePrices();
         }
 
         function listenToCustomPortfolio(uid) {
@@ -625,39 +654,60 @@
                     currentPortfolio = { ...defaultPortfolio };
                     await setDoc(customDocRef, currentPortfolio);
                 }
+                await updateAllLivePrices();
                 renderCard('custom', currentPortfolio);
                 renderHistory(currentPortfolio.history || [], screenerData.history || []);
             });
         }
 
         function renderCard(prefix, data) {
-            document.getElementById(`${prefix}-equity`).textContent = `$${(data.current_equity || data.cash || 0).toLocaleString()}`;
+            const positions = Object.entries(data.positions || {});
+            let liveTotalEquity = data.cash || 0;
+
+            for (const [ticker, pos] of positions) {
+                const currentPrice = livePrices[ticker] || pos.entry_price;
+                liveTotalEquity += pos.shares * currentPrice;
+            }
+
+            const initial = data.initial_balance || 10000;
+            const ret = ((liveTotalEquity / initial) - 1) * 100;
+
+            document.getElementById(`${prefix}-equity`).textContent = `$${Math.round(liveTotalEquity).toLocaleString()}`;
             document.getElementById(`${prefix}-cash`).textContent = `$${Math.round(data.cash || 0).toLocaleString()}`;
             
             const retElem = document.getElementById(`${prefix}-return`);
-            const ret = data.return_pct || 0;
             retElem.textContent = `${ret > 0 ? '+' : ''}${ret.toFixed(2)}%`;
             retElem.className = `stat-value ${ret >= 0 ? 'green' : 'red'}`;
 
             const container = document.getElementById(`${prefix}-positions`);
             container.innerHTML = '';
             
-            const positions = Object.entries(data.positions || {});
             if (positions.length === 0) {
                 container.innerHTML = '<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין פוזיציות פתוחות</div>';
                 return;
             }
 
             for (const [ticker, pos] of positions) {
+                const curPrice = livePrices[ticker] || pos.entry_price;
+                const posPnlPct = ((curPrice / pos.entry_price) - 1) * 100;
+                const isPosWin = posPnlPct >= 0;
+
                 container.innerHTML += `
                     <div class="pos-item">
                         <div class="pos-header">
-                            <span class="ticker-tag">${ticker}</span>
-                            <span style="font-size:0.85rem; font-weight:600;">$${pos.entry_price}</span>
+                            <div>
+                                <span class="ticker-tag">${ticker}</span>
+                                <span style="font-size:0.85rem; font-weight:600; margin-right:6px;">$${curPrice.toFixed(2)}</span>
+                            </div>
+                            <span class="${isPosWin ? 'green' : 'red'}" style="font-size:0.85rem; font-weight:bold; font-family:monospace;">
+                                ${isPosWin ? '+' : ''}${posPnlPct.toFixed(2)}%
+                            </span>
                         </div>
                         <div class="pos-body">
+                            <span>כניסה: <strong>$${pos.entry_price}</strong></span>
                             <span>כמות: <strong>${pos.shares}</strong></span>
-                            <span>סה"כ: <strong>$${(pos.shares * pos.entry_price).toFixed(1)}</strong></span>
+                            <span>שווי חי: <strong>$${(pos.shares * curPrice).toFixed(1)}</strong></span>
+                            <span>רווח/הפסד: <strong class="${isPosWin ? 'green' : 'red'}">${isPosWin ? '+' : ''}$${((curPrice - pos.entry_price) * pos.shares).toFixed(1)}</strong></span>
                         </div>
                         <div class="pos-targets">
                             <span class="green">TP: $${pos.take_profit || '-'}</span>
@@ -812,6 +862,7 @@
         };
 
         loadPublicData();
+        setInterval(updateAllLivePrices, 60000); // רענון מחירי שוק חיים כל דקה
     </script>
 </body>
 </html>
