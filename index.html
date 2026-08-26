@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>קרב התיקים: עצמאי מול סורק</title>
+    <title>קרב התיקים: ניהול ומעקב</title>
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;
@@ -19,31 +19,31 @@
         h1 {
             text-align: center;
             color: #38bdf8;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
+            margin-bottom: 30px;
         }
         .card {
             background: #1e293b;
             border-radius: 12px;
             padding: 20px;
             border: 1px solid #334155;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
         }
         .card h2 {
             margin-top: 0;
             border-bottom: 1px solid #334155;
             padding-bottom: 10px;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
         .stat-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         .green { color: #4ade80; font-weight: bold; }
         .red { color: #f87171; font-weight: bold; }
@@ -51,23 +51,74 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         th, td {
             text-align: right;
-            padding: 10px 6px;
+            padding: 8px 6px;
             border-bottom: 1px solid #334155;
         }
-        th {
-            color: #94a3b8;
-            font-size: 0.8rem;
-        }
+        th { color: #94a3b8; }
         .tag {
-            background: #0ea5e9;
+            background: #0284c7;
             color: #fff;
             padding: 2px 6px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        /* עיצוב טופס ניהול */
+        .form-section {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #334155;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        input, select {
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #38bdf8;
+        }
+        .btn-submit {
+            grid-column: 1 / -1;
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background: #0369a1;
+        }
+        #status-msg {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -97,9 +148,10 @@
                     <thead>
                         <tr>
                             <th>טיקר</th>
-                            <th>מחיר כניסה</th>
-                            <th>יעד רווח</th>
-                            <th>סטופ לוס</th>
+                            <th>מחיר</th>
+                            <th>כמות</th>
+                            <th>יעד (TP)</th>
+                            <th>סטופ (SL)</th>
                         </tr>
                     </thead>
                     <tbody id="custom-positions"></tbody>
@@ -127,23 +179,89 @@
                     <thead>
                         <tr>
                             <th>טיקר</th>
-                            <th>מחיר כניסה</th>
-                            <th>יעד רווח</th>
-                            <th>סטופ לוס</th>
+                            <th>מחיר</th>
+                            <th>כמות</th>
+                            <th>יעד (TP)</th>
+                            <th>סטופ (SL)</th>
                         </tr>
                     </thead>
                     <tbody id="screener-positions"></tbody>
                 </table>
             </div>
         </div>
+
+        <!-- אזור הזנת טרייד ידני -->
+        <div class="form-section">
+            <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>סוג פעולה</label>
+                    <select id="trade-action" onchange="toggleFormFields()">
+                        <option value="BUY">קנייה (פתיחת פוזיציה)</option>
+                        <option value="SELL">מכירה (סגירת פוזיציה)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>טיקר (למשל NVDA)</label>
+                    <input type="text" id="trade-ticker" placeholder="NVDA" style="text-transform:uppercase;">
+                </div>
+                <div class="form-group">
+                    <label>מחיר ביצוע ($)</label>
+                    <input type="number" step="0.01" id="trade-price" placeholder="125.50">
+                </div>
+                <div class="form-group">
+                    <label>כמות מניות</label>
+                    <input type="number" step="0.001" id="trade-shares" placeholder="10">
+                </div>
+                <div class="form-group">
+                    <label>תאריך ביצוע</label>
+                    <input type="date" id="trade-date">
+                </div>
+                <div class="form-group buy-field">
+                    <label>יעד רווח - Take Profit ($)</label>
+                    <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
+                </div>
+                <div class="form-group buy-field">
+                    <label>סטופ לוס - Stop Loss ($)</label>
+                    <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
+                </div>
+                <div class="form-group sell-field" style="display:none;">
+                    <label>סיבת מכירה</label>
+                    <input type="text" id="trade-reason" placeholder="הגעה ליעד / יציאה יזומה">
+                </div>
+                <div class="form-group">
+                    <label>GitHub Personal Token</label>
+                    <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+                </div>
+
+                <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+            </div>
+            <div id="status-msg"></div>
+        </div>
     </div>
 
     <script>
+        const REPO_OWNER = window.location.hostname.split('.')[0];
+        const REPO_NAME = window.location.pathname.split('/')[1] || 'simulator';
+        const FILE_PATH = 'data/portfolio_custom.json';
+
+        // מילוי תאריך נוכחי וטעינת טוקן שמור
+        document.getElementById('trade-date').value = new Date().toISOString().split('T')[0];
+        const savedToken = localStorage.getItem('gh_portfolio_token');
+        if (savedToken) document.getElementById('gh-token').value = savedToken;
+
+        function toggleFormFields() {
+            const action = document.getElementById('trade-action').value;
+            const isBuy = action === 'BUY';
+            document.querySelectorAll('.buy-field').forEach(el => el.style.display = isBuy ? 'flex' : 'none');
+            document.querySelectorAll('.sell-field').forEach(el => el.style.display = isBuy ? 'none' : 'flex');
+        }
+
         async function loadPortfolioData() {
             try {
                 const [resCustom, resScreener] = await Promise.all([
-                    fetch('data/portfolio_custom.json?t=' + Date.now()),
-                    fetch('data/portfolio_screener.json?t=' + Date.now())
+                    fetch(`data/portfolio_custom.json?t=${Date.now()}`),
+                    fetch(`data/portfolio_screener.json?t=${Date.now()}`)
                 ]);
                 const custom = await resCustom.json();
                 const screener = await resScreener.json();
@@ -151,7 +269,7 @@
                 renderCard('custom', custom);
                 renderCard('screener', screener);
             } catch (err) {
-                console.error("שגיאה בטעינת הנתונים:", err);
+                console.error("שגיאה בטעינת נתונים:", err);
             }
         }
 
@@ -169,7 +287,7 @@
             
             const positions = Object.entries(data.positions || {});
             if (positions.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#64748b;">אין פוזיציות פתוחות כרגע</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#64748b;">אין פוזיציות פתוחות כרגע</td></tr>';
                 return;
             }
 
@@ -178,12 +296,128 @@
                     <tr>
                         <td><span class="tag">${ticker}</span></td>
                         <td>$${pos.entry_price}</td>
-                        <td class="green">$${pos.take_profit}</td>
-                        <td class="red">$${pos.stop_loss}</td>
+                        <td>${pos.shares}</td>
+                        <td class="green">$${pos.take_profit || '-'}</td>
+                        <td class="red">$${pos.stop_loss || '-'}</td>
                     </tr>
                 `;
             }
         }
+
+        async function submitTrade() {
+            const status = document.getElementById('status-msg');
+            const token = document.getElementById('gh-token').value.trim();
+            const action = document.getElementById('trade-action').value;
+            const ticker = document.getElementById('trade-ticker').value.trim().toUpperCase();
+            const price = parseFloat(document.getElementById('trade-price').value);
+            const shares = parseFloat(document.getElementById('trade-shares').value);
+            const date = document.getElementById('trade-date').value;
+            const tp = parseFloat(document.getElementById('trade-tp').value) || 0;
+            const sl = parseFloat(document.getElementById('trade-sl').value) || 0;
+            const reason = document.getElementById('trade-reason').value || 'מכירה ידנית';
+
+            if (!token || !ticker || isNaN(price) || isNaN(shares)) {
+                status.innerHTML = '<span class="red">נא למלא את כל השדות הדרושים כולל Token</span>';
+                return;
+            }
+
+            localStorage.setItem('gh_portfolio_token', token);
+            status.innerHTML = '<span style="color:#38bdf8;">מעדכן את התיק ב-GitHub...</span>';
+
+            try {
+                // 1. קבלת קובץ ה-JSON הקיים ו-SHA
+                const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
+                const fileRes = await fetch(apiUrl, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!fileRes.ok) throw new Error('נכשל בהשגת הנתונים מ-GitHub (ודא שהטוקן תקין)');
+                const fileData = await fileRes.json();
+                
+                const portfolio = JSON.parse(decodeURIComponent(escape(atob(fileData.content))));
+
+                // 2. עדכון הנתונים לפי הפעולה
+                const totalCost = price * shares;
+
+                if (action === 'BUY') {
+                    if (portfolio.cash < totalCost) {
+                        status.innerHTML = '<span class="red">אין מספיק מזומן פנוי בתיק לרכישה זו!</span>';
+                        return;
+                    }
+                    portfolio.cash -= totalCost;
+                    portfolio.positions[ticker] = {
+                        shares: shares,
+                        entry_price: price,
+                        entry_date: date,
+                        take_profit: tp,
+                        stop_loss: sl
+                    };
+                } else if (action === 'SELL') {
+                    if (!portfolio.positions[ticker]) {
+                        status.innerHTML = '<span class="red">המניה אינה קיימת בפוזיציות הפתוחות!</span>';
+                        return;
+                    }
+                    const pos = portfolio.positions[ticker];
+                    const sellShares = Math.min(shares, pos.shares);
+                    const revenue = price * sellShares;
+                    const profit = revenue - (sellShares * pos.entry_price);
+                    const profit_pct = ((price / pos.entry_price) - 1) * 100;
+
+                    portfolio.cash += revenue;
+                    portfolio.history.push({
+                        ticker: ticker,
+                        entry_price: pos.entry_price,
+                        exit_price: price,
+                        shares: sellShares,
+                        profit_usd: roundNum(profit),
+                        profit_pct: roundNum(profit_pct),
+                        reason: reason,
+                        entry_date: pos.entry_date,
+                        exit_date: date
+                    });
+
+                    if (sellShares >= pos.shares) {
+                        delPos(portfolio, ticker);
+                    } else {
+                        pos.shares = roundNum(pos.shares - sellShares);
+                    }
+                }
+
+                // חישוב שווי תיק מעודכן
+                let posVal = 0;
+                for (const t in portfolio.positions) {
+                    posVal += portfolio.positions[t].shares * portfolio.positions[t].entry_price;
+                }
+                portfolio.current_equity = roundNum(portfolio.cash + posVal);
+                portfolio.return_pct = roundNum(((portfolio.current_equity / portfolio.initial_balance) - 1) * 100);
+
+                // 3. שליחה חזרה ל-GitHub API
+                const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(portfolio, null, 4))));
+                const updateRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Manual trade update: ${action} ${ticker}`,
+                        content: updatedContent,
+                        sha: fileData.sha
+                    })
+                });
+
+                if (!updateRes.ok) throw new Error('שגיאה בעדכון הקובץ ב-GitHub');
+
+                status.innerHTML = '<span class="green">הטרייד עודכן בהצלחה ב-GitHub! מרענן...</span>';
+                setTimeout(() => location.reload(), 1500);
+
+            } catch (err) {
+                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
+            }
+        }
+
+        function roundNum(n) { return Math.round(n * 100) / 100; }
+        function delPos(obj, key) { delete obj.positions[key]; }
 
         loadPortfolioData();
     </script>
