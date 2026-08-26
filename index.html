@@ -110,6 +110,7 @@
             border-radius: 14px;
             padding: 16px;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .card h2 {
@@ -281,17 +282,38 @@
             background: #0284c7;
             color: white;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer;
-            margin-top: 6px;
+            transition: 0.2s;
         }
 
-        .btn-submit:active {
+        .btn-submit:hover {
             background: #0369a1;
-            transform: scale(0.99);
+        }
+
+        /* מודאל התחברות צף */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 380px;
+            position: relative;
         }
 
         #status-msg, #auth-status {
@@ -309,38 +331,22 @@
             <div class="nav-brand">⚔️ קרב התיקים</div>
             <div class="nav-links">
                 <span id="user-display" style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;"></span>
+                <button id="btn-login-open" onclick="openAuthModal()">🔑 התחבר לניהול התיק</button>
                 <button id="btn-logout" class="secondary-btn" style="display:none;" onclick="handleLogout()">התנתק</button>
                 <a href="https://oren-s-market.vercel.app/" target="_blank">🔍 מעבר לסורק השוק</a>
             </div>
         </div>
 
-        <!-- אזור התחברות/הרשמה במידה ולא מחובר -->
-        <div id="auth-section" class="form-section" style="margin-bottom: 20px;">
-            <h2>🔐 כניסה / הרשמה לחשבון</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>אימייל</label>
-                    <input type="email" id="auth-email" placeholder="name@example.com">
+        <!-- כרטיסי תיקים ומדד ייחוס (גלויים תמיד) -->
+        <div class="grid-main">
+            <!-- כרטיס תיק עצמאי -->
+            <div class="card">
+                <h2>🎯 תיק עצמאי</h2>
+                <div id="custom-unauth-view" style="padding: 24px 8px; text-align: center;">
+                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom: 14px;">התחבר כדי לצפות ולנהל את הפוזיציות האישיות שלך</p>
+                    <button class="btn-submit" onclick="openAuthModal()">כניסה לחשבון</button>
                 </div>
-                <div class="form-group">
-                    <label>סיסמה</label>
-                    <input type="password" id="auth-password" placeholder="••••••••">
-                </div>
-                <div style="grid-column: 1 / -1; display:flex; gap:10px;">
-                    <button class="btn-submit" style="flex:1;" onclick="handleLogin()">התחבר</button>
-                    <button class="btn-submit secondary-btn" style="flex:1;" onclick="handleRegister()">הרשם</button>
-                </div>
-            </div>
-            <div id="auth-status"></div>
-        </div>
-        
-        <!-- תוכן התיקים (מוצג רק לאחר התחברות) -->
-        <div id="app-content" style="display: none;">
-            <!-- כרטיסי תיקים ומדד ייחוס -->
-            <div class="grid-main">
-                <!-- כרטיס תיק עצמאי -->
-                <div class="card">
-                    <h2>🎯 תיק עצמאי</h2>
+                <div id="custom-auth-view" style="display: none;">
                     <div class="stat-row">
                         <span>שווי תיק:</span>
                         <span id="custom-equity" class="stat-value">$0</span>
@@ -357,100 +363,126 @@
                     <div class="section-title">פוזיציות פתוחות</div>
                     <div id="custom-positions" class="pos-list"></div>
                 </div>
-
-                <!-- כרטיס תיק סורק -->
-                <div class="card">
-                    <h2>🔍 תיק סורק</h2>
-                    <div class="stat-row">
-                        <span>שווי תיק:</span>
-                        <span id="screener-equity" class="stat-value">$0</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>תשואה מצטברת:</span>
-                        <span id="screener-return" class="stat-value">0%</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>מזומן פנוי:</span>
-                        <span id="screener-cash" class="stat-value">$0</span>
-                    </div>
-
-                    <div class="section-title">פוזיציות פתוחות</div>
-                    <div id="screener-positions" class="pos-list"></div>
-                </div>
-
-                <!-- כרטיס מדד ייחוס -->
-                <div class="card">
-                    <h2>📊 מדד ייחוס (SPY)</h2>
-                    <div class="stat-row">
-                        <span>מחיר שוק (SPY):</span>
-                        <span id="spy-price" class="stat-value">טוען...</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>שינוי יומי:</span>
-                        <span id="spy-change" class="stat-value">0%</span>
-                    </div>
-                    <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
-                        מדד S&P 500 משמש כקו בסיס להשוואת תשואת האסטרטגיות מול השוק הכללי.
-                    </div>
-                </div>
             </div>
 
-            <!-- היסטוריית עסקאות -->
-            <div class="card" style="margin-bottom:16px;">
-                <h2>📜 עסקאות שנסגרו (History)</h2>
-                <div id="history-rows" class="history-list">
-                    <div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>
+            <!-- כרטיס תיק סורק (גלוי תמיד) -->
+            <div class="card">
+                <h2>🔍 תיק סורק</h2>
+                <div class="stat-row">
+                    <span>שווי תיק:</span>
+                    <span id="screener-equity" class="stat-value">$0</span>
                 </div>
+                <div class="stat-row">
+                    <span>תשואה מצטברת:</span>
+                    <span id="screener-return" class="stat-value">0%</span>
+                </div>
+                <div class="stat-row">
+                    <span>מזומן פנוי:</span>
+                    <span id="screener-cash" class="stat-value">$0</span>
+                </div>
+
+                <div class="section-title">פוזיציות פתוחות</div>
+                <div id="screener-positions" class="pos-list"></div>
             </div>
 
-            <!-- אזור הזנת טרייד ידני -->
-            <div class="form-section">
-                <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>סוג פעולה</label>
-                        <select id="trade-action" onchange="toggleFormFields()">
-                            <option value="BUY">קנייה (פתיחת פוזיציה)</option>
-                            <option value="SELL">מכירה (סגירת פוזיציה)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>טיקר מניה</label>
-                        <input type="text" id="trade-ticker" placeholder="לדוגמה: NVDA" style="text-transform:uppercase;">
-                    </div>
-                    <div class="form-group">
-                        <label>מחיר ביצוע ($)</label>
-                        <input type="number" step="0.01" id="trade-price" placeholder="125.50">
-                    </div>
-                    <div class="form-group">
-                        <label>כמות מניות</label>
-                        <input type="number" step="0.001" id="trade-shares" placeholder="10">
-                    </div>
-                    <div class="form-group">
-                        <label>תאריך ביצוע</label>
-                        <input type="date" id="trade-date">
-                    </div>
-                    <div class="form-group buy-field">
-                        <label>יעד רווח (TP)</label>
-                        <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
-                    </div>
-                    <div class="form-group buy-field">
-                        <label>סטופ לוס (SL)</label>
-                        <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
-                    </div>
-                    <div class="form-group sell-field" style="display:none;">
-                        <label>סיבת מכירה</label>
-                        <input type="text" id="trade-reason" placeholder="הגעה ליעד / סגירה ידנית">
-                    </div>
-
-                    <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+            <!-- כרטיס מדד ייחוס (גלוי תמיד) -->
+            <div class="card">
+                <h2>📊 מדד ייחוס (SPY)</h2>
+                <div class="stat-row">
+                    <span>מחיר שוק (SPY):</span>
+                    <span id="spy-price" class="stat-value">טוען...</span>
                 </div>
-                <div id="status-msg"></div>
+                <div class="stat-row">
+                    <span>שינוי יומי:</span>
+                    <span id="spy-change" class="stat-value">0%</span>
+                </div>
+                <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                    מדד S&P 500 משמש כקו בסיס להשוואת תשואת האסטרטגיות מול השוק הכללי.
+                </div>
             </div>
+        </div>
+
+        <!-- היסטוריית עסקאות -->
+        <div class="card" style="margin-bottom:16px;">
+            <h2>📜 עסקאות שנסגרו (History)</h2>
+            <div id="history-rows" class="history-list">
+                <div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>
+            </div>
+        </div>
+
+        <!-- אזור הזנת טרייד ידני (מוצג רק לאחר התחברות) -->
+        <div id="trade-form-section" class="form-section" style="display: none;">
+            <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>סוג פעולה</label>
+                    <select id="trade-action" onchange="toggleFormFields()">
+                        <option value="BUY">קנייה (פתיחת פוזיציה)</option>
+                        <option value="SELL">מכירה (סגירת פוזיציה)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>טיקר מניה</label>
+                    <input type="text" id="trade-ticker" placeholder="לדוגמה: NVDA" style="text-transform:uppercase;">
+                </div>
+                <div class="form-group">
+                    <label>מחיר ביצוע ($)</label>
+                    <input type="number" step="0.01" id="trade-price" placeholder="125.50">
+                </div>
+                <div class="form-group">
+                    <label>כמות מניות</label>
+                    <input type="number" step="0.001" id="trade-shares" placeholder="10">
+                </div>
+                <div class="form-group">
+                    <label>תאריך ביצוע</label>
+                    <input type="date" id="trade-date">
+                </div>
+                <div class="form-group buy-field">
+                    <label>יעד רווח (TP)</label>
+                    <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
+                </div>
+                <div class="form-group buy-field">
+                    <label>סטופ לוס (SL)</label>
+                    <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
+                </div>
+                <div class="form-group sell-field" style="display:none;">
+                    <label>סיבת מכירה</label>
+                    <input type="text" id="trade-reason" placeholder="הגעה ליעד / סגירה ידנית">
+                </div>
+
+                <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+            </div>
+            <div id="status-msg"></div>
         </div>
     </div>
 
-    <!-- טעינת Firebase SDK (Modular via CDN) -->
+    <!-- מודאל התחברות / הרשמה צף -->
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+        <div class="auth-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="margin:0; font-size:1.15rem;">🔐 כניסה / הרשמה</h3>
+                <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="form-group">
+                    <label>אימייל</label>
+                    <input type="email" id="auth-email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label>סיסמה</label>
+                    <input type="password" id="auth-password" placeholder="••••••••">
+                </div>
+                <div style="display:flex; gap:10px; margin-top:8px;">
+                    <button class="btn-submit" style="flex:1;" onclick="handleLogin()">התחבר</button>
+                    <button class="btn-submit" style="flex:1; background: #1e293b; border: 1px solid var(--border-color);" onclick="handleRegister()">הרשם</button>
+                </div>
+            </div>
+            <div id="auth-status"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (Modular via CDN) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
@@ -471,6 +503,8 @@
 
         let currentUser = null;
         let currentPortfolio = null;
+        let screenerData = { cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
+        let unsubscribeCustom = null;
 
         const defaultPortfolio = {
             initial_balance: 10000,
@@ -482,6 +516,9 @@
         };
 
         document.getElementById('trade-date').value = new Date().toISOString().split('T')[0];
+
+        window.openAuthModal = () => document.getElementById('auth-modal').style.display = 'flex';
+        window.closeAuthModal = () => document.getElementById('auth-modal').style.display = 'none';
 
         window.toggleFormFields = function() {
             const action = document.getElementById('trade-action').value;
@@ -504,8 +541,9 @@
                 status.innerHTML = '<span style="color:var(--accent);">מתחבר...</span>';
                 await signInWithEmailAndPassword(auth, email, password);
                 status.innerHTML = '';
+                closeAuthModal();
             } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה בהתחברות: ${err.message}</span>`;
+                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
             }
         };
 
@@ -524,8 +562,9 @@
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 await setDoc(doc(db, "users", userCredential.user.uid, "portfolio", "custom"), defaultPortfolio);
                 status.innerHTML = '';
+                closeAuthModal();
             } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה בהרשמה: ${err.message}</span>`;
+                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
             }
         };
 
@@ -535,48 +574,59 @@
 
         onAuthStateChanged(auth, async (user) => {
             currentUser = user;
-            const authSection = document.getElementById('auth-section');
-            const appContent = document.getElementById('app-content');
+            const customUnauth = document.getElementById('custom-unauth-view');
+            const customAuth = document.getElementById('custom-auth-view');
+            const tradeSection = document.getElementById('trade-form-section');
             const userDisplay = document.getElementById('user-display');
+            const btnLogin = document.getElementById('btn-login-open');
             const btnLogout = document.getElementById('btn-logout');
 
             if (user) {
-                authSection.style.display = 'none';
-                appContent.style.display = 'block';
+                customUnauth.style.display = 'none';
+                customAuth.style.display = 'block';
+                tradeSection.style.display = 'block';
                 userDisplay.textContent = user.email;
+                btnLogin.style.display = 'none';
                 btnLogout.style.display = 'inline-block';
-                initRealtimeData(user.uid);
+                listenToCustomPortfolio(user.uid);
             } else {
-                authSection.style.display = 'block';
-                appContent.style.display = 'none';
+                if (unsubscribeCustom) unsubscribeCustom();
+                currentPortfolio = null;
+                customUnauth.style.display = 'block';
+                customAuth.style.display = 'none';
+                tradeSection.style.display = 'none';
                 userDisplay.textContent = '';
+                btnLogin.style.display = 'inline-block';
                 btnLogout.style.display = 'none';
+                renderHistory([], screenerData.history || []);
             }
         });
 
-        function initRealtimeData(uid) {
+        async function loadPublicData() {
+            try {
+                const resScreener = await fetch(`data/portfolio_screener.json?t=${Date.now()}`);
+                if (resScreener.ok) {
+                    screenerData = await resScreener.json();
+                    renderCard('screener', screenerData);
+                    renderHistory(currentPortfolio ? currentPortfolio.history || [] : [], screenerData.history || []);
+                }
+            } catch (e) {
+                console.error("שגיאה בטעינת תיק סורק:", e);
+            }
+            fetchSpyBenchmark();
+        }
+
+        function listenToCustomPortfolio(uid) {
             const customDocRef = doc(db, "users", uid, "portfolio", "custom");
-            
-            onSnapshot(customDocRef, async (docSnap) => {
+            unsubscribeCustom = onSnapshot(customDocRef, async (docSnap) => {
                 if (docSnap.exists()) {
                     currentPortfolio = docSnap.data();
                 } else {
                     currentPortfolio = { ...defaultPortfolio };
                     await setDoc(customDocRef, currentPortfolio);
                 }
-                
-                let screenerData = { cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
-                try {
-                    const resScreener = await fetch(`data/portfolio_screener.json?t=${Date.now()}`);
-                    if (resScreener.ok) {
-                        screenerData = await resScreener.json();
-                    }
-                } catch(e) {}
-
                 renderCard('custom', currentPortfolio);
-                renderCard('screener', screenerData);
                 renderHistory(currentPortfolio.history || [], screenerData.history || []);
-                fetchSpyBenchmark();
             });
         }
 
@@ -749,7 +799,7 @@
 
             try {
                 await setDoc(doc(db, "users", currentUser.uid, "portfolio", "custom"), portfolio);
-                status.innerHTML = '<span class="green">✓ הטרייד עודכן בהצלחה בענן!</span>';
+                status.innerHTML = '<span class="green">✓ הטרייד עודכן בהצלחה!</span>';
                 document.getElementById('trade-ticker').value = '';
                 document.getElementById('trade-price').value = '';
                 document.getElementById('trade-shares').value = '';
@@ -760,6 +810,8 @@
                 status.innerHTML = `<span class="red">שגיאה בשמירה: ${err.message}</span>`;
             }
         };
+
+        loadPublicData();
     </script>
 </body>
 </html>
