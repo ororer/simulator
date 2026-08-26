@@ -33,7 +33,6 @@
             margin: 0 auto;
         }
 
-        /* סרגל ניווט מותאם */
         .nav-bar {
             display: flex;
             flex-direction: column;
@@ -64,16 +63,12 @@
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 8px;
-            width: 100%;
+            flex-wrap: wrap;
         }
 
-        @media (min-width: 600px) {
-            .nav-links { width: auto; }
-        }
-
-        .nav-links a {
-            flex: 1;
+        .nav-links a, .nav-links button {
             text-align: center;
             color: #fff;
             text-decoration: none;
@@ -82,20 +77,21 @@
             font-size: 0.85rem;
             background: #0284c7;
             font-weight: 600;
+            border: none;
+            cursor: pointer;
             transition: 0.2s;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links button:hover {
             background: #0369a1;
         }
 
-        .nav-links a.secondary-btn {
+        .nav-links .secondary-btn {
             background: var(--bg-main);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
         }
 
-        /* גריד ראשי */
         .grid-main {
             display: grid;
             grid-template-columns: 1fr;
@@ -298,7 +294,7 @@
             transform: scale(0.99);
         }
 
-        #status-msg {
+        #status-msg, #auth-status {
             margin-top: 12px;
             font-size: 0.9rem;
             text-align: center;
@@ -312,160 +308,276 @@
         <div class="nav-bar">
             <div class="nav-brand">⚔️ קרב התיקים</div>
             <div class="nav-links">
+                <span id="user-display" style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;"></span>
+                <button id="btn-logout" class="secondary-btn" style="display:none;" onclick="handleLogout()">התנתק</button>
                 <a href="https://oren-s-market.vercel.app/" target="_blank">🔍 מעבר לסורק השוק</a>
-                <a href="https://github.com/ororer/simulator" target="_blank" class="secondary-btn">💻 GitHub</a>
-            </div>
-        </div>
-        
-        <!-- כרטיסי תיקים ומדד ייחוס -->
-        <div class="grid-main">
-            <!-- כרטיס תיק עצמאי -->
-            <div class="card">
-                <h2>🎯 תיק עצמאי</h2>
-                <div class="stat-row">
-                    <span>שווי תיק:</span>
-                    <span id="custom-equity" class="stat-value">$0</span>
-                </div>
-                <div class="stat-row">
-                    <span>תשואה מצטברת:</span>
-                    <span id="custom-return" class="stat-value">0%</span>
-                </div>
-                <div class="stat-row">
-                    <span>מזומן פנוי:</span>
-                    <span id="custom-cash" class="stat-value">$0</span>
-                </div>
-                
-                <div class="section-title">פוזיציות פתוחות</div>
-                <div id="custom-positions" class="pos-list"></div>
-            </div>
-
-            <!-- כרטיס תיק סורק -->
-            <div class="card">
-                <h2>🔍 תיק סורק</h2>
-                <div class="stat-row">
-                    <span>שווי תיק:</span>
-                    <span id="screener-equity" class="stat-value">$0</span>
-                </div>
-                <div class="stat-row">
-                    <span>תשואה מצטברת:</span>
-                    <span id="screener-return" class="stat-value">0%</span>
-                </div>
-                <div class="stat-row">
-                    <span>מזומן פנוי:</span>
-                    <span id="screener-cash" class="stat-value">$0</span>
-                </div>
-
-                <div class="section-title">פוזיציות פתוחות</div>
-                <div id="screener-positions" class="pos-list"></div>
-            </div>
-
-            <!-- כרטיס מדד ייחוס -->
-            <div class="card">
-                <h2>📊 מדד ייחוס (SPY)</h2>
-                <div class="stat-row">
-                    <span>מחיר שוק (SPY):</span>
-                    <span id="spy-price" class="stat-value">טוען...</span>
-                </div>
-                <div class="stat-row">
-                    <span>שינוי יומי:</span>
-                    <span id="spy-change" class="stat-value">0%</span>
-                </div>
-                <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
-                    מדד S&P 500 משמש כקו בסיס להשוואת תשואת האסטרטגיות מול השוק הכללי.
-                </div>
             </div>
         </div>
 
-        <!-- היסטוריית עסקאות -->
-        <div class="card" style="margin-bottom:16px;">
-            <h2>📜 עסקאות שנסגרו (History)</h2>
-            <div id="history-rows" class="history-list">
-                <div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>
-            </div>
-        </div>
-
-        <!-- אזור הזנת טרייד ידני -->
-        <div class="form-section">
-            <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
+        <!-- אזור התחברות/הרשמה במידה ולא מחובר -->
+        <div id="auth-section" class="form-section" style="margin-bottom: 20px;">
+            <h2>🔐 כניסה / הרשמה לחשבון</h2>
             <div class="form-grid">
                 <div class="form-group">
-                    <label>סוג פעולה</label>
-                    <select id="trade-action" onchange="toggleFormFields()">
-                        <option value="BUY">קנייה (פתיחת פוזיציה)</option>
-                        <option value="SELL">מכירה (סגירת פוזיציה)</option>
-                    </select>
+                    <label>אימייל</label>
+                    <input type="email" id="auth-email" placeholder="name@example.com">
                 </div>
                 <div class="form-group">
-                    <label>טיקר מניה</label>
-                    <input type="text" id="trade-ticker" placeholder="לדוגמה: NVDA" style="text-transform:uppercase;">
+                    <label>סיסמה</label>
+                    <input type="password" id="auth-password" placeholder="••••••••">
                 </div>
-                <div class="form-group">
-                    <label>מחיר ביצוע ($)</label>
-                    <input type="number" step="0.01" id="trade-price" placeholder="125.50">
+                <div style="grid-column: 1 / -1; display:flex; gap:10px;">
+                    <button class="btn-submit" style="flex:1;" onclick="handleLogin()">התחבר</button>
+                    <button class="btn-submit secondary-btn" style="flex:1;" onclick="handleRegister()">הרשם</button>
                 </div>
-                <div class="form-group">
-                    <label>כמות מניות</label>
-                    <input type="number" step="0.001" id="trade-shares" placeholder="10">
-                </div>
-                <div class="form-group">
-                    <label>תאריך ביצוע</label>
-                    <input type="date" id="trade-date">
-                </div>
-                <div class="form-group buy-field">
-                    <label>יעד רווח (TP)</label>
-                    <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
-                </div>
-                <div class="form-group buy-field">
-                    <label>סטופ לוס (SL)</label>
-                    <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
-                </div>
-                <div class="form-group sell-field" style="display:none;">
-                    <label>סיבת מכירה</label>
-                    <input type="text" id="trade-reason" placeholder="הגעה ליעד / סגירה ידנית">
-                </div>
-                <div class="form-group" style="grid-column: 1 / -1;">
-                    <label>GitHub Personal Token</label>
-                    <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx">
+            </div>
+            <div id="auth-status"></div>
+        </div>
+        
+        <!-- תוכן התיקים (מוצג רק לאחר התחברות) -->
+        <div id="app-content" style="display: none;">
+            <!-- כרטיסי תיקים ומדד ייחוס -->
+            <div class="grid-main">
+                <!-- כרטיס תיק עצמאי -->
+                <div class="card">
+                    <h2>🎯 תיק עצמאי</h2>
+                    <div class="stat-row">
+                        <span>שווי תיק:</span>
+                        <span id="custom-equity" class="stat-value">$0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>תשואה מצטברת:</span>
+                        <span id="custom-return" class="stat-value">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>מזומן פנוי:</span>
+                        <span id="custom-cash" class="stat-value">$0</span>
+                    </div>
+                    
+                    <div class="section-title">פוזיציות פתוחות</div>
+                    <div id="custom-positions" class="pos-list"></div>
                 </div>
 
-                <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+                <!-- כרטיס תיק סורק -->
+                <div class="card">
+                    <h2>🔍 תיק סורק</h2>
+                    <div class="stat-row">
+                        <span>שווי תיק:</span>
+                        <span id="screener-equity" class="stat-value">$0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>תשואה מצטברת:</span>
+                        <span id="screener-return" class="stat-value">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>מזומן פנוי:</span>
+                        <span id="screener-cash" class="stat-value">$0</span>
+                    </div>
+
+                    <div class="section-title">פוזיציות פתוחות</div>
+                    <div id="screener-positions" class="pos-list"></div>
+                </div>
+
+                <!-- כרטיס מדד ייחוס -->
+                <div class="card">
+                    <h2>📊 מדד ייחוס (SPY)</h2>
+                    <div class="stat-row">
+                        <span>מחיר שוק (SPY):</span>
+                        <span id="spy-price" class="stat-value">טוען...</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>שינוי יומי:</span>
+                        <span id="spy-change" class="stat-value">0%</span>
+                    </div>
+                    <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                        מדד S&P 500 משמש כקו בסיס להשוואת תשואת האסטרטגיות מול השוק הכללי.
+                    </div>
+                </div>
             </div>
-            <div id="status-msg"></div>
+
+            <!-- היסטוריית עסקאות -->
+            <div class="card" style="margin-bottom:16px;">
+                <h2>📜 עסקאות שנסגרו (History)</h2>
+                <div id="history-rows" class="history-list">
+                    <div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>
+                </div>
+            </div>
+
+            <!-- אזור הזנת טרייד ידני -->
+            <div class="form-section">
+                <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>סוג פעולה</label>
+                        <select id="trade-action" onchange="toggleFormFields()">
+                            <option value="BUY">קנייה (פתיחת פוזיציה)</option>
+                            <option value="SELL">מכירה (סגירת פוזיציה)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>טיקר מניה</label>
+                        <input type="text" id="trade-ticker" placeholder="לדוגמה: NVDA" style="text-transform:uppercase;">
+                    </div>
+                    <div class="form-group">
+                        <label>מחיר ביצוע ($)</label>
+                        <input type="number" step="0.01" id="trade-price" placeholder="125.50">
+                    </div>
+                    <div class="form-group">
+                        <label>כמות מניות</label>
+                        <input type="number" step="0.001" id="trade-shares" placeholder="10">
+                    </div>
+                    <div class="form-group">
+                        <label>תאריך ביצוע</label>
+                        <input type="date" id="trade-date">
+                    </div>
+                    <div class="form-group buy-field">
+                        <label>יעד רווח (TP)</label>
+                        <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
+                    </div>
+                    <div class="form-group buy-field">
+                        <label>סטופ לוס (SL)</label>
+                        <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
+                    </div>
+                    <div class="form-group sell-field" style="display:none;">
+                        <label>סיבת מכירה</label>
+                        <input type="text" id="trade-reason" placeholder="הגעה ליעד / סגירה ידנית">
+                    </div>
+
+                    <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+                </div>
+                <div id="status-msg"></div>
+            </div>
         </div>
     </div>
 
-    <script>
-        const REPO_OWNER = 'ororer';
-        const REPO_NAME = 'simulator';
-        const FILE_PATH = 'data/portfolio_custom.json';
+    <!-- טעינת Firebase SDK (Modular via CDN) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAn30p5A0sdGS3pnq2e2urb2omCrxSdqyA",
+            authDomain: "simulator-battle.firebaseapp.com",
+            projectId: "simulator-battle",
+            storageBucket: "simulator-battle.firebasestorage.app",
+            messagingSenderId: "211686229819",
+            appId: "1:211686229819:web:40a40843e131f49616191e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let currentPortfolio = null;
+
+        const defaultPortfolio = {
+            initial_balance: 10000,
+            cash: 10000,
+            current_equity: 10000,
+            return_pct: 0,
+            positions: {},
+            history: []
+        };
 
         document.getElementById('trade-date').value = new Date().toISOString().split('T')[0];
-        const savedToken = localStorage.getItem('gh_portfolio_token');
-        if (savedToken) document.getElementById('gh-token').value = savedToken;
 
-        function toggleFormFields() {
+        window.toggleFormFields = function() {
             const action = document.getElementById('trade-action').value;
             const isBuy = action === 'BUY';
             document.querySelectorAll('.buy-field').forEach(el => el.style.display = isBuy ? 'flex' : 'none');
             document.querySelectorAll('.sell-field').forEach(el => el.style.display = isBuy ? 'none' : 'flex');
-        }
+        };
 
-        async function loadPortfolioData() {
-            try {
-                const [resCustom, resScreener] = await Promise.all([
-                    fetch(`data/portfolio_custom.json?t=${Date.now()}`),
-                    fetch(`data/portfolio_screener.json?t=${Date.now()}`)
-                ]);
-                const custom = await resCustom.json();
-                const screener = await resScreener.json();
+        window.handleLogin = async function() {
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const status = document.getElementById('auth-status');
 
-                renderCard('custom', custom);
-                renderCard('screener', screener);
-                renderHistory(custom.history || [], screener.history || []);
-                fetchSpyBenchmark();
-            } catch (err) {
-                console.error("שגיאה בטעינת נתונים:", err);
+            if (!email || !password) {
+                status.innerHTML = '<span class="red">נא להזין אימייל וסיסמה</span>';
+                return;
             }
+
+            try {
+                status.innerHTML = '<span style="color:var(--accent);">מתחבר...</span>';
+                await signInWithEmailAndPassword(auth, email, password);
+                status.innerHTML = '';
+            } catch (err) {
+                status.innerHTML = `<span class="red">שגיאה בהתחברות: ${err.message}</span>`;
+            }
+        };
+
+        window.handleRegister = async function() {
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const status = document.getElementById('auth-status');
+
+            if (!email || !password) {
+                status.innerHTML = '<span class="red">נא להזין אימייל וסיסמה</span>';
+                return;
+            }
+
+            try {
+                status.innerHTML = '<span style="color:var(--accent);">יוצר חשבון...</span>';
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, "users", userCredential.user.uid, "portfolio", "custom"), defaultPortfolio);
+                status.innerHTML = '';
+            } catch (err) {
+                status.innerHTML = `<span class="red">שגיאה בהרשמה: ${err.message}</span>`;
+            }
+        };
+
+        window.handleLogout = async function() {
+            await signOut(auth);
+        };
+
+        onAuthStateChanged(auth, async (user) => {
+            currentUser = user;
+            const authSection = document.getElementById('auth-section');
+            const appContent = document.getElementById('app-content');
+            const userDisplay = document.getElementById('user-display');
+            const btnLogout = document.getElementById('btn-logout');
+
+            if (user) {
+                authSection.style.display = 'none';
+                appContent.style.display = 'block';
+                userDisplay.textContent = user.email;
+                btnLogout.style.display = 'inline-block';
+                initRealtimeData(user.uid);
+            } else {
+                authSection.style.display = 'block';
+                appContent.style.display = 'none';
+                userDisplay.textContent = '';
+                btnLogout.style.display = 'none';
+            }
+        });
+
+        function initRealtimeData(uid) {
+            const customDocRef = doc(db, "users", uid, "portfolio", "custom");
+            
+            onSnapshot(customDocRef, async (docSnap) => {
+                if (docSnap.exists()) {
+                    currentPortfolio = docSnap.data();
+                } else {
+                    currentPortfolio = { ...defaultPortfolio };
+                    await setDoc(customDocRef, currentPortfolio);
+                }
+                
+                let screenerData = { cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
+                try {
+                    const resScreener = await fetch(`data/portfolio_screener.json?t=${Date.now()}`);
+                    if (resScreener.ok) {
+                        screenerData = await resScreener.json();
+                    }
+                } catch(e) {}
+
+                renderCard('custom', currentPortfolio);
+                renderCard('screener', screenerData);
+                renderHistory(currentPortfolio.history || [], screenerData.history || []);
+                fetchSpyBenchmark();
+            });
         }
 
         function renderCard(prefix, data) {
@@ -559,9 +671,10 @@
             }
         }
 
-        async function submitTrade() {
+        window.submitTrade = async function() {
+            if (!currentUser || !currentPortfolio) return;
+
             const status = document.getElementById('status-msg');
-            const token = document.getElementById('gh-token').value.trim();
             const action = document.getElementById('trade-action').value;
             const ticker = document.getElementById('trade-ticker').value.trim().toUpperCase();
             const price = parseFloat(document.getElementById('trade-price').value);
@@ -571,115 +684,82 @@
             const sl = parseFloat(document.getElementById('trade-sl').value) || 0;
             const reason = document.getElementById('trade-reason').value || 'מכירה ידנית';
 
-            if (!token || !ticker || isNaN(price) || isNaN(shares)) {
-                status.innerHTML = '<span class="red">נא למלא את כל השדות הדרושים כולל Token</span>';
+            if (!ticker || isNaN(price) || isNaN(shares)) {
+                status.innerHTML = '<span class="red">נא למלא את כל השדות הדרושים</span>';
                 return;
             }
 
-            localStorage.setItem('gh_portfolio_token', token);
-            status.innerHTML = '<span style="color:var(--accent);">מעדכן ב-GitHub...</span>';
+            status.innerHTML = '<span style="color:var(--accent);">מעדכן ב-Firebase...</span>';
+
+            const portfolio = JSON.parse(JSON.stringify(currentPortfolio));
+            const totalCost = price * shares;
+
+            if (action === 'BUY') {
+                if (portfolio.cash < totalCost) {
+                    status.innerHTML = `<span class="red">אין מספיק מזומן פנוי! חסר $${(totalCost - portfolio.cash).toFixed(2)}</span>`;
+                    return;
+                }
+                portfolio.cash -= totalCost;
+                if (!portfolio.positions) portfolio.positions = {};
+                portfolio.positions[ticker] = {
+                    shares: shares,
+                    entry_price: price,
+                    entry_date: date,
+                    take_profit: tp,
+                    stop_loss: sl
+                };
+            } else if (action === 'SELL') {
+                if (!portfolio.positions || !portfolio.positions[ticker]) {
+                    status.innerHTML = '<span class="red">המניה אינה קיימת בפוזיציות הפתוחות!</span>';
+                    return;
+                }
+                const pos = portfolio.positions[ticker];
+                const sellShares = Math.min(shares, pos.shares);
+                const revenue = price * sellShares;
+                const profit = revenue - (sellShares * pos.entry_price);
+                const profit_pct = ((price / pos.entry_price) - 1) * 100;
+
+                portfolio.cash += revenue;
+                if (!portfolio.history) portfolio.history = [];
+                portfolio.history.push({
+                    ticker: ticker,
+                    entry_price: pos.entry_price,
+                    exit_price: price,
+                    shares: sellShares,
+                    profit_usd: Math.round(profit * 100) / 100,
+                    profit_pct: Math.round(profit_pct * 100) / 100,
+                    reason: reason,
+                    entry_date: pos.entry_date || '',
+                    exit_date: date
+                });
+
+                if (sellShares >= pos.shares) {
+                    delete portfolio.positions[ticker];
+                } else {
+                    pos.shares = Math.round((pos.shares - sellShares) * 1000) / 1000;
+                }
+            }
+
+            let posVal = 0;
+            for (const t in portfolio.positions) {
+                posVal += portfolio.positions[t].shares * portfolio.positions[t].entry_price;
+            }
+            portfolio.current_equity = Math.round((portfolio.cash + posVal) * 100) / 100;
+            portfolio.return_pct = Math.round(((portfolio.current_equity / portfolio.initial_balance) - 1) * 10000) / 100;
 
             try {
-                const apiUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
-                const fileRes = await fetch(apiUrl, {
-                    headers: { 
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                if (!fileRes.ok) {
-                    const errJson = await fileRes.json();
-                    throw new Error(errJson.message || 'שגיאת התחברות ל-GitHub');
-                }
-                
-                const fileData = await fileRes.json();
-                const jsonString = decodeURIComponent(escape(atob(fileData.content.replace(/\s/g, ''))));
-                const portfolio = JSON.parse(jsonString);
-
-                const totalCost = price * shares;
-
-                if (action === 'BUY') {
-                    if (portfolio.cash < totalCost) {
-                        status.innerHTML = `<span class="red">אין מספיק מזומן פנוי! חסר $${(totalCost - portfolio.cash).toFixed(2)}</span>`;
-                        return;
-                    }
-                    portfolio.cash -= totalCost;
-                    portfolio.positions[ticker] = {
-                        shares: shares,
-                        entry_price: price,
-                        entry_date: date,
-                        take_profit: tp,
-                        stop_loss: sl
-                    };
-                } else if (action === 'SELL') {
-                    if (!portfolio.positions || !portfolio.positions[ticker]) {
-                        status.innerHTML = '<span class="red">המניה אינה קיימת בפוזיציות הפתוחות!</span>';
-                        return;
-                    }
-                    const pos = portfolio.positions[ticker];
-                    const sellShares = Math.min(shares, pos.shares);
-                    const revenue = price * sellShares;
-                    const profit = revenue - (sellShares * pos.entry_price);
-                    const profit_pct = ((price / pos.entry_price) - 1) * 100;
-
-                    portfolio.cash += revenue;
-                    if (!portfolio.history) portfolio.history = [];
-                    portfolio.history.push({
-                        ticker: ticker,
-                        entry_price: pos.entry_price,
-                        exit_price: price,
-                        shares: sellShares,
-                        profit_usd: Math.round(profit * 100) / 100,
-                        profit_pct: Math.round(profit_pct * 100) / 100,
-                        reason: reason,
-                        entry_date: pos.entry_date || '',
-                        exit_date: date
-                    });
-
-                    if (sellShares >= pos.shares) {
-                        delete portfolio.positions[ticker];
-                    } else {
-                        pos.shares = Math.round((pos.shares - sellShares) * 1000) / 1000;
-                    }
-                }
-
-                let posVal = 0;
-                for (const t in portfolio.positions) {
-                    posVal += portfolio.positions[t].shares * portfolio.positions[t].entry_price;
-                }
-                portfolio.current_equity = Math.round((portfolio.cash + posVal) * 100) / 100;
-                portfolio.return_pct = Math.round(((portfolio.current_equity / portfolio.initial_balance) - 1) * 10000) / 100;
-
-                const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(portfolio, null, 4))));
-                const updateRes = await fetch(apiUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: `Manual trade: ${action} ${ticker}`,
-                        content: updatedContent,
-                        sha: fileData.sha
-                    })
-                });
-
-                if (!updateRes.ok) {
-                    const putErr = await updateRes.json();
-                    throw new Error(putErr.message || 'שגיאה בשמירת הנתונים');
-                }
-
-                status.innerHTML = '<span class="green">✓ הטרייד עודכן בהצלחה!</span>';
-                setTimeout(() => location.reload(), 1200);
-
+                await setDoc(doc(db, "users", currentUser.uid, "portfolio", "custom"), portfolio);
+                status.innerHTML = '<span class="green">✓ הטרייד עודכן בהצלחה בענן!</span>';
+                document.getElementById('trade-ticker').value = '';
+                document.getElementById('trade-price').value = '';
+                document.getElementById('trade-shares').value = '';
+                document.getElementById('trade-tp').value = '';
+                document.getElementById('trade-sl').value = '';
+                document.getElementById('trade-reason').value = '';
             } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
+                status.innerHTML = `<span class="red">שגיאה בשמירה: ${err.message}</span>`;
             }
-        }
-
-        loadPortfolioData();
+        };
     </script>
 </body>
 </html>
