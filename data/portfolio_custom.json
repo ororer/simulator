@@ -1,13 +1,13 @@
 {
-    "cash": 4269.997677,
+    "cash": 3669.9976770000003,
     "initial_balance": 10000,
-    "current_equity": 7500.01,
-    "return_pct": -25,
+    "current_equity": 5370.01,
+    "return_pct": -46.3,
     "positions": {
         "NVDA": {
-            "shares": 10,
-            "entry_price": 213,
-            "entry_date": "2026-08-25",
+            "shares": 4,
+            "entry_price": 150,
+            "entry_date": "2026-08-26",
             "take_profit": 0,
             "stop_loss": 0
         },
