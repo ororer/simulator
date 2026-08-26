@@ -315,7 +315,17 @@
             position: relative;
         }
 
-        #status-msg, #auth-status {
+        .btn-balance {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        #status-msg, #auth-status, #balance-status-msg {
             margin-top: 12px;
             font-size: 0.9rem;
             text-align: center;
@@ -357,6 +367,9 @@
                     <div class="stat-row">
                         <span>מזומן פנוי:</span>
                         <span id="custom-cash" class="stat-value">$0</span>
+                    </div>
+                    <div style="text-align:left; margin-top: -4px; margin-bottom: 10px;">
+                        <button class="btn-balance" onclick="openBalanceModal()">⚙️ עדכן יתרת פתיחה / מזומן</button>
                     </div>
                     
                     <div class="section-title">פוזיציות פתוחות</div>
@@ -455,6 +468,29 @@
         </div>
     </div>
 
+    <!-- מודאל עדכון יתרת פתיחה ומזומן -->
+    <div id="balance-modal" class="modal-overlay" style="display: none;">
+        <div class="auth-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <h3 style="margin:0; font-size:1.15rem;">💰 עדכון סכום תיק</h3>
+                <button onclick="closeBalanceModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="form-group">
+                    <label>סכום פתיחה התחלתי ($) (Initial Capital)</label>
+                    <input type="number" id="input-initial-balance" placeholder="10000">
+                </div>
+                <div class="form-group">
+                    <label>מזומן פנוי נוכחי ($) (Available Cash)</label>
+                    <input type="number" id="input-current-cash" placeholder="10000">
+                </div>
+                <button class="btn-submit" onclick="saveBalanceUpdate()">שמור שינויים</button>
+            </div>
+            <div id="balance-status-msg"></div>
+        </div>
+    </div>
+
     <!-- מודאל התחברות / הרשמה צף -->
     <div id="auth-modal" class="modal-overlay" style="display: none;">
         <div class="auth-card">
@@ -519,6 +555,43 @@
 
         window.openAuthModal = () => document.getElementById('auth-modal').style.display = 'flex';
         window.closeAuthModal = () => document.getElementById('auth-modal').style.display = 'none';
+
+        window.openBalanceModal = () => {
+            if (currentPortfolio) {
+                document.getElementById('input-initial-balance').value = currentPortfolio.initial_balance || 10000;
+                document.getElementById('input-current-cash').value = currentPortfolio.cash || 0;
+            }
+            document.getElementById('balance-modal').style.display = 'flex';
+        };
+        window.closeBalanceModal = () => {
+            document.getElementById('balance-modal').style.display = 'none';
+            document.getElementById('balance-status-msg').innerHTML = '';
+        };
+
+        window.saveBalanceUpdate = async function() {
+            if (!currentUser || !currentPortfolio) return;
+            const initBal = parseFloat(document.getElementById('input-initial-balance').value);
+            const curCash = parseFloat(document.getElementById('input-current-cash').value);
+            const msgElem = document.getElementById('balance-status-msg');
+
+            if (isNaN(initBal) || isNaN(curCash) || initBal <= 0 || curCash < 0) {
+                msgElem.innerHTML = '<span class="red">נא להזין ערכים חוקיים</span>';
+                return;
+            }
+
+            msgElem.innerHTML = '<span style="color:var(--accent);">שומר עדכון...</span>';
+            const updated = JSON.parse(JSON.stringify(currentPortfolio));
+            updated.initial_balance = initBal;
+            updated.cash = curCash;
+
+            try {
+                await setDoc(doc(db, "users", currentUser.uid, "portfolio", "custom"), updated);
+                msgElem.innerHTML = '<span class="green">✓ הסכומים עודכנו בהצלחה!</span>';
+                setTimeout(() => closeBalanceModal(), 1000);
+            } catch (err) {
+                msgElem.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
+            }
+        };
 
         window.toggleFormFields = function() {
             const action = document.getElementById('trade-action').value;
