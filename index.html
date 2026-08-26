@@ -33,7 +33,7 @@
             margin: 0 auto;
         }
 
-        /* סרגל ניווט רספונסיבי */
+        /* סרגל ניווט מותאם */
         .nav-bar {
             display: flex;
             flex-direction: column;
@@ -75,17 +75,27 @@
         .nav-links a {
             flex: 1;
             text-align: center;
-            color: var(--text-muted);
+            color: #fff;
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 8px;
             font-size: 0.85rem;
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            font-weight: 500;
+            background: #0284c7;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        /* גריד תיקים */
+        .nav-links a:hover {
+            background: #0369a1;
+        }
+
+        .nav-links a.secondary-btn {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        /* גריד ראשי */
         .grid-main {
             display: grid;
             grid-template-columns: 1fr;
@@ -139,7 +149,6 @@
             font-weight: bold;
         }
 
-        /* כרטיסיות מניה לפוזיציות פתוחות */
         .pos-list {
             display: flex;
             flex-direction: column;
@@ -193,7 +202,6 @@
             margin-top: 2px;
         }
 
-        /* אזור היסטוריית טריידים */
         .history-list {
             display: flex;
             flex-direction: column;
@@ -225,7 +233,6 @@
             color: #cbd5e1;
         }
 
-        /* טופס הזנה */
         .form-section {
             background: var(--card-bg);
             border-radius: 14px;
@@ -301,12 +308,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- סרגל ניווט עליון מותאם -->
+        <!-- סרגל ניווט עליון -->
         <div class="nav-bar">
             <div class="nav-brand">⚔️ קרב התיקים</div>
             <div class="nav-links">
-                <a href="../" target="_blank">🔗 מעבר לסורק</a>
-                <a href="https://github.com/ororer/simulator" target="_blank">💻 GitHub Repo</a>
+                <a href="https://oren-s-market.vercel.app/" target="_blank">🔍 מעבר לסורק השוק</a>
+                <a href="https://github.com/ororer/simulator" target="_blank" class="secondary-btn">💻 GitHub</a>
             </div>
         </div>
         
@@ -369,7 +376,7 @@
             </div>
         </div>
 
-        <!-- אזור היסטוריית עסקאות -->
+        <!-- היסטוריית עסקאות -->
         <div class="card" style="margin-bottom:16px;">
             <h2>📜 עסקאות שנסגרו (History)</h2>
             <div id="history-rows" class="history-list">
