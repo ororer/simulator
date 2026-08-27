@@ -1,30 +1,39 @@
 {
-    "cash": 3669.9976770000003,
+    "cash": 4602.837677,
     "initial_balance": 10000,
-    "current_equity": 5370.01,
-    "return_pct": -46.3,
+    "current_equity": 6562.02,
+    "return_pct": -34.38,
     "positions": {
-        "NVDA": {
-            "shares": 4,
-            "entry_price": 150,
-            "entry_date": "2026-08-26",
-            "take_profit": 0,
-            "stop_loss": 0
-        },
         "NET": {
             "shares": 3.6026,
             "entry_price": 277.58,
             "entry_date": "2026-08-26 11:10",
             "take_profit": 332.22,
             "stop_loss": 272.66
-        },
-        "AVXX": {
-            "shares": 20,
-            "entry_price": 5,
-            "entry_date": "2026-08-25",
-            "take_profit": 0,
-            "stop_loss": 0
         }
     },
-    "history": []
+    "history": [
+        {
+            "ticker": "NVDA",
+            "entry_price": 150,
+            "exit_price": 209.66,
+            "shares": 4,
+            "profit_usd": 238.64,
+            "profit_pct": 39.77,
+            "reason": "Take Profit (שיא/יעד)",
+            "entry_date": "2026-08-26",
+            "exit_date": "2026-08-27 00:00"
+        },
+        {
+            "ticker": "AVXX",
+            "entry_price": 5,
+            "exit_price": 4.71,
+            "shares": 20,
+            "profit_usd": -5.8,
+            "profit_pct": -5.8,
+            "reason": "Take Profit (שיא/יעד)",
+            "entry_date": "2026-08-25",
+            "exit_date": "2026-08-27 00:00"
+        }
+    ]
 }
