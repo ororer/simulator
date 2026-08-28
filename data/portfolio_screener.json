@@ -1,8 +1,8 @@
 {
-    "cash": 5000.015612,
+    "cash": 5070.096664,
     "initial_balance": 10000.0,
-    "current_equity": 10025.01,
-    "return_pct": 0.25,
+    "current_equity": 11261.41,
+    "return_pct": 12.61,
     "positions": {
         "AAPL": {
             "shares": 3.2268,
@@ -18,13 +18,6 @@
             "take_profit": 527.39,
             "stop_loss": 473.87
         },
-        "NVDA": {
-            "shares": 4.6937,
-            "entry_price": 213.05,
-            "entry_date": "2026-08-26 11:10",
-            "take_profit": 227.92,
-            "stop_loss": 206.21
-        },
         "NET": {
             "shares": 3.6026,
             "entry_price": 277.58,
@@ -38,7 +31,26 @@
             "entry_date": "2026-08-26 11:10",
             "take_profit": 141.88,
             "stop_loss": 125.35
+        },
+        "NVDA": {
+            "shares": 4.3863,
+            "entry_price": 227.98,
+            "entry_date": "2026-08-28 04:26",
+            "take_profit": 271.52,
+            "stop_loss": 206.21
         }
     },
-    "history": []
+    "history": [
+        {
+            "ticker": "NVDA",
+            "entry_price": 213.05,
+            "exit_price": 227.98,
+            "shares": 4.6937,
+            "profit_usd": 70.08,
+            "profit_pct": 7.01,
+            "reason": "Take Profit (שיא/יעד)",
+            "entry_date": "2026-08-26 11:10",
+            "exit_date": "2026-08-28 04:26"
+        }
+    ]
 }
