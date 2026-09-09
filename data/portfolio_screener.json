@@ -1,8 +1,8 @@
 {
     "cash": 11.011870999999587,
     "initial_balance": 10000.0,
-    "current_equity": 10204.63,
-    "return_pct": 2.05,
+    "current_equity": 10321.37,
+    "return_pct": 3.21,
     "positions": {
         "AAPL": {
             "shares": 3.2268,
