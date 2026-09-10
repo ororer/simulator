@@ -1,8 +1,8 @@
 {
-    "cash": 11.011870999999587,
+    "cash": 989.7683169999996,
     "initial_balance": 10000.0,
-    "current_equity": 10321.37,
-    "return_pct": 3.21,
+    "current_equity": 11220.9,
+    "return_pct": 12.21,
     "positions": {
         "AAPL": {
             "shares": 3.2268,
@@ -45,13 +45,6 @@
             "entry_date": "2026-09-02 22:47",
             "take_profit": 709.39,
             "stop_loss": 534.58
-        },
-        "PLTR": {
-            "shares": 5.9011,
-            "entry_price": 169.46,
-            "entry_date": "2026-09-02 22:47",
-            "take_profit": 188.37,
-            "stop_loss": 167.5
         },
         "AMZN": {
             "shares": 3.8625,
@@ -97,6 +90,17 @@
             "reason": "Stop Loss (שפל)",
             "entry_date": "2026-08-26 11:10",
             "exit_date": "2026-09-01 22:46"
+        },
+        {
+            "ticker": "PLTR",
+            "entry_price": 169.46,
+            "exit_price": 165.86,
+            "shares": 5.9011,
+            "profit_usd": -21.24,
+            "profit_pct": -2.12,
+            "reason": "Stop Loss (שפל)",
+            "entry_date": "2026-09-02 22:47",
+            "exit_date": "2026-09-10 22:44"
         }
     ]
 }
