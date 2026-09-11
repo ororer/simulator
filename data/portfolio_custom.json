@@ -1,8 +1,8 @@
 {
     "cash": 2102.8317950000005,
     "initial_balance": 10000,
-    "current_equity": 5618.37,
-    "return_pct": -43.82,
+    "current_equity": 5600.88,
+    "return_pct": -43.99,
     "positions": {
         "NET": {
             "shares": 3.6026,
