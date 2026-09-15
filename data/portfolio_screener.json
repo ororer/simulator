@@ -1,8 +1,8 @@
 {
-    "cash": 61.94518299999925,
+    "cash": 1021.4674329999991,
     "initial_balance": 10000.0,
-    "current_equity": 10353.65,
-    "return_pct": 3.54,
+    "current_equity": 11250.05,
+    "return_pct": 12.5,
     "positions": {
         "MSFT": {
             "shares": 2.0337,
@@ -38,13 +38,6 @@
             "entry_date": "2026-09-02 22:47",
             "take_profit": 709.39,
             "stop_loss": 534.58
-        },
-        "AMZN": {
-            "shares": 3.8625,
-            "entry_price": 258.9,
-            "entry_date": "2026-09-03 22:45",
-            "take_profit": 275.36,
-            "stop_loss": 250.67
         },
         "CVE": {
             "shares": 30.8928,
@@ -119,6 +112,17 @@
             "reason": "Take Profit (שיא/יעד)",
             "entry_date": "2026-08-26 11:10",
             "exit_date": "2026-09-11 22:44"
+        },
+        {
+            "ticker": "AMZN",
+            "entry_price": 258.9,
+            "exit_price": 248.42,
+            "shares": 3.8625,
+            "profit_usd": -40.48,
+            "profit_pct": -4.05,
+            "reason": "Stop Loss (שפל)",
+            "entry_date": "2026-09-03 22:45",
+            "exit_date": "2026-09-15 23:06"
         }
     ]
 }
