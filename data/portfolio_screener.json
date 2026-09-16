@@ -1,8 +1,8 @@
 {
     "cash": 1021.4674329999991,
     "initial_balance": 10000.0,
-    "current_equity": 11250.05,
-    "return_pct": 12.5,
+    "current_equity": 10274.36,
+    "return_pct": 2.74,
     "positions": {
         "MSFT": {
             "shares": 2.0337,
