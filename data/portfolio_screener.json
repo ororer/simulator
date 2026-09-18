@@ -1,8 +1,8 @@
 {
-    "cash": 1224.5221769999994,
+    "cash": 224.52319099999931,
     "initial_balance": 10000.0,
-    "current_equity": 11703.26,
-    "return_pct": 17.03,
+    "current_equity": 10481.47,
+    "return_pct": 4.81,
     "positions": {
         "MSFT": {
             "shares": 2.0337,
@@ -66,6 +66,13 @@
             "entry_date": "2026-09-17 23:00",
             "take_profit": 346.04,
             "stop_loss": 224.33
+        },
+        "GOOGL": {
+            "shares": 2.8609,
+            "entry_price": 349.54,
+            "entry_date": "2026-09-18 22:46",
+            "take_profit": 396.42,
+            "stop_loss": 326.1
         }
     },
     "history": [
