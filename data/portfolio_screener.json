@@ -1,8 +1,8 @@
 {
-    "cash": 224.52319099999931,
+    "cash": 474.8520829999994,
     "initial_balance": 10000.0,
-    "current_equity": 10481.47,
-    "return_pct": 4.81,
+    "current_equity": 12168.18,
+    "return_pct": 21.68,
     "positions": {
         "MSFT": {
             "shares": 2.0337,
@@ -24,13 +24,6 @@
             "entry_date": "2026-09-01 22:46",
             "take_profit": 48.59,
             "stop_loss": 30.77
-        },
-        "META": {
-            "shares": 1.6868,
-            "entry_price": 592.85,
-            "entry_date": "2026-09-02 22:47",
-            "take_profit": 709.39,
-            "stop_loss": 534.58
         },
         "CVE": {
             "shares": 30.8928,
@@ -73,6 +66,13 @@
             "entry_date": "2026-09-18 22:46",
             "take_profit": 396.42,
             "stop_loss": 326.1
+        },
+        "AMZN": {
+            "shares": 3.8692,
+            "entry_price": 258.45,
+            "entry_date": "2026-09-21 23:31",
+            "take_profit": 289.19,
+            "stop_loss": 243.08
         }
     },
     "history": [
@@ -141,6 +141,17 @@
             "reason": "Take Profit (שיא/יעד)",
             "entry_date": "2026-08-26 11:10",
             "exit_date": "2026-09-17 23:00"
+        },
+        {
+            "ticker": "META",
+            "entry_price": 592.85,
+            "exit_price": 741.24,
+            "shares": 1.6868,
+            "profit_usd": 250.3,
+            "profit_pct": 25.03,
+            "reason": "Take Profit (שיא/יעד)",
+            "entry_date": "2026-09-02 22:47",
+            "exit_date": "2026-09-21 23:31"
         }
     ]
 }

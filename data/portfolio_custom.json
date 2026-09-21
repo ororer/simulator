@@ -1,8 +1,8 @@
 {
     "cash": 3305.8840390000005,
     "initial_balance": 10000,
-    "current_equity": 5743.27,
-    "return_pct": -42.57,
+    "current_equity": 5799.31,
+    "return_pct": -42.01,
     "positions": {
         "NVDA": {
             "shares": 10.9659,
