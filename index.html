@@ -3,939 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>קרב התיקים: עצמאי מול סורק</title>
+    <title>⚔️ קרב התיקים — Paper Trading Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #0b1329;
-            --card-bg: #162035;
-            --border-color: #233354;
-            --accent: #38bdf8;
-            --green: #4ade80;
-            --red: #f87171;
-            --text-muted: #94a3b8;
+            --bg: #090c10;
+            --surface: #111620;
+            --surface-subtle: #171e2c;
+            --border: #21293a;
+            --text-main: #f0f4f8;
+            --text-sub: #8692a6;
+            --accent: #3b82f6;
+            --purple: #8b5cf6;
+            --green: #10b981;
+            --red: #f43f5e;
+            --warn: #f59e0b;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Heebo', sans-serif; background: var(--bg); color: var(--text-main); padding: 16px 12px 60px; }
+        .app-container { max-width: 650px; margin: auto; }
+        .app-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .brand-title { font-size: 1.35rem; font-weight: 900; display: flex; align-items: center; gap: 6px; }
+        .back-link { background: #1e293b; color: var(--accent); text-decoration: none; font-size: 0.75rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(59,130,246,0.3); }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        .battle-card { background: linear-gradient(180deg, #111620 0%, #0d121a 100%); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+        .battle-header { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 10px; font-weight: 700; text-align: center; }
+        .battle-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .battle-row:last-child { border-bottom: none; }
+        .b-name { font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; gap: 6px; }
+        .b-score { font-family: 'Plus Jakarta Sans'; font-weight: 800; font-size: 0.95rem; }
 
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: var(--bg-main);
-            color: #f8fafc;
-            margin: 0;
-            padding: 12px;
-        }
+        .port-switcher { display: flex; gap: 6px; margin-bottom: 12px; }
+        .switch-btn { flex: 1; padding: 8px 4px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text-sub); font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+        .switch-btn.active { background: var(--surface-subtle); color: var(--text-main); border-color: var(--accent); }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
+        .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 6px; text-align: center; }
+        .kpi-label { font-size: 0.7rem; color: var(--text-sub); margin-bottom: 2px; }
+        .kpi-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 800; }
 
-        .nav-bar {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background: var(--card-bg);
-            padding: 14px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            border: 1px solid var(--border-color);
-        }
+        .nav-tabs { display: flex; background: var(--surface); padding: 4px; border-radius: 12px; margin-bottom: 14px; border: 1px solid var(--border); }
+        .nav-tab { flex: 1; text-align: center; padding: 8px 4px; font-size: 0.78rem; font-weight: 700; color: var(--text-sub); border: none; background: transparent; border-radius: 8px; cursor: pointer; }
+        .nav-tab.active { background: var(--accent); color: #fff; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
 
-        @media (min-width: 600px) {
-            .nav-bar {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
+        .clean-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+        .pos { color: var(--green) !important; }
+        .neg { color: var(--red) !important; }
 
-        .nav-brand {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .form-box { background: var(--surface-subtle); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
+        .input-field { background: #0c1017; border: 1px solid var(--border); color: #fff; padding: 8px 10px; border-radius: 8px; font-family: 'Heebo'; font-size: 0.85rem; width: 100%; }
+        .btn-submit { width: 100%; background: var(--green); color: #000; font-weight: 800; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a, .nav-links button {
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            background: #0284c7;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover, .nav-links button:hover {
-            background: #0369a1;
-        }
-
-        .nav-links .secondary-btn {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-
-        .grid-main {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        @media (min-width: 850px) {
-            .grid-main {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 16px;
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .card h2 {
-            margin: 0 0 12px 0;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        .stat-value {
-            font-weight: 700;
-            font-family: monospace;
-            font-size: 1.05rem;
-        }
-
-        .green { color: var(--green); }
-        .red { color: var(--red); }
-
-        .section-title {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin: 16px 0 10px 0;
-            font-weight: bold;
-        }
-
-        .pos-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .pos-item {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .pos-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ticker-tag {
-            background: #0284c7;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-
-        .pos-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .pos-body span strong {
-            color: #fff;
-            font-family: monospace;
-        }
-
-        .pos-targets {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            border-top: 1px dashed var(--border-color);
-            padding-top: 5px;
-            margin-top: 2px;
-        }
-
-        .history-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .hist-item {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 12px;
-            font-size: 0.85rem;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .hist-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .badge-portfolio {
-            font-size: 0.75rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: #334155;
-            color: #cbd5e1;
-        }
-
-        .form-section {
-            background: var(--card-bg);
-            border-radius: 14px;
-            padding: 16px;
-            border: 1px solid var(--border-color);
-            margin-top: 16px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        @media (min-width: 600px) {
-            .form-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        input, select {
-            background: var(--bg-main);
-            border: 1px solid var(--border-color);
-            color: #fff;
-            padding: 10px 12px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            width: 100%;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .btn-submit {
-            grid-column: 1 / -1;
-            background: #0284c7;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-submit:hover {
-            background: #0369a1;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 16px;
-        }
-
-        .auth-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            width: 100%;
-            max-width: 380px;
-            position: relative;
-        }
-
-        .btn-balance {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-decoration: underline;
-            padding: 0;
-        }
-
-        #status-msg, #auth-status, #balance-status-msg {
-            margin-top: 12px;
-            font-size: 0.9rem;
-            text-align: center;
-            font-weight: bold;
-        }
+        .trade-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .trade-row:last-child { border-bottom: none; }
+        .t-ticker { font-family: 'Plus Jakarta Sans'; font-size: 1.1rem; font-weight: 800; }
+        .t-details { font-size: 0.75rem; color: var(--text-sub); }
+        .empty-card { text-align: center; padding: 30px; color: var(--text-sub); font-size: 0.85rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- סרגל ניווט עליון -->
-        <div class="nav-bar">
-            <div class="nav-brand">⚔️ קרב התיקים</div>
-            <div class="nav-links">
-                <span id="user-display" style="font-size:0.85rem; color:var(--text-muted); margin-left:8px;"></span>
-                <button id="btn-login-open" onclick="openAuthModal()">🔑 התחבר לניהול התיק</button>
-                <button id="btn-logout" class="secondary-btn" style="display:none;" onclick="handleLogout()">התנתק</button>
-                <a href="https://oren-s-market.vercel.app/" target="_blank">🔍 מעבר לסורק השוק</a>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="brand-title">⚔️ קרב התיקים <span style="font-size:0.6rem; background:var(--accent); padding:2px 6px; border-radius:4px;">LIVE</span></h1>
+            <a href="https://oren-s-market.vercel.app" class="back-link">🌐 סורק השוק</a>
+        </header>
+
+        <!-- Battle Card: Triple Comparison -->
+        <div class="battle-card">
+            <div class="battle-header">🏆 לוח תוצאות — השוואת ביצועי הקרב</div>
+            <div class="battle-row">
+                <span class="b-name">👤 תיק ידני (Custom)</span>
+                <span id="customPerfRow" class="b-score">---%</span>
+            </div>
+            <div class="battle-row">
+                <span class="b-name">🤖 תיק סורק (Screener Agent)</span>
+                <span id="screenerPerfRow" class="b-score">---%</span>
+            </div>
+            <div class="battle-row">
+                <span class="b-name">🇺🇸 מדד ייחוס (S&P 500 / SPY)</span>
+                <span id="spyPerfRow" class="b-score">---%</span>
             </div>
         </div>
 
-        <!-- כרטיסי תיקים ומדד ייחוס -->
-        <div class="grid-main">
-            <!-- כרטיס תיק עצמאי -->
-            <div class="card">
-                <h2>🎯 תיק עצמאי</h2>
-                <div id="custom-unauth-view" style="padding: 24px 8px; text-align: center;">
-                    <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom: 14px;">התחבר כדי לצפות ולנהל את הפוזיציות האישיות שלך</p>
-                    <button class="btn-submit" onclick="openAuthModal()">כניסה לחשבון</button>
-                </div>
-                <div id="custom-auth-view" style="display: none;">
-                    <div class="stat-row">
-                        <span>שווי תיק (חי):</span>
-                        <span id="custom-equity" class="stat-value">$0</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>תשואה כוללת:</span>
-                        <span id="custom-return" class="stat-value">0%</span>
-                    </div>
-                    <div class="stat-row">
-                        <span>מזומן פנוי:</span>
-                        <span id="custom-cash" class="stat-value">$0</span>
-                    </div>
-                    <div style="text-align:left; margin-top: -4px; margin-bottom: 10px;">
-                        <button class="btn-balance" onclick="openBalanceModal()">⚙️ עדכן יתרת פתיחה / מזומן</button>
-                    </div>
-                    
-                    <div class="section-title">פוזיציות פתוחות</div>
-                    <div id="custom-positions" class="pos-list"></div>
-                </div>
+        <!-- Portfolio Selection for Detail View -->
+        <div class="port-switcher">
+            <button class="switch-btn active" id="btnViewCustom" onclick="switchView('custom')">👤 פירוט תיק אישי</button>
+            <button class="switch-btn" id="btnViewScreener" onclick="switchView('screener')">🤖 פירוט תיק סורק</button>
+        </div>
+
+        <!-- Dynamic KPIs based on active selected view -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">שווי תיק כולל</div>
+                <div id="totalEquity" class="kpi-val">$---</div>
             </div>
-
-            <!-- כרטיס תיק סורק -->
-            <div class="card">
-                <h2>🔍 תיק סורק</h2>
-                <div class="stat-row">
-                    <span>שווי תיק (חי):</span>
-                    <span id="screener-equity" class="stat-value">$0</span>
-                </div>
-                <div class="stat-row">
-                    <span>תשואה כוללת:</span>
-                    <span id="screener-return" class="stat-value">0%</span>
-                </div>
-                <div class="stat-row">
-                    <span>מזומן פנוי:</span>
-                    <span id="screener-cash" class="stat-value">$0</span>
-                </div>
-
-                <div class="section-title">פוזיציות פתוחות</div>
-                <div id="screener-positions" class="pos-list"></div>
+            <div class="kpi-card">
+                <div class="kpi-label">תשואה כוללת</div>
+                <div id="totalPerf" class="kpi-val">---%</div>
             </div>
-
-            <!-- כרטיס מדד ייחוס -->
-            <div class="card">
-                <h2>📊 מדד ייחוס (SPY)</h2>
-                <div class="stat-row">
-                    <span>מחיר שוק (SPY):</span>
-                    <span id="spy-price" class="stat-value">טוען...</span>
-                </div>
-                <div class="stat-row">
-                    <span>שינוי יומי:</span>
-                    <span id="spy-change" class="stat-value">0%</span>
-                </div>
-                <div style="margin-top:14px; font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
-                    מדד S&P 500 משמש כקו בסיס להשוואת תשואת האסטרטגיות מול השוק הכללי.
-                </div>
+            <div class="kpi-card">
+                <div class="kpi-label">מזומן זמין</div>
+                <div id="cashVal" class="kpi-val">$---</div>
             </div>
         </div>
 
-        <!-- היסטוריית עסקאות -->
-        <div class="card" style="margin-bottom:16px;">
-            <h2>📜 עסקאות שנסגרו (History)</h2>
-            <div id="history-rows" class="history-list">
-                <div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>
-            </div>
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab(event, 'openPos')">📈 פוזיציות פתוחות</button>
+            <button class="nav-tab" onclick="showTab(event, 'history')">📜 היסטוריית טריידים</button>
+            <button class="nav-tab" onclick="showTab(event, 'addTrade')">➕ הזנת עסקה ידנית</button>
+        </nav>
+
+        <div id="openPos" class="tab-panel active">
+            <div id="openPositionsContainer"></div>
         </div>
 
-        <!-- אזור הזנת טרייד ידני -->
-        <div id="trade-form-section" class="form-section" style="display: none;">
-            <h2>📝 הזנה / עדכון עסקאות (תיק עצמאי)</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>סוג פעולה</label>
-                    <select id="trade-action" onchange="toggleFormFields()">
-                        <option value="BUY">קנייה (פתיחת פוזיציה)</option>
-                        <option value="SELL">מכירה (סגירת פוזיציה)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>טיקר מניה</label>
-                    <input type="text" id="trade-ticker" placeholder="לדוגמה: NVDA" style="text-transform:uppercase;">
-                </div>
-                <div class="form-group">
-                    <label>מחיר ביצוע ($)</label>
-                    <input type="number" step="0.01" id="trade-price" placeholder="125.50">
-                </div>
-                <div class="form-group">
-                    <label>כמות מניות</label>
-                    <input type="number" step="0.001" id="trade-shares" placeholder="10">
-                </div>
-                <div class="form-group">
-                    <label>תאריך ביצוע</label>
-                    <input type="date" id="trade-date">
-                </div>
-                <div class="form-group buy-field">
-                    <label>יעד רווח (TP)</label>
-                    <input type="number" step="0.01" id="trade-tp" placeholder="140.00">
-                </div>
-                <div class="form-group buy-field">
-                    <label>סטופ לוס (SL)</label>
-                    <input type="number" step="0.01" id="trade-sl" placeholder="118.00">
-                </div>
-                <div class="form-group sell-field" style="display:none;">
-                    <label>סיבת מכירה</label>
-                    <input type="text" id="trade-reason" placeholder="הגעה ליעד / סגירה ידנית">
-                </div>
+        <div id="history" class="tab-panel">
+            <div id="closedTradesContainer"></div>
+        </div>
 
-                <button class="btn-submit" onclick="submitTrade()">בצע ועדכן בתיק</button>
+        <div id="addTrade" class="tab-panel">
+            <div class="form-box">
+                <h3 style="font-size:0.9rem; margin-bottom:8px;">הזנת טרייד ידני לתיק האישי</h3>
+                <div class="form-grid">
+                    <input type="text" id="inTicker" placeholder="טיקר (למשל PLTR)" class="input-field" style="text-transform:uppercase;">
+                    <input type="number" id="inShares" placeholder="כמות מניות" class="input-field">
+                    <input type="number" id="inEntry" placeholder="מחיר כניסה ($)" class="input-field" step="0.01">
+                    <input type="number" id="inStop" placeholder="סטופ לוס ($)" class="input-field" step="0.01">
+                    <input type="number" id="inTp1" placeholder="יעד 1 ($)" class="input-field" step="0.01">
+                    <input type="number" id="inTp2" placeholder="יעד 2 ($)" class="input-field" step="0.01">
+                </div>
+                <input type="password" id="ghToken" placeholder="GitHub Personal Access Token (PAT)" class="input-field" style="margin-bottom:10px;">
+                <button onclick="submitManualTrade()" class="btn-submit">🚀 שמור ל-data/portfolio_custom.json</button>
             </div>
-            <div id="status-msg"></div>
         </div>
     </div>
 
-    <!-- מודאל עדכון יתרת פתיחה ומזומן -->
-    <div id="balance-modal" class="modal-overlay" style="display: none;">
-        <div class="auth-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h3 style="margin:0; font-size:1.15rem;">💰 עדכון סכום תיק</h3>
-                <button onclick="closeBalanceModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
-            </div>
+    <script>
+        let customPortfolio = null;
+        let screenerPortfolio = null;
+        let activeView = 'custom'; // 'custom' or 'screener'
+
+        function showTab(evt, tabId) {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function switchView(viewName) {
+            activeView = viewName;
+            document.getElementById('btnViewCustom').classList.toggle('active', viewName === 'custom');
+            document.getElementById('btnViewScreener').classList.toggle('active', viewName === 'screener');
+            renderUI();
+        }
+
+        async function fetchAllData() {
+            try {
+                const [resCustom, resScreener] = await Promise.all([
+                    fetch('data/portfolio_custom.json?t=' + Date.now()),
+                    fetch('data/portfolio_screener.json?t=' + Date.now())
+                ]);
+
+                if (resCustom.ok) customPortfolio = await resCustom.json();
+                if (resScreener.ok) screenerPortfolio = await resScreener.json();
+
+                renderUI();
+            } catch(e) {
+                console.error("Error loading portfolio data:", e);
+            }
+        }
+
+        function renderScore(elemId, val) {
+            const el = document.getElementById(elemId);
+            if (!el) return;
+            const num = Number(val) || 0;
+            el.innerText = (num >= 0 ? '+' : '') + num.toFixed(2) + '%';
+            el.className = 'b-score ' + (num >= 0 ? 'pos' : 'neg');
+        }
+
+        function renderUI() {
+            // 1. Update Triple Battle Card
+            if (customPortfolio) {
+                renderScore('customPerfRow', customPortfolio.total_performance_pct);
+            }
+            if (screenerPortfolio) {
+                renderScore('screenerPerfRow', screenerPortfolio.total_performance_pct);
+            }
             
-            <div style="display:flex; flex-direction:column; gap:12px;">
-                <div class="form-group">
-                    <label>סכום פתיחה התחלתי ($) (Initial Capital)</label>
-                    <input type="number" id="input-initial-balance" placeholder="10000">
-                </div>
-                <div class="form-group">
-                    <label>מזומן פנוי נוכחי ($) (Available Cash)</label>
-                    <input type="number" id="input-current-cash" placeholder="10000">
-                </div>
-                <button class="btn-submit" onclick="saveBalanceUpdate()">שמור שינויים</button>
-            </div>
-            <div id="balance-status-msg"></div>
-        </div>
-    </div>
+            const spyPerf = (customPortfolio && customPortfolio.benchmark) ? customPortfolio.benchmark.performance_pct :
+                            (screenerPortfolio && screenerPortfolio.benchmark ? screenerPortfolio.benchmark.performance_pct : 0);
+            renderScore('spyPerfRow', spyPerf);
 
-    <!-- מודאל התחברות / הרשמה צף -->
-    <div id="auth-modal" class="modal-overlay" style="display: none;">
-        <div class="auth-card">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-                <h3 style="margin:0; font-size:1.15rem;">🔐 כניסה / הרשמה</h3>
-                <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
-            </div>
-            
-            <div style="display:flex; flex-direction:column; gap:12px;">
-                <div class="form-group">
-                    <label>אימייל</label>
-                    <input type="email" id="auth-email" placeholder="name@example.com">
-                </div>
-                <div class="form-group">
-                    <label>סיסמה</label>
-                    <input type="password" id="auth-password" placeholder="••••••••">
-                </div>
-                <div style="display:flex; gap:10px; margin-top:8px;">
-                    <button class="btn-submit" style="flex:1;" onclick="handleLogin()">התחבר</button>
-                    <button class="btn-submit" style="flex:1; background: #1e293b; border: 1px solid var(--border-color);" onclick="handleRegister()">הרשם</button>
-                </div>
-            </div>
-            <div id="auth-status"></div>
-        </div>
-    </div>
+            // 2. Target Active Portfolio for Detailed View
+            const p = activeView === 'custom' ? customPortfolio : screenerPortfolio;
+            if (!p) return;
 
-    <!-- Firebase SDK (Modular via CDN) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+            const eq = p.total_equity || p.cash || 10000;
+            const perf = p.total_performance_pct || 0;
+            const cash = p.cash || 0;
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAn3Op5A0sdGS3pnq2e2urb2omCrxSdqyA",
-            authDomain: "simulator-battle.firebaseapp.com",
-            projectId: "simulator-battle",
-            storageBucket: "simulator-battle.firebasestorage.app",
-            messagingSenderId: "211686229819",
-            appId: "1:211686229819:web:40a40843e131f49616191e"
-        };
+            document.getElementById('totalEquity').innerText = '$' + eq.toLocaleString(undefined, {minimumFractionDigits: 2});
+            const perfElem = document.getElementById('totalPerf');
+            perfElem.innerText = (perf >= 0 ? '+' : '') + perf.toFixed(2) + '%';
+            perfElem.className = 'kpi-val ' + (perf >= 0 ? 'pos' : 'neg');
+            document.getElementById('cashVal').innerText = '$' + cash.toLocaleString(undefined, {minimumFractionDigits: 2});
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        let currentUser = null;
-        let currentPortfolio = null;
-        let screenerData = { initial_balance: 10000, cash: 10000, current_equity: 10000, return_pct: 0, positions: {}, history: [] };
-        let unsubscribeCustom = null;
-        let livePrices = {};
-
-        const defaultPortfolio = {
-            initial_balance: 10000,
-            cash: 10000,
-            current_equity: 10000,
-            return_pct: 0,
-            positions: {},
-            history: []
-        };
-
-        document.getElementById('trade-date').value = new Date().toISOString().split('T')[0];
-
-        window.openAuthModal = () => document.getElementById('auth-modal').style.display = 'flex';
-        window.closeAuthModal = () => document.getElementById('auth-modal').style.display = 'none';
-
-        window.openBalanceModal = () => {
-            if (currentPortfolio) {
-                document.getElementById('input-initial-balance').value = currentPortfolio.initial_balance || 10000;
-                document.getElementById('input-current-cash').value = currentPortfolio.cash || 0;
-            }
-            document.getElementById('balance-modal').style.display = 'flex';
-        };
-        window.closeBalanceModal = () => {
-            document.getElementById('balance-modal').style.display = 'none';
-            document.getElementById('balance-status-msg').innerHTML = '';
-        };
-
-        window.saveBalanceUpdate = async function() {
-            if (!currentUser || !currentPortfolio) return;
-            const initBal = parseFloat(document.getElementById('input-initial-balance').value);
-            const curCash = parseFloat(document.getElementById('input-current-cash').value);
-            const msgElem = document.getElementById('balance-status-msg');
-
-            if (isNaN(initBal) || isNaN(curCash) || initBal <= 0 || curCash < 0) {
-                msgElem.innerHTML = '<span class="red">נא להזין ערכים חוקיים</span>';
-                return;
-            }
-
-            msgElem.innerHTML = '<span style="color:var(--accent);">שומר עדכון...</span>';
-            const updated = JSON.parse(JSON.stringify(currentPortfolio));
-            updated.initial_balance = initBal;
-            updated.cash = curCash;
-
-            try {
-                await setDoc(doc(db, "users", currentUser.uid, "portfolio", "custom"), updated);
-                msgElem.innerHTML = '<span class="green">✓ הסכומים עודכנו בהצלחה!</span>';
-                setTimeout(() => closeBalanceModal(), 1000);
-            } catch (err) {
-                msgElem.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
-            }
-        };
-
-        window.toggleFormFields = function() {
-            const action = document.getElementById('trade-action').value;
-            const isBuy = action === 'BUY';
-            document.querySelectorAll('.buy-field').forEach(el => el.style.display = isBuy ? 'flex' : 'none');
-            document.querySelectorAll('.sell-field').forEach(el => el.style.display = isBuy ? 'none' : 'flex');
-        };
-
-        window.handleLogin = async function() {
-            const email = document.getElementById('auth-email').value.trim();
-            const password = document.getElementById('auth-password').value;
-            const status = document.getElementById('auth-status');
-
-            if (!email || !password) {
-                status.innerHTML = '<span class="red">נא להזין אימייל וסיסמה</span>';
-                return;
-            }
-
-            try {
-                status.innerHTML = '<span style="color:var(--accent);">מתחבר...</span>';
-                await signInWithEmailAndPassword(auth, email, password);
-                status.innerHTML = '';
-                closeAuthModal();
-            } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
-            }
-        };
-
-        window.handleRegister = async function() {
-            const email = document.getElementById('auth-email').value.trim();
-            const password = document.getElementById('auth-password').value;
-            const status = document.getElementById('auth-status');
-
-            if (!email || !password) {
-                status.innerHTML = '<span class="red">נא להזין אימייל וסיסמה</span>';
-                return;
-            }
-
-            try {
-                status.innerHTML = '<span style="color:var(--accent);">יוצר חשבון...</span>';
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                await setDoc(doc(db, "users", userCredential.user.uid, "portfolio", "custom"), defaultPortfolio);
-                status.innerHTML = '';
-                closeAuthModal();
-            } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה: ${err.message}</span>`;
-            }
-        };
-
-        window.handleLogout = async function() {
-            await signOut(auth);
-        };
-
-        onAuthStateChanged(auth, async (user) => {
-            currentUser = user;
-            const customUnauth = document.getElementById('custom-unauth-view');
-            const customAuth = document.getElementById('custom-auth-view');
-            const tradeSection = document.getElementById('trade-form-section');
-            const userDisplay = document.getElementById('user-display');
-            const btnLogin = document.getElementById('btn-login-open');
-            const btnLogout = document.getElementById('btn-logout');
-
-            if (user) {
-                customUnauth.style.display = 'none';
-                customAuth.style.display = 'block';
-                tradeSection.style.display = 'block';
-                userDisplay.textContent = user.email;
-                btnLogin.style.display = 'none';
-                btnLogout.style.display = 'inline-block';
-                listenToCustomPortfolio(user.uid);
+            // 3. Render Positions
+            const openCont = document.getElementById('openPositionsContainer');
+            if (!p.open_positions || p.open_positions.length === 0) {
+                openCont.innerHTML = `<div class="empty-card">אין פוזיציות פתוחות כרגע ב${activeView === 'custom' ? 'תיק האישי' : 'תיק הסורק'}.</div>`;
             } else {
-                if (unsubscribeCustom) unsubscribeCustom();
-                currentPortfolio = null;
-                customUnauth.style.display = 'block';
-                customAuth.style.display = 'none';
-                tradeSection.style.display = 'none';
-                userDisplay.textContent = '';
-                btnLogin.style.display = 'inline-block';
-                btnLogout.style.display = 'none';
-                renderHistory([], screenerData.history || []);
+                let html = '';
+                p.open_positions.forEach(pos => {
+                    const pnlPct = pos.current_pnl_pct || 0;
+                    const pnlCls = pnlPct >= 0 ? 'pos' : 'neg';
+                    html += `
+                    <div class="clean-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span class="t-ticker">$${pos.ticker}</span>
+                            <span class="${pnlCls}" style="font-weight:800; font-family:'Plus Jakarta Sans';">${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%</span>
+                        </div>
+                        <div class="t-details" style="display:flex; justify-content:space-between;">
+                            <span>${pos.shares} מניות @ $${pos.entry_price}</span>
+                            <span>שווי: $${(pos.current_value || 0).toLocaleString()}</span>
+                            <span>סטופ: $${pos.stop_loss}</span>
+                            <span>יעד: $${pos.target_1}</span>
+                        </div>
+                    </div>`;
+                });
+                openCont.innerHTML = html;
             }
-        });
 
-        async function fetchLiveTickerPrice(ticker) {
-            try {
-                const res = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d&range=1d`);
-                const data = await res.json();
-                return data.chart.result[0].meta.regularMarketPrice;
-            } catch (e) {
-                return null;
+            // 4. Render History
+            const histCont = document.getElementById('closedTradesContainer');
+            if (!p.closed_trades || p.closed_trades.length === 0) {
+                histCont.innerHTML = '<div class="empty-card">טרם נרשמו עסקאות סגורות בהיסטוריה.</div>';
+            } else {
+                let html = '';
+                p.closed_trades.slice().reverse().forEach(t => {
+                    const pnl = t.pnl || 0;
+                    const pnlCls = pnl >= 0 ? 'pos' : 'neg';
+                    html += `
+                    <div class="trade-row">
+                        <div>
+                            <span class="t-ticker">$${t.ticker}</span>
+                            <div class="t-details">${t.opened_at} ➔ ${t.closed_at} (${t.reason})</div>
+                        </div>
+                        <div style="text-align:left;">
+                            <div class="${pnlCls}" style="font-family:'Plus Jakarta Sans'; font-weight:800;">${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}</div>
+                            <div class="t-details">${t.shares} מניות @ $${t.entry_price} ➔ $${t.exit_price}</div>
+                        </div>
+                    </div>`;
+                });
+                histCont.innerHTML = html;
             }
         }
 
-        async function updateAllLivePrices() {
-            const tickers = new Set();
-            if (currentPortfolio && currentPortfolio.positions) {
-                Object.keys(currentPortfolio.positions).forEach(t => tickers.add(t));
-            }
-            if (screenerData && screenerData.positions) {
-                Object.keys(screenerData.positions).forEach(t => tickers.add(t));
-            }
+        async function submitManualTrade() {
+            const ticker = document.getElementById('inTicker').value.trim().toUpperCase();
+            const shares = parseInt(document.getElementById('inShares').value);
+            const entry = parseFloat(document.getElementById('inEntry').value);
+            const stop = parseFloat(document.getElementById('inStop').value);
+            const tp1 = parseFloat(document.getElementById('inTp1').value);
+            const tp2 = parseFloat(document.getElementById('inTp2').value) || (tp1 * 1.05);
+            const token = document.getElementById('ghToken').value.trim();
 
-            for (const ticker of tickers) {
-                const price = await fetchLiveTickerPrice(ticker);
-                if (price) livePrices[ticker] = price;
-            }
-
-            if (currentPortfolio) renderCard('custom', currentPortfolio);
-            if (screenerData) renderCard('screener', screenerData);
-        }
-
-        async function loadPublicData() {
-            try {
-                const resScreener = await fetch(`data/portfolio_screener.json?t=${Date.now()}`);
-                if (resScreener.ok) {
-                    screenerData = await resScreener.json();
-                    renderCard('screener', screenerData);
-                    renderHistory(currentPortfolio ? currentPortfolio.history || [] : [], screenerData.history || []);
-                }
-            } catch (e) {
-                console.error("שגיאה בטעינת תיק סורק:", e);
-            }
-            fetchSpyBenchmark();
-            await updateAllLivePrices();
-        }
-
-        function listenToCustomPortfolio(uid) {
-            const customDocRef = doc(db, "users", uid, "portfolio", "custom");
-            unsubscribeCustom = onSnapshot(customDocRef, async (docSnap) => {
-                if (docSnap.exists()) {
-                    currentPortfolio = docSnap.data();
-                } else {
-                    currentPortfolio = { ...defaultPortfolio };
-                    await setDoc(customDocRef, currentPortfolio);
-                }
-                await updateAllLivePrices();
-                renderCard('custom', currentPortfolio);
-                renderHistory(currentPortfolio.history || [], screenerData.history || []);
-            });
-        }
-
-        function renderCard(prefix, data) {
-            const positions = Object.entries(data.positions || {});
-            let liveTotalEquity = data.cash || 0;
-
-            for (const [ticker, pos] of positions) {
-                const currentPrice = livePrices[ticker] || pos.entry_price;
-                liveTotalEquity += pos.shares * currentPrice;
-            }
-
-            const initial = data.initial_balance || 10000;
-            const ret = ((liveTotalEquity / initial) - 1) * 100;
-
-            document.getElementById(`${prefix}-equity`).textContent = `$${Math.round(liveTotalEquity).toLocaleString()}`;
-            document.getElementById(`${prefix}-cash`).textContent = `$${Math.round(data.cash || 0).toLocaleString()}`;
-            
-            const retElem = document.getElementById(`${prefix}-return`);
-            retElem.textContent = `${ret > 0 ? '+' : ''}${ret.toFixed(2)}%`;
-            retElem.className = `stat-value ${ret >= 0 ? 'green' : 'red'}`;
-
-            const container = document.getElementById(`${prefix}-positions`);
-            container.innerHTML = '';
-            
-            if (positions.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין פוזיציות פתוחות</div>';
+            if (!ticker || !shares || !entry || !stop || !tp1 || !token) {
+                alert("נא למלא את כל השדות כולל Personal Access Token!");
                 return;
             }
 
-            for (const [ticker, pos] of positions) {
-                const curPrice = livePrices[ticker] || pos.entry_price;
-                const posPnlPct = ((curPrice / pos.entry_price) - 1) * 100;
-                const isPosWin = posPnlPct >= 0;
-
-                container.innerHTML += `
-                    <div class="pos-item">
-                        <div class="pos-header">
-                            <div>
-                                <span class="ticker-tag">${ticker}</span>
-                                <span style="font-size:0.85rem; font-weight:600; margin-right:6px;">$${curPrice.toFixed(2)}</span>
-                            </div>
-                            <span class="${isPosWin ? 'green' : 'red'}" style="font-size:0.85rem; font-weight:bold; font-family:monospace;">
-                                ${isPosWin ? '+' : ''}${posPnlPct.toFixed(2)}%
-                            </span>
-                        </div>
-                        <div class="pos-body">
-                            <span>כניסה: <strong>$${pos.entry_price}</strong></span>
-                            <span>כמות: <strong>${pos.shares}</strong></span>
-                            <span>שווי חי: <strong>$${(pos.shares * curPrice).toFixed(1)}</strong></span>
-                            <span>רווח/הפסד: <strong class="${isPosWin ? 'green' : 'red'}">${isPosWin ? '+' : ''}$${((curPrice - pos.entry_price) * pos.shares).toFixed(1)}</strong></span>
-                        </div>
-                        <div class="pos-targets">
-                            <span class="green">TP: $${pos.take_profit || '-'}</span>
-                            <span class="red">SL: $${pos.stop_loss || '-'}</span>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function renderHistory(customHist, screenerHist) {
-            const container = document.getElementById('history-rows');
-            const allHistory = [
-                ...customHist.map(h => ({ ...h, portfolio: 'עצמאי' })),
-                ...screenerHist.map(h => ({ ...h, portfolio: 'סורק' }))
-            ].sort((a, b) => new Date(b.exit_date) - new Date(a.exit_date));
-
-            if (allHistory.length === 0) {
-                container.innerHTML = '<div style="text-align:center; color:var(--text-muted); font-size:0.85rem; padding:10px;">אין עסקאות סגורות עדיין</div>';
+            const totalCost = shares * entry;
+            if (!customPortfolio || customPortfolio.cash < totalCost) {
+                alert("אין מספיק מזומן פנוי בתיק האישי לביצוע העסקה!");
                 return;
             }
 
-            container.innerHTML = '';
-            for (const h of allHistory) {
-                const isWin = h.profit_usd >= 0;
-                container.innerHTML += `
-                    <div class="hist-item">
-                        <div class="hist-header">
-                            <div>
-                                <span class="badge-portfolio">${h.portfolio}</span>
-                                <strong style="color:var(--accent); margin-right:4px;">${h.ticker}</strong>
-                            </div>
-                            <span class="${isWin ? 'green' : 'red'}" style="font-weight:bold; font-family:monospace;">
-                                ${isWin ? '+' : ''}$${h.profit_usd} (${isWin ? '+' : ''}${h.profit_pct}%)
-                            </span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted);">
-                            <span>כניסה: $${h.entry_price} ➔ יציאה: $${h.exit_price}</span>
-                            <span>${h.exit_date}</span>
-                        </div>
-                    </div>
-                `;
-            }
-        }
+            customPortfolio.cash = Math.round((customPortfolio.cash - totalCost) * 100) / 100;
+            const newPos = {
+                ticker,
+                shares,
+                entry_price: entry,
+                stop_loss: stop,
+                target_1: tp1,
+                target_2: tp2,
+                opened_at: new Date().toLocaleDateString('en-GB'),
+                trailing_active: false,
+                current_price: entry,
+                current_pnl_pct: 0.0,
+                current_value: totalCost,
+                days_active: 0
+            };
 
-        async function fetchSpyBenchmark() {
+            customPortfolio.open_positions.push(newPos);
+
             try {
-                const res = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/SPY?interval=1d&range=5d');
-                const data = await res.json();
-                const meta = data.chart.result[0].meta;
-                const curPrice = meta.regularMarketPrice;
-                const prevClose = meta.chartPreviousClose;
-                const changePct = ((curPrice / prevClose) - 1) * 100;
+                const owner = "ororer";
+                const repo = "simulator";
+                const path = "data/portfolio_custom.json";
+                const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
-                document.getElementById('spy-price').textContent = `$${curPrice.toFixed(2)}`;
-                const changeElem = document.getElementById('spy-change');
-                changeElem.textContent = `${changePct >= 0 ? '+' : ''}${changePct.toFixed(2)}%`;
-                changeElem.className = `stat-value ${changePct >= 0 ? 'green' : 'red'}`;
-            } catch (e) {
-                document.getElementById('spy-price').textContent = '$560.00';
-            }
-        }
+                const getResp = await fetch(url, { headers: { Authorization: `token ${token}` } });
+                const fileData = await getResp.json();
+                const sha = fileData.sha;
 
-        window.submitTrade = async function() {
-            if (!currentUser || !currentPortfolio) return;
-
-            const status = document.getElementById('status-msg');
-            const action = document.getElementById('trade-action').value;
-            const ticker = document.getElementById('trade-ticker').value.trim().toUpperCase();
-            const price = parseFloat(document.getElementById('trade-price').value);
-            const shares = parseFloat(document.getElementById('trade-shares').value);
-            const date = document.getElementById('trade-date').value;
-            const tp = parseFloat(document.getElementById('trade-tp').value) || 0;
-            const sl = parseFloat(document.getElementById('trade-sl').value) || 0;
-            const reason = document.getElementById('trade-reason').value || 'מכירה ידנית';
-
-            if (!ticker || isNaN(price) || isNaN(shares)) {
-                status.innerHTML = '<span class="red">נא למלא את כל השדות הדרושים</span>';
-                return;
-            }
-
-            status.innerHTML = '<span style="color:var(--accent);">מעדכן ב-Firebase...</span>';
-
-            const portfolio = JSON.parse(JSON.stringify(currentPortfolio));
-            const totalCost = price * shares;
-
-            if (action === 'BUY') {
-                if (portfolio.cash < totalCost) {
-                    status.innerHTML = `<span class="red">אין מספיק מזומן פנוי! חסר $${(totalCost - portfolio.cash).toFixed(2)}</span>`;
-                    return;
-                }
-                portfolio.cash -= totalCost;
-                if (!portfolio.positions) portfolio.positions = {};
-                portfolio.positions[ticker] = {
-                    shares: shares,
-                    entry_price: price,
-                    entry_date: date,
-                    take_profit: tp,
-                    stop_loss: sl
-                };
-            } else if (action === 'SELL') {
-                if (!portfolio.positions || !portfolio.positions[ticker]) {
-                    status.innerHTML = '<span class="red">המניה אינה קיימת בפוזיציות הפתוחות!</span>';
-                    return;
-                }
-                const pos = portfolio.positions[ticker];
-                const sellShares = Math.min(shares, pos.shares);
-                const revenue = price * sellShares;
-                const profit = revenue - (sellShares * pos.entry_price);
-                const profit_pct = ((price / pos.entry_price) - 1) * 100;
-
-                portfolio.cash += revenue;
-                if (!portfolio.history) portfolio.history = [];
-                portfolio.history.push({
-                    ticker: ticker,
-                    entry_price: pos.entry_price,
-                    exit_price: price,
-                    shares: sellShares,
-                    profit_usd: Math.round(profit * 100) / 100,
-                    profit_pct: Math.round(profit_pct * 100) / 100,
-                    reason: reason,
-                    entry_date: pos.entry_date || '',
-                    exit_date: date
+                const contentEncoded = btoa(unescape(encodeURIComponent(JSON.stringify(customPortfolio, null, 2))));
+                const putResp = await fetch(url, {
+                    method: "PUT",
+                    headers: { Authorization: `token ${token}`, "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        message: `Manual trade: $${ticker} (${shares} shares)`,
+                        content: contentEncoded,
+                        sha: sha
+                    })
                 });
 
-                if (sellShares >= pos.shares) {
-                    delete portfolio.positions[ticker];
+                if (putResp.ok) {
+                    alert("העסקה נשמרה בתיק האישי וסונכרנה ל-GitHub!");
+                    renderUI();
                 } else {
-                    pos.shares = Math.round((pos.shares - sellShares) * 1000) / 1000;
+                    alert("שגיאה בסנכרון ל-GitHub API. בדוק את ה-Token וההרשאות.");
                 }
+            } catch(e) {
+                alert("שגיאה בביצוע הקריאה: " + e.message);
             }
+        }
 
-            let posVal = 0;
-            for (const t in portfolio.positions) {
-                posVal += portfolio.positions[t].shares * portfolio.positions[t].entry_price;
-            }
-            portfolio.current_equity = Math.round((portfolio.cash + posVal) * 100) / 100;
-            portfolio.return_pct = Math.round(((portfolio.current_equity / portfolio.initial_balance) - 1) * 10000) / 100;
-
-            try {
-                await setDoc(doc(db, "users", currentUser.uid, "portfolio", "custom"), portfolio);
-                status.innerHTML = '<span class="green">✓ הטרייד עודכן בהצלחה!</span>';
-                document.getElementById('trade-ticker').value = '';
-                document.getElementById('trade-price').value = '';
-                document.getElementById('trade-shares').value = '';
-                document.getElementById('trade-tp').value = '';
-                document.getElementById('trade-sl').value = '';
-                document.getElementById('trade-reason').value = '';
-            } catch (err) {
-                status.innerHTML = `<span class="red">שגיאה בשמירה: ${err.message}</span>`;
-            }
-        };
-
-        loadPublicData();
-        setInterval(updateAllLivePrices, 60000);
+        fetchAllData();
     </script>
 </body>
 </html>
