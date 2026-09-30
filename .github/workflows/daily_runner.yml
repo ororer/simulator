@@ -2,9 +2,8 @@ name: Run Daily Paper Trading Engine
 
 on:
   schedule:
-    # ימים שני עד שישי בשעה 21:30 UTC (חצי שעה לאחר נעילת וול סטריט)
     - cron: '30 21 * * 1-5'
-  workflow_dispatch: # כפתור להפעלה ידנית לבדיקות
+  workflow_dispatch:
 
 permissions:
   contents: write
