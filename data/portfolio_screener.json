@@ -1,5 +1,5 @@
 {
-  "cash": 5219.38,
+  "cash": 1076.62,
   "initial_capital": 10000.0,
   "total_equity": 10464.36,
   "total_performance_pct": 4.64,
@@ -31,6 +31,34 @@
       "current_pnl_pct": 7.88,
       "current_value": 2617.58,
       "days_active": 1
+    },
+    {
+      "ticker": "VRTX",
+      "shares": 4,
+      "entry_price": 526.73,
+      "stop_loss": 510.13,
+      "target_1": 551.63,
+      "target_2": 576.53,
+      "opened_at": "30/09/2026",
+      "trailing_active": false,
+      "current_price": 526.73,
+      "current_pnl_pct": 0.0,
+      "current_value": 2106.92,
+      "days_active": 0
+    },
+    {
+      "ticker": "MSFT",
+      "shares": 4,
+      "entry_price": 508.96,
+      "stop_loss": 491.36,
+      "target_1": 535.36,
+      "target_2": 561.76,
+      "opened_at": "30/09/2026",
+      "trailing_active": false,
+      "current_price": 508.96,
+      "current_pnl_pct": 0.0,
+      "current_value": 2035.84,
+      "days_active": 0
     }
   ],
   "closed_trades": [
