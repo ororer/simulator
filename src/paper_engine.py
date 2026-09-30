@@ -38,7 +38,6 @@ def save_portfolio(filepath, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def process_single_portfolio(portfolio, raw_data, spy_perf, current_spy, now_dt, now_str):
-    # עדכון Benchmark
     bm = portfolio.get("benchmark", {})
     if current_spy:
         if not bm.get("start_price"):
@@ -87,7 +86,6 @@ def process_single_portfolio(portfolio, raw_data, spy_perf, current_spy, now_dt,
         pos["current_pnl_pct"] = round(((latest_close - entry) / entry) * 100, 2)
         pos["current_value"] = round(shares * latest_close, 2)
 
-        # TP2 - יציאה מלאה
         if latest_high >= target_2:
             pnl = (target_2 - entry) * shares
             cash += shares * target_2
@@ -104,7 +102,6 @@ def process_single_portfolio(portfolio, raw_data, spy_perf, current_spy, now_dt,
             })
             continue
 
-        # TP1 - יציאה של 50% והזזת סטופ לכניסה
         elif latest_high >= target_1 and not is_trailing and shares >= 2:
             half_shares = shares // 2
             remaining_shares = shares - half_shares
@@ -130,7 +127,6 @@ def process_single_portfolio(portfolio, raw_data, spy_perf, current_spy, now_dt,
             still_open.append(pos)
             continue
 
-        # Stop Loss
         elif latest_low <= stop_loss:
             pnl = (stop_loss - entry) * shares
             cash += shares * stop_loss
@@ -147,7 +143,6 @@ def process_single_portfolio(portfolio, raw_data, spy_perf, current_spy, now_dt,
             })
             continue
 
-        # Time Stop (מעל 15 יום)
         elif days_active >= 15:
             pnl = (latest_close - entry) * shares
             cash += shares * latest_close
