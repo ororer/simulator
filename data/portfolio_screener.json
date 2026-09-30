@@ -1,8 +1,8 @@
 {
   "cash": 5219.38,
   "initial_capital": 10000.0,
-  "total_equity": 10436.6,
-  "total_performance_pct": 4.37,
+  "total_equity": 10464.36,
+  "total_performance_pct": 4.64,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -13,9 +13,9 @@
       "target_2": 303.78,
       "opened_at": "29/09/2026",
       "trailing_active": false,
-      "current_price": 259.25,
-      "current_pnl_pct": 10.14,
-      "current_value": 2592.5,
+      "current_price": 262.739990234375,
+      "current_pnl_pct": 11.62,
+      "current_value": 2627.4,
       "days_active": 1
     },
     {
@@ -27,9 +27,9 @@
       "target_2": 207.45,
       "opened_at": "29/09/2026",
       "trailing_active": false,
-      "current_price": 187.47999572753906,
-      "current_pnl_pct": 8.18,
-      "current_value": 2624.72,
+      "current_price": 186.97000122070312,
+      "current_pnl_pct": 7.88,
+      "current_value": 2617.58,
       "days_active": 1
     }
   ],
@@ -48,8 +48,8 @@
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 765.6099853515625,
-    "performance_pct": 0.0
+    "current_price": 764.2000122070312,
+    "performance_pct": -0.18
   },
   "last_updated": "30/09/2026"
 }

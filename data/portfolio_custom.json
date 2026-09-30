@@ -49,8 +49,8 @@
   ],
   "benchmark": {
     "start_price": 771.3499755859375,
-    "current_price": 765.6099853515625,
-    "performance_pct": -0.74
+    "current_price": 764.2000122070312,
+    "performance_pct": -0.93
   },
   "open_positions": [],
   "closed_trades": [],
