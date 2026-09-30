@@ -1,8 +1,8 @@
 {
-  "cash": 3066.04,
+  "cash": 5219.38,
   "initial_capital": 10000.0,
-  "total_equity": 10000.0,
-  "total_performance_pct": 0.0,
+  "total_equity": 10436.6,
+  "total_performance_pct": 4.37,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -13,10 +13,10 @@
       "target_2": 303.78,
       "opened_at": "29/09/2026",
       "trailing_active": false,
-      "current_price": 235.38,
-      "current_pnl_pct": 0.0,
-      "current_value": 2353.8,
-      "days_active": 0
+      "current_price": 259.25,
+      "current_pnl_pct": 10.14,
+      "current_value": 2592.5,
+      "days_active": 1
     },
     {
       "ticker": "PLTR",
@@ -27,30 +27,29 @@
       "target_2": 207.45,
       "opened_at": "29/09/2026",
       "trailing_active": false,
-      "current_price": 173.31,
-      "current_pnl_pct": 0.0,
-      "current_value": 2426.34,
-      "days_active": 0
-    },
-    {
-      "ticker": "TSLA",
-      "shares": 6,
-      "entry_price": 358.97,
-      "stop_loss": 358.89,
-      "target_1": 390.4,
-      "target_2": 421.82,
-      "opened_at": "29/09/2026",
-      "trailing_active": false,
-      "current_price": 358.97,
-      "current_pnl_pct": 0.0,
-      "current_value": 2153.82,
-      "days_active": 0
+      "current_price": 187.47999572753906,
+      "current_pnl_pct": 8.18,
+      "current_value": 2624.72,
+      "days_active": 1
     }
   ],
-  "closed_trades": [],
+  "closed_trades": [
+    {
+      "ticker": "TSLA",
+      "entry_price": 358.97,
+      "exit_price": 358.89,
+      "shares": 6,
+      "pnl": -0.48,
+      "pnl_pct": -0.02,
+      "reason": "STOP_LOSS",
+      "opened_at": "29/09/2026",
+      "closed_at": "30/09/2026"
+    }
+  ],
   "benchmark": {
-    "start_price": null,
-    "current_price": null,
+    "start_price": 765.6099853515625,
+    "current_price": 765.6099853515625,
     "performance_pct": 0.0
-  }
+  },
+  "last_updated": "30/09/2026"
 }
