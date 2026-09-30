@@ -71,7 +71,6 @@
             <a href="https://oren-s-market.vercel.app" class="back-link">🌐 סורק השוק</a>
         </header>
 
-        <!-- Battle Card: Triple Comparison -->
         <div class="battle-card">
             <div class="battle-header">🏆 לוח תוצאות — השוואת ביצועי הקרב</div>
             <div class="battle-row">
@@ -88,13 +87,11 @@
             </div>
         </div>
 
-        <!-- Portfolio Selection for Detail View -->
         <div class="port-switcher">
             <button class="switch-btn active" id="btnViewCustom" onclick="switchView('custom')">👤 פירוט תיק אישי</button>
             <button class="switch-btn" id="btnViewScreener" onclick="switchView('screener')">🤖 פירוט תיק סורק</button>
         </div>
 
-        <!-- Dynamic KPIs based on active selected view -->
         <div class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-label">שווי תיק כולל</div>
@@ -110,7 +107,6 @@
             </div>
         </div>
 
-        <!-- Navigation Tabs -->
         <nav class="nav-tabs">
             <button class="nav-tab active" onclick="showTab(event, 'openPos')">📈 פוזיציות פתוחות</button>
             <button class="nav-tab" onclick="showTab(event, 'history')">📜 היסטוריית טריידים</button>
@@ -145,7 +141,7 @@
     <script>
         let customPortfolio = null;
         let screenerPortfolio = null;
-        let activeView = 'custom'; // 'custom' or 'screener'
+        let activeView = 'custom';
 
         function showTab(evt, tabId) {
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
@@ -186,7 +182,6 @@
         }
 
         function renderUI() {
-            // 1. Update Triple Battle Card
             if (customPortfolio) {
                 renderScore('customPerfRow', customPortfolio.total_performance_pct);
             }
@@ -198,7 +193,6 @@
                             (screenerPortfolio && screenerPortfolio.benchmark ? screenerPortfolio.benchmark.performance_pct : 0);
             renderScore('spyPerfRow', spyPerf);
 
-            // 2. Target Active Portfolio for Detailed View
             const p = activeView === 'custom' ? customPortfolio : screenerPortfolio;
             if (!p) return;
 
@@ -212,7 +206,6 @@
             perfElem.className = 'kpi-val ' + (perf >= 0 ? 'pos' : 'neg');
             document.getElementById('cashVal').innerText = '$' + cash.toLocaleString(undefined, {minimumFractionDigits: 2});
 
-            // 3. Render Positions
             const openCont = document.getElementById('openPositionsContainer');
             if (!p.open_positions || p.open_positions.length === 0) {
                 openCont.innerHTML = `<div class="empty-card">אין פוזיציות פתוחות כרגע ב${activeView === 'custom' ? 'תיק האישי' : 'תיק הסורק'}.</div>`;
@@ -238,7 +231,6 @@
                 openCont.innerHTML = html;
             }
 
-            // 4. Render History
             const histCont = document.getElementById('closedTradesContainer');
             if (!p.closed_trades || p.closed_trades.length === 0) {
                 histCont.innerHTML = '<div class="empty-card">טרם נרשמו עסקאות סגורות בהיסטוריה.</div>';
