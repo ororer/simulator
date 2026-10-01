@@ -16,7 +16,7 @@
       "current_price": 262.739990234375,
       "current_pnl_pct": 11.62,
       "current_value": 2627.4,
-      "days_active": 1
+      "days_active": 2
     },
     {
       "ticker": "PLTR",
@@ -30,7 +30,7 @@
       "current_price": 186.97000122070312,
       "current_pnl_pct": 7.88,
       "current_value": 2617.58,
-      "days_active": 1
+      "days_active": 2
     },
     {
       "ticker": "VRTX",
@@ -41,10 +41,10 @@
       "target_2": 576.53,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 526.73,
-      "current_pnl_pct": 0.0,
+      "current_price": 526.72998046875,
+      "current_pnl_pct": -0.0,
       "current_value": 2106.92,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "MSFT",
@@ -55,10 +55,10 @@
       "target_2": 561.76,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 508.96,
-      "current_pnl_pct": 0.0,
+      "current_price": 508.9599914550781,
+      "current_pnl_pct": -0.0,
       "current_value": 2035.84,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "DIS",
@@ -69,10 +69,10 @@
       "target_2": 114.95,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 105.41,
+      "current_price": 105.41000366210938,
       "current_pnl_pct": 0.0,
       "current_value": 527.05,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "COIN",
@@ -83,10 +83,10 @@
       "target_2": 242.22,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 190.02,
+      "current_price": 190.02000427246094,
       "current_pnl_pct": 0.0,
       "current_value": 380.04,
-      "days_active": 0
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -107,5 +107,5 @@
     "current_price": 764.2000122070312,
     "performance_pct": -0.18
   },
-  "last_updated": "30/09/2026"
+  "last_updated": "01/10/2026"
 }
