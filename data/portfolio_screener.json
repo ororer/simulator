@@ -1,8 +1,8 @@
 {
-  "cash": 169.53,
+  "cash": 1502.19,
   "initial_capital": 10000.0,
-  "total_equity": 10464.36,
-  "total_performance_pct": 4.64,
+  "total_equity": 10499.2,
+  "total_performance_pct": 4.99,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -13,24 +13,24 @@
       "target_2": 303.78,
       "opened_at": "29/09/2026",
       "trailing_active": false,
-      "current_price": 262.739990234375,
-      "current_pnl_pct": 11.62,
-      "current_value": 2627.4,
-      "days_active": 2
+      "current_price": 264.75,
+      "current_pnl_pct": 12.48,
+      "current_value": 2647.5,
+      "days_active": 3
     },
     {
       "ticker": "PLTR",
-      "shares": 14,
+      "shares": 7,
       "entry_price": 173.31,
-      "stop_loss": 179.5,
+      "stop_loss": 173.31,
       "target_1": 190.38,
       "target_2": 207.45,
       "opened_at": "29/09/2026",
-      "trailing_active": false,
-      "current_price": 186.97000122070312,
-      "current_pnl_pct": 7.88,
-      "current_value": 2617.58,
-      "days_active": 2
+      "trailing_active": true,
+      "current_price": 187.0500030517578,
+      "current_pnl_pct": 7.93,
+      "current_value": 1309.35,
+      "days_active": 3
     },
     {
       "ticker": "VRTX",
@@ -41,10 +41,10 @@
       "target_2": 576.53,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 526.72998046875,
-      "current_pnl_pct": -0.0,
-      "current_value": 2106.92,
-      "days_active": 1
+      "current_price": 522.8099975585938,
+      "current_pnl_pct": -0.74,
+      "current_value": 2091.24,
+      "days_active": 2
     },
     {
       "ticker": "MSFT",
@@ -55,10 +55,10 @@
       "target_2": 561.76,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 508.9599914550781,
-      "current_pnl_pct": -0.0,
-      "current_value": 2035.84,
-      "days_active": 1
+      "current_price": 512.9000244140625,
+      "current_pnl_pct": 0.77,
+      "current_value": 2051.6,
+      "days_active": 2
     },
     {
       "ticker": "DIS",
@@ -69,10 +69,10 @@
       "target_2": 114.95,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 105.41000366210938,
-      "current_pnl_pct": 0.0,
-      "current_value": 527.05,
-      "days_active": 1
+      "current_price": 104.9000015258789,
+      "current_pnl_pct": -0.48,
+      "current_value": 524.5,
+      "days_active": 2
     },
     {
       "ticker": "COIN",
@@ -83,10 +83,10 @@
       "target_2": 242.22,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 190.02000427246094,
-      "current_pnl_pct": 0.0,
-      "current_value": 380.04,
-      "days_active": 1
+      "current_price": 186.41000366210938,
+      "current_pnl_pct": -1.9,
+      "current_value": 372.82,
+      "days_active": 2
     }
   ],
   "closed_trades": [
@@ -100,12 +100,23 @@
       "reason": "STOP_LOSS",
       "opened_at": "29/09/2026",
       "closed_at": "30/09/2026"
+    },
+    {
+      "ticker": "PLTR",
+      "entry_price": 173.31,
+      "exit_price": 190.38,
+      "shares": 7,
+      "pnl": 119.49,
+      "pnl_pct": 9.85,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "29/09/2026",
+      "closed_at": "02/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 764.2000122070312,
-    "performance_pct": -0.18
+    "current_price": 762.6300048828125,
+    "performance_pct": -0.39
   },
-  "last_updated": "01/10/2026"
+  "last_updated": "02/10/2026"
 }
