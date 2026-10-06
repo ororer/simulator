@@ -1,5 +1,5 @@
 {
-  "cash": 4913.51,
+  "cash": 2658.65,
   "initial_capital": 10000.0,
   "total_equity": 10571.82,
   "total_performance_pct": 5.72,
@@ -73,6 +73,20 @@
       "current_pnl_pct": 0.77,
       "current_value": 492.0,
       "days_active": 4
+    },
+    {
+      "ticker": "AVGO",
+      "shares": 6,
+      "entry_price": 375.81,
+      "stop_loss": 359.88,
+      "target_1": 399.7,
+      "target_2": 423.6,
+      "opened_at": "06/10/2026",
+      "trailing_active": false,
+      "current_price": 375.81,
+      "current_pnl_pct": 0.0,
+      "current_value": 2254.86,
+      "days_active": 0
     }
   ],
   "closed_trades": [
