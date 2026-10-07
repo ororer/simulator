@@ -1,8 +1,8 @@
 {
-  "cash": 2658.65,
+  "cash": 3729.37,
   "initial_capital": 10000.0,
-  "total_equity": 10571.82,
-  "total_performance_pct": 5.72,
+  "total_equity": 10601.86,
+  "total_performance_pct": 6.02,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -16,7 +16,7 @@
       "current_price": 272.6700134277344,
       "current_pnl_pct": 15.84,
       "current_value": 1363.35,
-      "days_active": 7
+      "days_active": 8
     },
     {
       "ticker": "PLTR",
@@ -30,21 +30,21 @@
       "current_price": 189.39999389648438,
       "current_pnl_pct": 9.28,
       "current_value": 1325.8,
-      "days_active": 7
+      "days_active": 8
     },
     {
       "ticker": "MSFT",
-      "shares": 4,
+      "shares": 2,
       "entry_price": 508.96,
-      "stop_loss": 491.36,
+      "stop_loss": 508.96,
       "target_1": 535.36,
       "target_2": 561.76,
       "opened_at": "30/09/2026",
-      "trailing_active": false,
-      "current_price": 525.1799926757812,
-      "current_pnl_pct": 3.19,
-      "current_value": 2100.72,
-      "days_active": 6
+      "trailing_active": true,
+      "current_price": 529.2999877929688,
+      "current_pnl_pct": 4.0,
+      "current_value": 1058.6,
+      "days_active": 7
     },
     {
       "ticker": "COIN",
@@ -58,7 +58,7 @@
       "current_price": 188.22000122070312,
       "current_pnl_pct": -0.95,
       "current_value": 376.44,
-      "days_active": 6
+      "days_active": 7
     },
     {
       "ticker": "XOM",
@@ -69,10 +69,10 @@
       "target_2": 179.58,
       "opened_at": "02/10/2026",
       "trailing_active": false,
-      "current_price": 164.0,
-      "current_pnl_pct": 0.77,
-      "current_value": 492.0,
-      "days_active": 4
+      "current_price": 164.47999572753906,
+      "current_pnl_pct": 1.06,
+      "current_value": 493.44,
+      "days_active": 5
     },
     {
       "ticker": "AVGO",
@@ -83,10 +83,10 @@
       "target_2": 423.6,
       "opened_at": "06/10/2026",
       "trailing_active": false,
-      "current_price": 375.81,
-      "current_pnl_pct": 0.0,
+      "current_price": 375.80999755859375,
+      "current_pnl_pct": -0.0,
       "current_value": 2254.86,
-      "days_active": 0
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -144,12 +144,23 @@
       "reason": "TARGET_1_HALF",
       "opened_at": "29/09/2026",
       "closed_at": "06/10/2026"
+    },
+    {
+      "ticker": "MSFT",
+      "entry_price": 508.96,
+      "exit_price": 535.36,
+      "shares": 2,
+      "pnl": 52.8,
+      "pnl_pct": 5.19,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "30/09/2026",
+      "closed_at": "07/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 774.8300170898438,
-    "performance_pct": 1.2
+    "current_price": 779.0900268554688,
+    "performance_pct": 1.76
   },
-  "last_updated": "06/10/2026"
+  "last_updated": "07/10/2026"
 }
