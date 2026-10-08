@@ -1,5 +1,5 @@
 {
-  "cash": 1909.93,
+  "cash": 1288.63,
   "initial_capital": 10000.0,
   "total_equity": 10646.54,
   "total_performance_pct": 6.47,
@@ -100,6 +100,20 @@
       "current_price": 259.92,
       "current_pnl_pct": 0.0,
       "current_value": 1819.44,
+      "days_active": 0
+    },
+    {
+      "ticker": "CVX",
+      "shares": 3,
+      "entry_price": 207.1,
+      "stop_loss": 201.32,
+      "target_1": 217.03,
+      "target_2": 226.96,
+      "opened_at": "08/10/2026",
+      "trailing_active": false,
+      "current_price": 207.1,
+      "current_pnl_pct": 0.0,
+      "current_value": 621.3,
       "days_active": 0
     }
   ],
