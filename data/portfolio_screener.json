@@ -1,8 +1,8 @@
 {
   "cash": 3729.37,
   "initial_capital": 10000.0,
-  "total_equity": 10601.86,
-  "total_performance_pct": 6.02,
+  "total_equity": 10646.54,
+  "total_performance_pct": 6.47,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -13,10 +13,10 @@
       "target_2": 303.78,
       "opened_at": "29/09/2026",
       "trailing_active": true,
-      "current_price": 272.6700134277344,
-      "current_pnl_pct": 15.84,
-      "current_value": 1363.35,
-      "days_active": 8
+      "current_price": 278.8599853515625,
+      "current_pnl_pct": 18.47,
+      "current_value": 1394.3,
+      "days_active": 9
     },
     {
       "ticker": "PLTR",
@@ -27,10 +27,10 @@
       "target_2": 207.45,
       "opened_at": "29/09/2026",
       "trailing_active": true,
-      "current_price": 189.39999389648438,
-      "current_pnl_pct": 9.28,
-      "current_value": 1325.8,
-      "days_active": 8
+      "current_price": 192.07000732421875,
+      "current_pnl_pct": 10.82,
+      "current_value": 1344.49,
+      "days_active": 9
     },
     {
       "ticker": "MSFT",
@@ -44,7 +44,7 @@
       "current_price": 529.2999877929688,
       "current_pnl_pct": 4.0,
       "current_value": 1058.6,
-      "days_active": 7
+      "days_active": 8
     },
     {
       "ticker": "COIN",
@@ -55,10 +55,10 @@
       "target_2": 242.22,
       "opened_at": "30/09/2026",
       "trailing_active": false,
-      "current_price": 188.22000122070312,
-      "current_pnl_pct": -0.95,
-      "current_value": 376.44,
-      "days_active": 7
+      "current_price": 185.74000549316406,
+      "current_pnl_pct": -2.25,
+      "current_value": 371.48,
+      "days_active": 8
     },
     {
       "ticker": "XOM",
@@ -72,7 +72,7 @@
       "current_price": 164.47999572753906,
       "current_pnl_pct": 1.06,
       "current_value": 493.44,
-      "days_active": 5
+      "days_active": 6
     },
     {
       "ticker": "AVGO",
@@ -86,7 +86,7 @@
       "current_price": 375.80999755859375,
       "current_pnl_pct": -0.0,
       "current_value": 2254.86,
-      "days_active": 1
+      "days_active": 2
     }
   ],
   "closed_trades": [
@@ -162,5 +162,5 @@
     "current_price": 779.0900268554688,
     "performance_pct": 1.76
   },
-  "last_updated": "07/10/2026"
+  "last_updated": "08/10/2026"
 }
