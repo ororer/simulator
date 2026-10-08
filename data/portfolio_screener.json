@@ -1,5 +1,5 @@
 {
-  "cash": 3729.37,
+  "cash": 1909.93,
   "initial_capital": 10000.0,
   "total_equity": 10646.54,
   "total_performance_pct": 6.47,
@@ -87,6 +87,20 @@
       "current_pnl_pct": -0.0,
       "current_value": 2254.86,
       "days_active": 2
+    },
+    {
+      "ticker": "AMZN",
+      "shares": 7,
+      "entry_price": 259.92,
+      "stop_loss": 251.99,
+      "target_1": 271.82,
+      "target_2": 283.71,
+      "opened_at": "08/10/2026",
+      "trailing_active": false,
+      "current_price": 259.92,
+      "current_pnl_pct": 0.0,
+      "current_value": 1819.44,
+      "days_active": 0
     }
   ],
   "closed_trades": [
