@@ -1,5 +1,5 @@
 {
-  "cash": 1288.63,
+  "cash": 573.21,
   "initial_capital": 10000.0,
   "total_equity": 10577.19,
   "total_performance_pct": 5.77,
@@ -115,6 +115,34 @@
       "current_pnl_pct": -0.94,
       "current_value": 615.45,
       "days_active": 1
+    },
+    {
+      "ticker": "TSLA",
+      "shares": 1,
+      "entry_price": 375.0,
+      "stop_loss": 358.4,
+      "target_1": 399.9,
+      "target_2": 424.8,
+      "opened_at": "09/10/2026",
+      "trailing_active": false,
+      "current_price": 375.0,
+      "current_pnl_pct": 0.0,
+      "current_value": 375.0,
+      "days_active": 0
+    },
+    {
+      "ticker": "AAPL",
+      "shares": 1,
+      "entry_price": 340.42,
+      "stop_loss": 331.07,
+      "target_1": 354.45,
+      "target_2": 368.47,
+      "opened_at": "09/10/2026",
+      "trailing_active": false,
+      "current_price": 340.42,
+      "current_pnl_pct": 0.0,
+      "current_value": 340.42,
+      "days_active": 0
     }
   ],
   "closed_trades": [
