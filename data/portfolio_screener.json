@@ -1,8 +1,8 @@
 {
-  "cash": 573.21,
+  "cash": 3077.73,
   "initial_capital": 10000.0,
-  "total_equity": 10577.19,
-  "total_performance_pct": 5.77,
+  "total_equity": 10463.45,
+  "total_performance_pct": 4.63,
   "open_positions": [
     {
       "ticker": "CRWD",
@@ -13,10 +13,10 @@
       "target_2": 303.78,
       "opened_at": "29/09/2026",
       "trailing_active": true,
-      "current_price": 265.44000244140625,
-      "current_pnl_pct": 12.77,
-      "current_value": 1327.2,
-      "days_active": 10
+      "current_price": 263.010009765625,
+      "current_pnl_pct": 11.74,
+      "current_value": 1315.05,
+      "days_active": 11
     },
     {
       "ticker": "PLTR",
@@ -27,10 +27,10 @@
       "target_2": 207.45,
       "opened_at": "29/09/2026",
       "trailing_active": true,
-      "current_price": 194.1199951171875,
-      "current_pnl_pct": 12.01,
-      "current_value": 1358.84,
-      "days_active": 10
+      "current_price": 198.77999877929688,
+      "current_pnl_pct": 14.7,
+      "current_value": 1391.46,
+      "days_active": 11
     },
     {
       "ticker": "MSFT",
@@ -41,24 +41,10 @@
       "target_2": 561.76,
       "opened_at": "30/09/2026",
       "trailing_active": true,
-      "current_price": 529.760009765625,
-      "current_pnl_pct": 4.09,
-      "current_value": 1059.52,
-      "days_active": 9
-    },
-    {
-      "ticker": "COIN",
-      "shares": 2,
-      "entry_price": 190.02,
-      "stop_loss": 172.62,
-      "target_1": 216.12,
-      "target_2": 242.22,
-      "opened_at": "30/09/2026",
-      "trailing_active": false,
-      "current_price": 178.4499969482422,
-      "current_pnl_pct": -6.09,
-      "current_value": 356.9,
-      "days_active": 9
+      "current_price": 522.6099853515625,
+      "current_pnl_pct": 2.68,
+      "current_value": 1045.22,
+      "days_active": 10
     },
     {
       "ticker": "XOM",
@@ -69,24 +55,10 @@
       "target_2": 179.58,
       "opened_at": "02/10/2026",
       "trailing_active": false,
-      "current_price": 164.0500030517578,
-      "current_pnl_pct": 0.8,
-      "current_value": 492.15,
-      "days_active": 7
-    },
-    {
-      "ticker": "AVGO",
-      "shares": 6,
-      "entry_price": 375.81,
-      "stop_loss": 359.88,
-      "target_1": 399.7,
-      "target_2": 423.6,
-      "opened_at": "06/10/2026",
-      "trailing_active": false,
-      "current_price": 376.510009765625,
-      "current_pnl_pct": 0.19,
-      "current_value": 2259.06,
-      "days_active": 3
+      "current_price": 168.5,
+      "current_pnl_pct": 3.53,
+      "current_value": 505.5,
+      "days_active": 8
     },
     {
       "ticker": "AMZN",
@@ -97,10 +69,10 @@
       "target_2": 283.71,
       "opened_at": "08/10/2026",
       "trailing_active": false,
-      "current_price": 259.9200134277344,
-      "current_pnl_pct": 0.0,
-      "current_value": 1819.44,
-      "days_active": 1
+      "current_price": 254.05999755859375,
+      "current_pnl_pct": -2.25,
+      "current_value": 1778.42,
+      "days_active": 2
     },
     {
       "ticker": "CVX",
@@ -111,10 +83,10 @@
       "target_2": 226.96,
       "opened_at": "08/10/2026",
       "trailing_active": false,
-      "current_price": 205.14999389648438,
-      "current_pnl_pct": -0.94,
-      "current_value": 615.45,
-      "days_active": 1
+      "current_price": 211.5500030517578,
+      "current_pnl_pct": 2.15,
+      "current_value": 634.65,
+      "days_active": 2
     },
     {
       "ticker": "TSLA",
@@ -128,7 +100,7 @@
       "current_price": 375.0,
       "current_pnl_pct": 0.0,
       "current_value": 375.0,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "AAPL",
@@ -139,10 +111,10 @@
       "target_2": 368.47,
       "opened_at": "09/10/2026",
       "trailing_active": false,
-      "current_price": 340.42,
+      "current_price": 340.4200134277344,
       "current_pnl_pct": 0.0,
       "current_value": 340.42,
-      "days_active": 0
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -211,12 +183,34 @@
       "reason": "TARGET_1_HALF",
       "opened_at": "30/09/2026",
       "closed_at": "07/10/2026"
+    },
+    {
+      "ticker": "COIN",
+      "entry_price": 190.02,
+      "exit_price": 172.62,
+      "shares": 2,
+      "pnl": -34.8,
+      "pnl_pct": -9.16,
+      "reason": "STOP_LOSS",
+      "opened_at": "30/09/2026",
+      "closed_at": "10/10/2026"
+    },
+    {
+      "ticker": "AVGO",
+      "entry_price": 375.81,
+      "exit_price": 359.88,
+      "shares": 6,
+      "pnl": -95.58,
+      "pnl_pct": -4.24,
+      "reason": "STOP_LOSS",
+      "opened_at": "06/10/2026",
+      "closed_at": "10/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 777.219970703125,
-    "performance_pct": 1.52
+    "current_price": 773.9299926757812,
+    "performance_pct": 1.09
   },
-  "last_updated": "09/10/2026"
+  "last_updated": "10/10/2026"
 }
