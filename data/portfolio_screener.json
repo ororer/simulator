@@ -1,23 +1,9 @@
 {
-  "cash": 4701.05,
+  "cash": 6016.1,
   "initial_capital": 10000.0,
   "total_equity": 10623.41,
   "total_performance_pct": 6.23,
   "open_positions": [
-    {
-      "ticker": "CRWD",
-      "shares": 5,
-      "entry_price": 235.38,
-      "stop_loss": 235.38,
-      "target_1": 269.58,
-      "target_2": 303.78,
-      "opened_at": "29/09/2026",
-      "trailing_active": true,
-      "current_price": 263.010009765625,
-      "current_pnl_pct": 11.74,
-      "current_value": 1315.05,
-      "days_active": 14
-    },
     {
       "ticker": "MSFT",
       "shares": 2,
@@ -30,7 +16,7 @@
       "current_price": 541.1500244140625,
       "current_pnl_pct": 6.32,
       "current_value": 1082.3,
-      "days_active": 13
+      "days_active": 14
     },
     {
       "ticker": "XOM",
@@ -44,7 +30,7 @@
       "current_price": 172.14999389648438,
       "current_pnl_pct": 5.78,
       "current_value": 344.3,
-      "days_active": 11
+      "days_active": 12
     },
     {
       "ticker": "AMZN",
@@ -58,7 +44,7 @@
       "current_price": 259.5299987792969,
       "current_pnl_pct": -0.15,
       "current_value": 1816.71,
-      "days_active": 5
+      "days_active": 6
     },
     {
       "ticker": "CVX",
@@ -72,7 +58,7 @@
       "current_price": 215.0,
       "current_pnl_pct": 3.81,
       "current_value": 645.0,
-      "days_active": 5
+      "days_active": 6
     },
     {
       "ticker": "TSLA",
@@ -86,7 +72,7 @@
       "current_price": 378.0299987792969,
       "current_pnl_pct": 0.81,
       "current_value": 378.03,
-      "days_active": 4
+      "days_active": 5
     },
     {
       "ticker": "AAPL",
@@ -100,7 +86,7 @@
       "current_price": 340.9700012207031,
       "current_pnl_pct": 0.16,
       "current_value": 340.97,
-      "days_active": 4
+      "days_active": 5
     }
   ],
   "closed_trades": [
@@ -213,6 +199,17 @@
       "reason": "TARGET_1_HALF",
       "opened_at": "02/10/2026",
       "closed_at": "13/10/2026"
+    },
+    {
+      "ticker": "CRWD",
+      "entry_price": 235.38,
+      "exit_price": 263.010009765625,
+      "shares": 5,
+      "pnl": 138.15,
+      "pnl_pct": 11.74,
+      "reason": "TIME_STOP_EXPIRED",
+      "opened_at": "29/09/2026",
+      "closed_at": "14/10/2026"
     }
   ],
   "benchmark": {
@@ -220,5 +217,5 @@
     "current_price": 778.0999755859375,
     "performance_pct": 1.63
   },
-  "last_updated": "13/10/2026"
+  "last_updated": "14/10/2026"
 }
