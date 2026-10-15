@@ -1,8 +1,8 @@
 {
-  "cash": 1697.63,
+  "cash": 6025.56,
   "initial_capital": 10000.0,
-  "total_equity": 10660.91,
-  "total_performance_pct": 6.61,
+  "total_equity": 10500.66,
+  "total_performance_pct": 5.01,
   "open_positions": [
     {
       "ticker": "XOM",
@@ -13,24 +13,10 @@
       "target_2": 179.58,
       "opened_at": "02/10/2026",
       "trailing_active": true,
-      "current_price": 174.0800018310547,
-      "current_pnl_pct": 6.96,
-      "current_value": 348.16,
+      "current_price": 174.67999267578125,
+      "current_pnl_pct": 7.33,
+      "current_value": 349.36,
       "days_active": 13
-    },
-    {
-      "ticker": "AMZN",
-      "shares": 7,
-      "entry_price": 259.92,
-      "stop_loss": 251.99,
-      "target_1": 271.82,
-      "target_2": 283.71,
-      "opened_at": "08/10/2026",
-      "trailing_active": false,
-      "current_price": 258.5799865722656,
-      "current_pnl_pct": -0.52,
-      "current_value": 1810.06,
-      "days_active": 7
     },
     {
       "ticker": "CVX",
@@ -41,24 +27,10 @@
       "target_2": 226.96,
       "opened_at": "08/10/2026",
       "trailing_active": true,
-      "current_price": 217.72999572753906,
-      "current_pnl_pct": 5.13,
-      "current_value": 435.46,
+      "current_price": 219.32000732421875,
+      "current_pnl_pct": 5.9,
+      "current_value": 438.64,
       "days_active": 7
-    },
-    {
-      "ticker": "TSLA",
-      "shares": 1,
-      "entry_price": 375.0,
-      "stop_loss": 358.4,
-      "target_1": 399.9,
-      "target_2": 424.8,
-      "opened_at": "09/10/2026",
-      "trailing_active": false,
-      "current_price": 375.2300109863281,
-      "current_pnl_pct": 0.06,
-      "current_value": 375.23,
-      "days_active": 6
     },
     {
       "ticker": "AAPL",
@@ -69,24 +41,10 @@
       "target_2": 368.47,
       "opened_at": "09/10/2026",
       "trailing_active": false,
-      "current_price": 341.2699890136719,
-      "current_pnl_pct": 0.25,
-      "current_value": 341.27,
+      "current_price": 342.0,
+      "current_pnl_pct": 0.46,
+      "current_value": 342.0,
       "days_active": 6
-    },
-    {
-      "ticker": "NVDA",
-      "shares": 10,
-      "entry_price": 228.52,
-      "stop_loss": 220.56,
-      "target_1": 240.46,
-      "target_2": 252.4,
-      "opened_at": "14/10/2026",
-      "trailing_active": false,
-      "current_price": 228.52000427246094,
-      "current_pnl_pct": 0.0,
-      "current_value": 2285.2,
-      "days_active": 1
     },
     {
       "ticker": "GOOGL",
@@ -97,9 +55,9 @@
       "target_2": 383.85,
       "opened_at": "14/10/2026",
       "trailing_active": false,
-      "current_price": 353.7799987792969,
-      "current_pnl_pct": 1.77,
-      "current_value": 1768.9,
+      "current_price": 349.2200012207031,
+      "current_pnl_pct": 0.45,
+      "current_value": 1746.1,
       "days_active": 1
     },
     {
@@ -260,12 +218,45 @@
       "reason": "TARGET_1_HALF",
       "opened_at": "08/10/2026",
       "closed_at": "15/10/2026"
+    },
+    {
+      "ticker": "AMZN",
+      "entry_price": 259.92,
+      "exit_price": 251.99,
+      "shares": 7,
+      "pnl": -55.51,
+      "pnl_pct": -3.05,
+      "reason": "STOP_LOSS",
+      "opened_at": "08/10/2026",
+      "closed_at": "15/10/2026"
+    },
+    {
+      "ticker": "TSLA",
+      "entry_price": 375.0,
+      "exit_price": 358.4,
+      "shares": 1,
+      "pnl": -16.6,
+      "pnl_pct": -4.43,
+      "reason": "STOP_LOSS",
+      "opened_at": "09/10/2026",
+      "closed_at": "15/10/2026"
+    },
+    {
+      "ticker": "NVDA",
+      "entry_price": 228.52,
+      "exit_price": 220.56,
+      "shares": 10,
+      "pnl": -79.6,
+      "pnl_pct": -3.48,
+      "reason": "STOP_LOSS",
+      "opened_at": "14/10/2026",
+      "closed_at": "15/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 778.010009765625,
-    "performance_pct": 1.62
+    "current_price": 771.7899780273438,
+    "performance_pct": 0.81
   },
   "last_updated": "15/10/2026"
 }
