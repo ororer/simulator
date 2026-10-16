@@ -1,5 +1,5 @@
 {
-  "cash": 3636.03,
+  "cash": 2534.55,
   "initial_capital": 10000.0,
   "total_equity": 10500.66,
   "total_performance_pct": 5.01,
@@ -86,6 +86,20 @@
       "current_price": 183.81,
       "current_pnl_pct": 0.0,
       "current_value": 2389.53,
+      "days_active": 0
+    },
+    {
+      "ticker": "TSLA",
+      "shares": 3,
+      "entry_price": 367.16,
+      "stop_loss": 350.73,
+      "target_1": 391.81,
+      "target_2": 416.45,
+      "opened_at": "16/10/2026",
+      "trailing_active": false,
+      "current_price": 367.16,
+      "current_pnl_pct": 0.0,
+      "current_value": 1101.48,
       "days_active": 0
     }
   ],
