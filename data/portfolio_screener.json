@@ -1,8 +1,8 @@
 {
-  "cash": 2534.55,
+  "cash": 3586.74,
   "initial_capital": 10000.0,
-  "total_equity": 10500.66,
-  "total_performance_pct": 5.01,
+  "total_equity": 10302.61,
+  "total_performance_pct": 3.03,
   "open_positions": [
     {
       "ticker": "XOM",
@@ -13,10 +13,10 @@
       "target_2": 179.58,
       "opened_at": "02/10/2026",
       "trailing_active": true,
-      "current_price": 174.67999267578125,
-      "current_pnl_pct": 7.33,
-      "current_value": 349.36,
-      "days_active": 13
+      "current_price": 178.97999572753906,
+      "current_pnl_pct": 9.97,
+      "current_value": 357.96,
+      "days_active": 14
     },
     {
       "ticker": "CVX",
@@ -27,10 +27,10 @@
       "target_2": 226.96,
       "opened_at": "08/10/2026",
       "trailing_active": true,
-      "current_price": 219.32000732421875,
-      "current_pnl_pct": 5.9,
-      "current_value": 438.64,
-      "days_active": 7
+      "current_price": 224.99000549316406,
+      "current_pnl_pct": 8.64,
+      "current_value": 449.98,
+      "days_active": 8
     },
     {
       "ticker": "AAPL",
@@ -41,10 +41,10 @@
       "target_2": 368.47,
       "opened_at": "09/10/2026",
       "trailing_active": false,
-      "current_price": 342.0,
-      "current_pnl_pct": 0.46,
-      "current_value": 342.0,
-      "days_active": 6
+      "current_price": 343.4599914550781,
+      "current_pnl_pct": 0.89,
+      "current_value": 343.46,
+      "days_active": 7
     },
     {
       "ticker": "GOOGL",
@@ -55,10 +55,10 @@
       "target_2": 383.85,
       "opened_at": "14/10/2026",
       "trailing_active": false,
-      "current_price": 349.2200012207031,
-      "current_pnl_pct": 0.45,
-      "current_value": 1746.1,
-      "days_active": 1
+      "current_price": 340.5899963378906,
+      "current_pnl_pct": -2.03,
+      "current_value": 1702.95,
+      "days_active": 2
     },
     {
       "ticker": "V",
@@ -69,10 +69,10 @@
       "target_2": 431.76,
       "opened_at": "15/10/2026",
       "trailing_active": false,
-      "current_price": 399.75,
-      "current_pnl_pct": 0.0,
-      "current_value": 1599.0,
-      "days_active": 0
+      "current_price": 402.6099853515625,
+      "current_pnl_pct": 0.72,
+      "current_value": 1610.44,
+      "days_active": 1
     },
     {
       "ticker": "COIN",
@@ -83,23 +83,9 @@
       "target_2": 230.4,
       "opened_at": "16/10/2026",
       "trailing_active": false,
-      "current_price": 183.81,
-      "current_pnl_pct": 0.0,
-      "current_value": 2389.53,
-      "days_active": 0
-    },
-    {
-      "ticker": "TSLA",
-      "shares": 3,
-      "entry_price": 367.16,
-      "stop_loss": 350.73,
-      "target_1": 391.81,
-      "target_2": 416.45,
-      "opened_at": "16/10/2026",
-      "trailing_active": false,
-      "current_price": 367.16,
-      "current_pnl_pct": 0.0,
-      "current_value": 1101.48,
+      "current_price": 173.16000366210938,
+      "current_pnl_pct": -5.79,
+      "current_value": 2251.08,
       "days_active": 0
     }
   ],
@@ -279,12 +265,23 @@
       "reason": "STOP_LOSS",
       "opened_at": "14/10/2026",
       "closed_at": "15/10/2026"
+    },
+    {
+      "ticker": "TSLA",
+      "entry_price": 367.16,
+      "exit_price": 350.73,
+      "shares": 3,
+      "pnl": -49.29,
+      "pnl_pct": -4.47,
+      "reason": "STOP_LOSS",
+      "opened_at": "16/10/2026",
+      "closed_at": "16/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 771.7899780273438,
-    "performance_pct": 0.81
+    "current_price": 763.25,
+    "performance_pct": -0.31
   },
-  "last_updated": "15/10/2026"
+  "last_updated": "16/10/2026"
 }
