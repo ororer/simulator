@@ -1,5 +1,5 @@
 {
-  "cash": 596.79,
+  "cash": 441.25,
   "initial_capital": 10000.0,
   "total_equity": 10216.12,
   "total_performance_pct": 2.16,
@@ -101,6 +101,20 @@
       "current_pnl_pct": -4.18,
       "current_value": 1674.27,
       "days_active": 1
+    },
+    {
+      "ticker": "ROKU",
+      "shares": 1,
+      "entry_price": 155.54,
+      "stop_loss": 151.99,
+      "target_1": 159.09,
+      "target_2": 164.41,
+      "opened_at": "20/10/2026",
+      "trailing_active": false,
+      "current_price": 155.54,
+      "current_pnl_pct": 0.0,
+      "current_value": 155.54,
+      "days_active": 0
     }
   ],
   "closed_trades": [
