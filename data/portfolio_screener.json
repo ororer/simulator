@@ -1,8 +1,8 @@
 {
-  "cash": 879.16,
+  "cash": 3393.23,
   "initial_capital": 10000.0,
-  "total_equity": 10236.57,
-  "total_performance_pct": 2.37,
+  "total_equity": 10262.94,
+  "total_performance_pct": 2.63,
   "open_positions": [
     {
       "ticker": "AAPL",
@@ -13,24 +13,10 @@
       "target_2": 368.47,
       "opened_at": "09/10/2026",
       "trailing_active": false,
-      "current_price": 339.5,
-      "current_pnl_pct": -0.27,
-      "current_value": 339.5,
-      "days_active": 13
-    },
-    {
-      "ticker": "GOOGL",
-      "shares": 5,
-      "entry_price": 347.64,
-      "stop_loss": 335.57,
-      "target_1": 365.75,
-      "target_2": 383.85,
-      "opened_at": "14/10/2026",
-      "trailing_active": false,
-      "current_price": 340.2799987792969,
-      "current_pnl_pct": -2.12,
-      "current_value": 1701.4,
-      "days_active": 8
+      "current_price": 343.989990234375,
+      "current_pnl_pct": 1.05,
+      "current_value": 343.99,
+      "days_active": 14
     },
     {
       "ticker": "V",
@@ -41,10 +27,10 @@
       "target_2": 431.76,
       "opened_at": "15/10/2026",
       "trailing_active": false,
-      "current_price": 406.57000732421875,
-      "current_pnl_pct": 1.71,
-      "current_value": 1626.28,
-      "days_active": 7
+      "current_price": 407.8500061035156,
+      "current_pnl_pct": 2.03,
+      "current_value": 1631.4,
+      "days_active": 8
     },
     {
       "ticker": "MSFT",
@@ -55,10 +41,10 @@
       "target_2": 585.03,
       "opened_at": "19/10/2026",
       "trailing_active": false,
-      "current_price": 531.8699951171875,
-      "current_pnl_pct": -0.31,
-      "current_value": 1595.61,
-      "days_active": 3
+      "current_price": 532.9500122070312,
+      "current_pnl_pct": -0.11,
+      "current_value": 1598.85,
+      "days_active": 4
     },
     {
       "ticker": "PLTR",
@@ -69,10 +55,10 @@
       "target_2": 230.12,
       "opened_at": "19/10/2026",
       "trailing_active": false,
-      "current_price": 192.60000610351562,
-      "current_pnl_pct": -0.8,
-      "current_value": 1733.4,
-      "days_active": 3
+      "current_price": 201.72000122070312,
+      "current_pnl_pct": 3.9,
+      "current_value": 1815.48,
+      "days_active": 4
     },
     {
       "ticker": "ROKU",
@@ -83,10 +69,10 @@
       "target_2": 164.41,
       "opened_at": "20/10/2026",
       "trailing_active": false,
-      "current_price": 157.57000732421875,
-      "current_pnl_pct": 1.31,
-      "current_value": 157.57,
-      "days_active": 2
+      "current_price": 157.77999877929688,
+      "current_pnl_pct": 1.44,
+      "current_value": 157.78,
+      "days_active": 3
     },
     {
       "ticker": "HIMS",
@@ -100,7 +86,7 @@
       "current_price": 29.209999084472656,
       "current_pnl_pct": -0.0,
       "current_value": 146.05,
-      "days_active": 2
+      "days_active": 3
     },
     {
       "ticker": "AFRM",
@@ -111,24 +97,10 @@
       "target_2": 91.95,
       "opened_at": "21/10/2026",
       "trailing_active": false,
-      "current_price": 73.8499984741211,
-      "current_pnl_pct": -0.0,
-      "current_value": 1181.6,
-      "days_active": 1
-    },
-    {
-      "ticker": "ISRG",
-      "shares": 2,
-      "entry_price": 438.0,
-      "stop_loss": 418.11,
-      "target_1": 457.89,
-      "target_2": 487.73,
-      "opened_at": "21/10/2026",
-      "trailing_active": false,
-      "current_price": 438.0,
-      "current_pnl_pct": 0.0,
-      "current_value": 876.0,
-      "days_active": 1
+      "current_price": 73.51000213623047,
+      "current_pnl_pct": -0.46,
+      "current_value": 1176.16,
+      "days_active": 2
     }
   ],
   "closed_trades": [
@@ -351,12 +323,34 @@
       "reason": "TARGET_2",
       "opened_at": "08/10/2026",
       "closed_at": "22/10/2026"
+    },
+    {
+      "ticker": "GOOGL",
+      "entry_price": 347.64,
+      "exit_price": 335.57,
+      "shares": 5,
+      "pnl": -60.35,
+      "pnl_pct": -3.47,
+      "reason": "STOP_LOSS",
+      "opened_at": "14/10/2026",
+      "closed_at": "23/10/2026"
+    },
+    {
+      "ticker": "ISRG",
+      "entry_price": 438.0,
+      "exit_price": 418.11,
+      "shares": 2,
+      "pnl": -39.78,
+      "pnl_pct": -4.54,
+      "reason": "STOP_LOSS",
+      "opened_at": "21/10/2026",
+      "closed_at": "23/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 769.0499877929688,
-    "performance_pct": 0.45
+    "current_price": 773.0900268554688,
+    "performance_pct": 0.98
   },
-  "last_updated": "22/10/2026"
+  "last_updated": "23/10/2026"
 }
