@@ -1,5 +1,5 @@
 {
-  "cash": 3341.72,
+  "cash": 458.72,
   "initial_capital": 10000.0,
   "total_equity": 10165.73,
   "total_performance_pct": 1.66,
@@ -100,6 +100,34 @@
       "current_price": 533.52,
       "current_pnl_pct": 0.0,
       "current_value": 1600.56,
+      "days_active": 0
+    },
+    {
+      "ticker": "DIS",
+      "shares": 15,
+      "entry_price": 110.4,
+      "stop_loss": 106.66,
+      "target_1": 114.14,
+      "target_2": 119.75,
+      "opened_at": "26/10/2026",
+      "trailing_active": false,
+      "current_price": 110.4,
+      "current_pnl_pct": 0.0,
+      "current_value": 1656.0,
+      "days_active": 0
+    },
+    {
+      "ticker": "MA",
+      "shares": 2,
+      "entry_price": 613.5,
+      "stop_loss": 594.12,
+      "target_1": 632.88,
+      "target_2": 661.95,
+      "opened_at": "26/10/2026",
+      "trailing_active": false,
+      "current_price": 613.5,
+      "current_pnl_pct": 0.0,
+      "current_value": 1227.0,
       "days_active": 0
     }
   ],
