@@ -1,5 +1,5 @@
 {
-  "cash": 4942.28,
+  "cash": 3341.72,
   "initial_capital": 10000.0,
   "total_equity": 10165.73,
   "total_performance_pct": 1.66,
@@ -87,6 +87,20 @@
       "current_pnl_pct": -0.46,
       "current_value": 1176.16,
       "days_active": 2
+    },
+    {
+      "ticker": "MSFT",
+      "shares": 3,
+      "entry_price": 533.52,
+      "stop_loss": 516.35,
+      "target_1": 559.28,
+      "target_2": 585.03,
+      "opened_at": "26/10/2026",
+      "trailing_active": false,
+      "current_price": 533.52,
+      "current_pnl_pct": 0.0,
+      "current_value": 1600.56,
+      "days_active": 0
     }
   ],
   "closed_trades": [
