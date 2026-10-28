@@ -1,5 +1,5 @@
 {
-  "cash": 1139.44,
+  "cash": 8.86,
   "initial_capital": 10000.0,
   "total_equity": 10056.08,
   "total_performance_pct": 0.56,
@@ -129,6 +129,34 @@
       "current_pnl_pct": -0.17,
       "current_value": 532.6,
       "days_active": 1
+    },
+    {
+      "ticker": "OXY",
+      "shares": 9,
+      "entry_price": 62.86,
+      "stop_loss": 60.15,
+      "target_1": 65.57,
+      "target_2": 69.64,
+      "opened_at": "28/10/2026",
+      "trailing_active": false,
+      "current_price": 62.86,
+      "current_pnl_pct": 0.0,
+      "current_value": 565.74,
+      "days_active": 0
+    },
+    {
+      "ticker": "PINS",
+      "shares": 27,
+      "entry_price": 20.92,
+      "stop_loss": 19.26,
+      "target_1": 22.58,
+      "target_2": 25.07,
+      "opened_at": "28/10/2026",
+      "trailing_active": false,
+      "current_price": 20.92,
+      "current_pnl_pct": 0.0,
+      "current_value": 564.84,
+      "days_active": 0
     }
   ],
   "closed_trades": [
