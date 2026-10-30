@@ -1,5 +1,5 @@
 {
-  "cash": 1611.26,
+  "cash": 438.18,
   "initial_capital": 10000.0,
   "total_equity": 10063.07,
   "total_performance_pct": 0.63,
@@ -143,6 +143,48 @@
       "current_pnl_pct": 0.0,
       "current_value": 564.84,
       "days_active": 2
+    },
+    {
+      "ticker": "XOM",
+      "shares": 2,
+      "entry_price": 183.29,
+      "stop_loss": 176.05,
+      "target_1": 190.53,
+      "target_2": 201.39,
+      "opened_at": "30/10/2026",
+      "trailing_active": false,
+      "current_price": 183.29,
+      "current_pnl_pct": 0.0,
+      "current_value": 366.58,
+      "days_active": 0
+    },
+    {
+      "ticker": "CVX",
+      "shares": 2,
+      "entry_price": 231.46,
+      "stop_loss": 222.98,
+      "target_1": 239.94,
+      "target_2": 252.66,
+      "opened_at": "30/10/2026",
+      "trailing_active": false,
+      "current_price": 231.46,
+      "current_pnl_pct": 0.0,
+      "current_value": 462.92,
+      "days_active": 0
+    },
+    {
+      "ticker": "JPM",
+      "shares": 1,
+      "entry_price": 343.58,
+      "stop_loss": 331.9,
+      "target_1": 355.26,
+      "target_2": 372.78,
+      "opened_at": "30/10/2026",
+      "trailing_active": false,
+      "current_price": 343.58,
+      "current_pnl_pct": 0.0,
+      "current_value": 343.58,
+      "days_active": 0
     }
   ],
   "closed_trades": [
