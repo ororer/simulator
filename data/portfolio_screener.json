@@ -1,8 +1,8 @@
 {
-  "cash": 438.18,
+  "cash": 1071.06,
   "initial_capital": 10000.0,
-  "total_equity": 10063.07,
-  "total_performance_pct": 0.63,
+  "total_equity": 10146.28,
+  "total_performance_pct": 1.46,
   "open_positions": [
     {
       "ticker": "PLTR",
@@ -13,10 +13,10 @@
       "target_2": 230.12,
       "opened_at": "19/10/2026",
       "trailing_active": false,
-      "current_price": 196.80999755859375,
-      "current_pnl_pct": 1.37,
-      "current_value": 1771.29,
-      "days_active": 11
+      "current_price": 196.4199981689453,
+      "current_pnl_pct": 1.17,
+      "current_value": 1767.78,
+      "days_active": 12
     },
     {
       "ticker": "ROKU",
@@ -27,10 +27,10 @@
       "target_2": 164.41,
       "opened_at": "20/10/2026",
       "trailing_active": false,
-      "current_price": 155.3300018310547,
-      "current_pnl_pct": -0.14,
-      "current_value": 155.33,
-      "days_active": 10
+      "current_price": 156.3300018310547,
+      "current_pnl_pct": 0.51,
+      "current_value": 156.33,
+      "days_active": 11
     },
     {
       "ticker": "HIMS",
@@ -41,10 +41,10 @@
       "target_2": 37.98,
       "opened_at": "20/10/2026",
       "trailing_active": false,
-      "current_price": 29.31999969482422,
-      "current_pnl_pct": 0.38,
-      "current_value": 146.6,
-      "days_active": 10
+      "current_price": 29.670000076293945,
+      "current_pnl_pct": 1.57,
+      "current_value": 148.35,
+      "days_active": 11
     },
     {
       "ticker": "AFRM",
@@ -55,10 +55,10 @@
       "target_2": 91.95,
       "opened_at": "21/10/2026",
       "trailing_active": false,
-      "current_price": 73.31999969482422,
-      "current_pnl_pct": -0.72,
-      "current_value": 1173.12,
-      "days_active": 9
+      "current_price": 74.83999633789062,
+      "current_pnl_pct": 1.34,
+      "current_value": 1197.44,
+      "days_active": 10
     },
     {
       "ticker": "DIS",
@@ -69,24 +69,24 @@
       "target_2": 119.75,
       "opened_at": "26/10/2026",
       "trailing_active": false,
-      "current_price": 109.04000091552734,
-      "current_pnl_pct": -1.23,
-      "current_value": 1635.6,
-      "days_active": 4
+      "current_price": 110.91000366210938,
+      "current_pnl_pct": 0.46,
+      "current_value": 1663.65,
+      "days_active": 5
     },
     {
       "ticker": "MA",
-      "shares": 2,
+      "shares": 1,
       "entry_price": 613.5,
-      "stop_loss": 594.12,
+      "stop_loss": 613.5,
       "target_1": 632.88,
       "target_2": 661.95,
       "opened_at": "26/10/2026",
-      "trailing_active": false,
-      "current_price": 610.3099975585938,
-      "current_pnl_pct": -0.52,
-      "current_value": 1220.62,
-      "days_active": 4
+      "trailing_active": true,
+      "current_price": 635.7000122070312,
+      "current_pnl_pct": 3.62,
+      "current_value": 635.7,
+      "days_active": 5
     },
     {
       "ticker": "AAPL",
@@ -97,10 +97,10 @@
       "target_2": 370.49,
       "opened_at": "27/10/2026",
       "trailing_active": false,
-      "current_price": 343.8299865722656,
-      "current_pnl_pct": 0.75,
-      "current_value": 687.66,
-      "days_active": 3
+      "current_price": 348.9100036621094,
+      "current_pnl_pct": 2.24,
+      "current_value": 697.82,
+      "days_active": 4
     },
     {
       "ticker": "MSFT",
@@ -111,10 +111,10 @@
       "target_2": 585.03,
       "opened_at": "27/10/2026",
       "trailing_active": false,
-      "current_price": 531.010009765625,
-      "current_pnl_pct": -0.47,
-      "current_value": 531.01,
-      "days_active": 3
+      "current_price": 530.1400146484375,
+      "current_pnl_pct": -0.63,
+      "current_value": 530.14,
+      "days_active": 4
     },
     {
       "ticker": "OXY",
@@ -125,10 +125,10 @@
       "target_2": 69.64,
       "opened_at": "28/10/2026",
       "trailing_active": false,
-      "current_price": 62.86000061035156,
-      "current_pnl_pct": 0.0,
-      "current_value": 565.74,
-      "days_active": 2
+      "current_price": 63.0099983215332,
+      "current_pnl_pct": 0.24,
+      "current_value": 567.09,
+      "days_active": 3
     },
     {
       "ticker": "PINS",
@@ -139,10 +139,10 @@
       "target_2": 25.07,
       "opened_at": "28/10/2026",
       "trailing_active": false,
-      "current_price": 20.920000076293945,
-      "current_pnl_pct": 0.0,
-      "current_value": 564.84,
-      "days_active": 2
+      "current_price": 19.920000076293945,
+      "current_pnl_pct": -4.78,
+      "current_value": 537.84,
+      "days_active": 3
     },
     {
       "ticker": "XOM",
@@ -153,10 +153,10 @@
       "target_2": 201.39,
       "opened_at": "30/10/2026",
       "trailing_active": false,
-      "current_price": 183.29,
-      "current_pnl_pct": 0.0,
+      "current_price": 183.2899932861328,
+      "current_pnl_pct": -0.0,
       "current_value": 366.58,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "CVX",
@@ -167,10 +167,10 @@
       "target_2": 252.66,
       "opened_at": "30/10/2026",
       "trailing_active": false,
-      "current_price": 231.46,
+      "current_price": 231.4600067138672,
       "current_pnl_pct": 0.0,
       "current_value": 462.92,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "JPM",
@@ -181,10 +181,10 @@
       "target_2": 372.78,
       "opened_at": "30/10/2026",
       "trailing_active": false,
-      "current_price": 343.58,
-      "current_pnl_pct": 0.0,
+      "current_price": 343.5799865722656,
+      "current_pnl_pct": -0.0,
       "current_value": 343.58,
-      "days_active": 0
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -473,12 +473,23 @@
       "reason": "TIME_STOP_EXPIRED",
       "opened_at": "15/10/2026",
       "closed_at": "30/10/2026"
+    },
+    {
+      "ticker": "MA",
+      "entry_price": 613.5,
+      "exit_price": 632.88,
+      "shares": 1,
+      "pnl": 19.38,
+      "pnl_pct": 3.16,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "26/10/2026",
+      "closed_at": "31/10/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 772.3099975585938,
-    "performance_pct": 0.88
+    "current_price": 769.3599853515625,
+    "performance_pct": 0.49
   },
-  "last_updated": "30/10/2026"
+  "last_updated": "31/10/2026"
 }
