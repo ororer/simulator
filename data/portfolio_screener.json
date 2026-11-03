@@ -1,5 +1,5 @@
 {
-  "cash": 3574.73,
+  "cash": 116.15,
   "initial_capital": 10000.0,
   "total_equity": 9910.08,
   "total_performance_pct": -0.9,
@@ -142,6 +142,34 @@
       "current_price": 134.61000061035156,
       "current_pnl_pct": -10.45,
       "current_value": 269.22,
+      "days_active": 0
+    },
+    {
+      "ticker": "ISRG",
+      "shares": 4,
+      "entry_price": 436.87,
+      "stop_loss": 411.96,
+      "target_1": 461.78,
+      "target_2": 499.14,
+      "opened_at": "03/11/2026",
+      "trailing_active": false,
+      "current_price": 436.87,
+      "current_pnl_pct": 0.0,
+      "current_value": 1747.48,
+      "days_active": 0
+    },
+    {
+      "ticker": "ABNB",
+      "shares": 10,
+      "entry_price": 171.11,
+      "stop_loss": 163.06,
+      "target_1": 179.16,
+      "target_2": 191.24,
+      "opened_at": "03/11/2026",
+      "trailing_active": false,
+      "current_price": 171.11,
+      "current_pnl_pct": 0.0,
+      "current_value": 1711.1,
       "days_active": 0
     }
   ],
