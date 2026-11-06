@@ -1,65 +1,9 @@
 {
-  "cash": 624.98,
+  "cash": 5130.09,
   "initial_capital": 10000.0,
-  "total_equity": 9846.82,
-  "total_performance_pct": -1.53,
+  "total_equity": 10141.84,
+  "total_performance_pct": 1.42,
   "open_positions": [
-    {
-      "ticker": "DIS",
-      "shares": 8,
-      "entry_price": 110.4,
-      "stop_loss": 110.4,
-      "target_1": 114.14,
-      "target_2": 119.75,
-      "opened_at": "26/10/2026",
-      "trailing_active": true,
-      "current_price": 114.18000030517578,
-      "current_pnl_pct": 3.42,
-      "current_value": 913.44,
-      "days_active": 10
-    },
-    {
-      "ticker": "MA",
-      "shares": 1,
-      "entry_price": 613.5,
-      "stop_loss": 613.5,
-      "target_1": 632.88,
-      "target_2": 661.95,
-      "opened_at": "26/10/2026",
-      "trailing_active": true,
-      "current_price": 647.1799926757812,
-      "current_pnl_pct": 5.49,
-      "current_value": 647.18,
-      "days_active": 10
-    },
-    {
-      "ticker": "XOM",
-      "shares": 2,
-      "entry_price": 183.29,
-      "stop_loss": 176.05,
-      "target_1": 190.53,
-      "target_2": 201.39,
-      "opened_at": "30/10/2026",
-      "trailing_active": false,
-      "current_price": 177.4600067138672,
-      "current_pnl_pct": -3.18,
-      "current_value": 354.92,
-      "days_active": 6
-    },
-    {
-      "ticker": "CVX",
-      "shares": 2,
-      "entry_price": 231.46,
-      "stop_loss": 222.98,
-      "target_1": 239.94,
-      "target_2": 252.66,
-      "opened_at": "30/10/2026",
-      "trailing_active": false,
-      "current_price": 225.27000427246094,
-      "current_pnl_pct": -2.67,
-      "current_value": 450.54,
-      "days_active": 6
-    },
     {
       "ticker": "JPM",
       "shares": 1,
@@ -69,52 +13,38 @@
       "target_2": 372.78,
       "opened_at": "30/10/2026",
       "trailing_active": false,
-      "current_price": 337.9800109863281,
-      "current_pnl_pct": -1.63,
-      "current_value": 337.98,
-      "days_active": 6
-    },
-    {
-      "ticker": "VST",
-      "shares": 2,
-      "entry_price": 150.32,
-      "stop_loss": 133.87,
-      "target_1": 166.77,
-      "target_2": 191.45,
-      "opened_at": "03/11/2026",
-      "trailing_active": false,
-      "current_price": 139.58999633789062,
-      "current_pnl_pct": -7.14,
-      "current_value": 279.18,
-      "days_active": 2
+      "current_price": 352.1099853515625,
+      "current_pnl_pct": 2.48,
+      "current_value": 352.11,
+      "days_active": 7
     },
     {
       "ticker": "ISRG",
-      "shares": 4,
+      "shares": 2,
       "entry_price": 436.87,
-      "stop_loss": 411.96,
+      "stop_loss": 436.87,
       "target_1": 461.78,
       "target_2": 499.14,
       "opened_at": "03/11/2026",
-      "trailing_active": false,
-      "current_price": 440.75,
-      "current_pnl_pct": 0.89,
-      "current_value": 1763.0,
-      "days_active": 2
+      "trailing_active": true,
+      "current_price": 482.1000061035156,
+      "current_pnl_pct": 10.35,
+      "current_value": 964.2,
+      "days_active": 3
     },
     {
       "ticker": "ABNB",
-      "shares": 10,
+      "shares": 5,
       "entry_price": 171.11,
-      "stop_loss": 163.06,
+      "stop_loss": 171.11,
       "target_1": 179.16,
       "target_2": 191.24,
       "opened_at": "03/11/2026",
-      "trailing_active": false,
-      "current_price": 166.9600067138672,
-      "current_pnl_pct": -2.43,
-      "current_value": 1669.6,
-      "days_active": 2
+      "trailing_active": true,
+      "current_price": 176.3699951171875,
+      "current_pnl_pct": 3.07,
+      "current_value": 881.85,
+      "days_active": 3
     },
     {
       "ticker": "PINS",
@@ -125,10 +55,10 @@
       "target_2": 25.07,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 20.360000610351562,
-      "current_pnl_pct": -2.68,
-      "current_value": 81.44,
-      "days_active": 0
+      "current_price": 21.219999313354492,
+      "current_pnl_pct": 1.43,
+      "current_value": 84.88,
+      "days_active": 1
     },
     {
       "ticker": "V",
@@ -139,10 +69,10 @@
       "target_2": 473.32,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 436.57,
+      "current_price": 436.57000732421875,
       "current_pnl_pct": 0.0,
       "current_value": 873.14,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "NVO",
@@ -153,10 +83,10 @@
       "target_2": 46.13,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 42.18,
+      "current_price": 42.18000030517578,
       "current_pnl_pct": 0.0,
       "current_value": 1096.68,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "AAPL",
@@ -167,10 +97,10 @@
       "target_2": 371.8,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 343.83,
-      "current_pnl_pct": 0.0,
-      "current_value": 343.83,
-      "days_active": 0
+      "current_price": 349.510009765625,
+      "current_pnl_pct": 1.65,
+      "current_value": 349.51,
+      "days_active": 1
     },
     {
       "ticker": "UNH",
@@ -181,10 +111,10 @@
       "target_2": 468.59,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 410.91,
-      "current_pnl_pct": 0.0,
-      "current_value": 410.91,
-      "days_active": 0
+      "current_price": 409.3800048828125,
+      "current_pnl_pct": -0.37,
+      "current_value": 409.38,
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -583,12 +513,89 @@
       "reason": "STOP_LOSS",
       "opened_at": "28/10/2026",
       "closed_at": "05/11/2026"
+    },
+    {
+      "ticker": "DIS",
+      "entry_price": 110.4,
+      "exit_price": 119.75,
+      "shares": 8,
+      "pnl": 74.8,
+      "pnl_pct": 8.47,
+      "reason": "TARGET_2",
+      "opened_at": "26/10/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "MA",
+      "entry_price": 613.5,
+      "exit_price": 661.95,
+      "shares": 1,
+      "pnl": 48.45,
+      "pnl_pct": 7.9,
+      "reason": "TARGET_2",
+      "opened_at": "26/10/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "XOM",
+      "entry_price": 183.29,
+      "exit_price": 176.05,
+      "shares": 2,
+      "pnl": -14.48,
+      "pnl_pct": -3.95,
+      "reason": "STOP_LOSS",
+      "opened_at": "30/10/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "CVX",
+      "entry_price": 231.46,
+      "exit_price": 222.98,
+      "shares": 2,
+      "pnl": -16.96,
+      "pnl_pct": -3.66,
+      "reason": "STOP_LOSS",
+      "opened_at": "30/10/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "VST",
+      "entry_price": 150.32,
+      "exit_price": 133.87,
+      "shares": 2,
+      "pnl": -32.9,
+      "pnl_pct": -10.94,
+      "reason": "STOP_LOSS",
+      "opened_at": "03/11/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "ISRG",
+      "entry_price": 436.87,
+      "exit_price": 461.78,
+      "shares": 2,
+      "pnl": 49.82,
+      "pnl_pct": 5.7,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "03/11/2026",
+      "closed_at": "06/11/2026"
+    },
+    {
+      "ticker": "ABNB",
+      "entry_price": 171.11,
+      "exit_price": 179.16,
+      "shares": 5,
+      "pnl": 40.25,
+      "pnl_pct": 4.7,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "03/11/2026",
+      "closed_at": "06/11/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 754.3499755859375,
-    "performance_pct": -1.47
+    "current_price": 766.8099975585938,
+    "performance_pct": 0.16
   },
-  "last_updated": "05/11/2026"
+  "last_updated": "06/11/2026"
 }
