@@ -1,5 +1,5 @@
 {
-  "cash": 6277.14,
+  "cash": 3807.27,
   "initial_capital": 10000.0,
   "total_equity": 10017.6,
   "total_performance_pct": 0.18,
@@ -100,6 +100,20 @@
       "current_price": 160.3699951171875,
       "current_pnl_pct": 2.58,
       "current_value": 801.85,
+      "days_active": 0
+    },
+    {
+      "ticker": "ABNB",
+      "shares": 13,
+      "entry_price": 189.99,
+      "stop_loss": 178.0,
+      "target_1": 201.98,
+      "target_2": 219.97,
+      "opened_at": "09/11/2026",
+      "trailing_active": false,
+      "current_price": 189.99,
+      "current_pnl_pct": 0.0,
+      "current_value": 2469.87,
       "days_active": 0
     }
   ],
