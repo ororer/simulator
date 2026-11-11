@@ -1,8 +1,8 @@
 {
-  "cash": 11.57,
+  "cash": 1117.57,
   "initial_capital": 10000.0,
-  "total_equity": 10015.93,
-  "total_performance_pct": 0.16,
+  "total_equity": 9903.75,
+  "total_performance_pct": -0.96,
   "open_positions": [
     {
       "ticker": "JPM",
@@ -16,7 +16,7 @@
       "current_price": 342.0799865722656,
       "current_pnl_pct": -0.44,
       "current_value": 342.08,
-      "days_active": 11
+      "days_active": 12
     },
     {
       "ticker": "ISRG",
@@ -30,7 +30,7 @@
       "current_price": 460.55999755859375,
       "current_pnl_pct": 5.42,
       "current_value": 921.12,
-      "days_active": 7
+      "days_active": 8
     },
     {
       "ticker": "AAPL",
@@ -44,7 +44,7 @@
       "current_price": 350.69000244140625,
       "current_pnl_pct": 2.0,
       "current_value": 350.69,
-      "days_active": 5
+      "days_active": 6
     },
     {
       "ticker": "UNH",
@@ -58,7 +58,7 @@
       "current_price": 397.6199951171875,
       "current_pnl_pct": -3.23,
       "current_value": 397.62,
-      "days_active": 5
+      "days_active": 6
     },
     {
       "ticker": "ROKU",
@@ -72,7 +72,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 2.68,
       "current_value": 802.6,
-      "days_active": 3
+      "days_active": 4
     },
     {
       "ticker": "ABNB",
@@ -86,7 +86,7 @@
       "current_price": 190.2899932861328,
       "current_pnl_pct": 0.16,
       "current_value": 2473.77,
-      "days_active": 1
+      "days_active": 2
     },
     {
       "ticker": "APP",
@@ -100,7 +100,7 @@
       "current_price": 410.0,
       "current_pnl_pct": 0.0,
       "current_value": 1230.0,
-      "days_active": 0
+      "days_active": 1
     },
     {
       "ticker": "TSLA",
@@ -111,24 +111,10 @@
       "target_2": 462.2,
       "opened_at": "10/11/2026",
       "trailing_active": false,
-      "current_price": 378.05,
-      "current_pnl_pct": 0.0,
+      "current_price": 378.04998779296875,
+      "current_pnl_pct": -0.0,
       "current_value": 2268.3,
-      "days_active": 0
-    },
-    {
-      "ticker": "TTD",
-      "shares": 79,
-      "entry_price": 15.42,
-      "stop_loss": 14.0,
-      "target_1": 16.84,
-      "target_2": 18.97,
-      "opened_at": "11/11/2026",
-      "trailing_active": false,
-      "current_price": 15.42,
-      "current_pnl_pct": 0.0,
-      "current_value": 1218.18,
-      "days_active": 0
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -659,6 +645,17 @@
       "reason": "STOP_LOSS",
       "opened_at": "05/11/2026",
       "closed_at": "10/11/2026"
+    },
+    {
+      "ticker": "TTD",
+      "entry_price": 15.42,
+      "exit_price": 14.0,
+      "shares": 79,
+      "pnl": -112.18,
+      "pnl_pct": -9.21,
+      "reason": "STOP_LOSS",
+      "opened_at": "11/11/2026",
+      "closed_at": "11/11/2026"
     }
   ],
   "benchmark": {
@@ -666,5 +663,5 @@
     "current_price": 752.6900024414062,
     "performance_pct": -1.69
   },
-  "last_updated": "10/11/2026"
+  "last_updated": "11/11/2026"
 }
