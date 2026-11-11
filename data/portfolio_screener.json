@@ -1,5 +1,5 @@
 {
-  "cash": 1229.75,
+  "cash": 11.57,
   "initial_capital": 10000.0,
   "total_equity": 10015.93,
   "total_performance_pct": 0.16,
@@ -114,6 +114,20 @@
       "current_price": 378.05,
       "current_pnl_pct": 0.0,
       "current_value": 2268.3,
+      "days_active": 0
+    },
+    {
+      "ticker": "TTD",
+      "shares": 79,
+      "entry_price": 15.42,
+      "stop_loss": 14.0,
+      "target_1": 16.84,
+      "target_2": 18.97,
+      "opened_at": "11/11/2026",
+      "trailing_active": false,
+      "current_price": 15.42,
+      "current_pnl_pct": 0.0,
+      "current_value": 1218.18,
       "days_active": 0
     }
   ],
