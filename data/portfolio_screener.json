@@ -1,5 +1,5 @@
 {
-  "cash": 760.72,
+  "cash": 590.94,
   "initial_capital": 10000.0,
   "total_equity": 9839.51,
   "total_performance_pct": -1.6,
@@ -128,6 +128,20 @@
       "current_price": 119.6500015258789,
       "current_pnl_pct": 0.59,
       "current_value": 358.95,
+      "days_active": 0
+    },
+    {
+      "ticker": "XOM",
+      "shares": 1,
+      "entry_price": 169.78,
+      "stop_loss": 161.1,
+      "target_1": 178.46,
+      "target_2": 191.48,
+      "opened_at": "13/11/2026",
+      "trailing_active": false,
+      "current_price": 169.78,
+      "current_pnl_pct": 0.0,
+      "current_value": 169.78,
       "days_active": 0
     }
   ],
