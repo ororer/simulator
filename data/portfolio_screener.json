@@ -1,5 +1,5 @@
 {
-  "cash": 590.94,
+  "cash": 86.92,
   "initial_capital": 10000.0,
   "total_equity": 9839.51,
   "total_performance_pct": -1.6,
@@ -142,6 +142,48 @@
       "current_price": 169.78,
       "current_pnl_pct": 0.0,
       "current_value": 169.78,
+      "days_active": 0
+    },
+    {
+      "ticker": "CAVA",
+      "shares": 3,
+      "entry_price": 58.23,
+      "stop_loss": 51.63,
+      "target_1": 64.83,
+      "target_2": 74.73,
+      "opened_at": "14/11/2026",
+      "trailing_active": false,
+      "current_price": 58.23,
+      "current_pnl_pct": 0.0,
+      "current_value": 174.69,
+      "days_active": 0
+    },
+    {
+      "ticker": "UBER",
+      "shares": 2,
+      "entry_price": 69.69,
+      "stop_loss": 65.86,
+      "target_1": 73.52,
+      "target_2": 79.27,
+      "opened_at": "14/11/2026",
+      "trailing_active": false,
+      "current_price": 69.69,
+      "current_pnl_pct": 0.0,
+      "current_value": 139.38,
+      "days_active": 0
+    },
+    {
+      "ticker": "NKE",
+      "shares": 5,
+      "entry_price": 37.99,
+      "stop_loss": 35.75,
+      "target_1": 40.23,
+      "target_2": 43.59,
+      "opened_at": "14/11/2026",
+      "trailing_active": false,
+      "current_price": 37.99,
+      "current_pnl_pct": 0.0,
+      "current_value": 189.95,
       "days_active": 0
     }
   ],
