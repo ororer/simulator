@@ -1,23 +1,9 @@
 {
-  "cash": 86.92,
+  "cash": 433.11,
   "initial_capital": 10000.0,
-  "total_equity": 9839.51,
-  "total_performance_pct": -1.6,
+  "total_equity": 9791.41,
+  "total_performance_pct": -2.09,
   "open_positions": [
-    {
-      "ticker": "JPM",
-      "shares": 1,
-      "entry_price": 343.58,
-      "stop_loss": 331.9,
-      "target_1": 355.26,
-      "target_2": 372.78,
-      "opened_at": "30/10/2026",
-      "trailing_active": false,
-      "current_price": 343.3900146484375,
-      "current_pnl_pct": -0.06,
-      "current_value": 343.39,
-      "days_active": 14
-    },
     {
       "ticker": "ISRG",
       "shares": 2,
@@ -27,10 +13,10 @@
       "target_2": 499.14,
       "opened_at": "03/11/2026",
       "trailing_active": true,
-      "current_price": 449.5299987792969,
-      "current_pnl_pct": 2.9,
-      "current_value": 899.06,
-      "days_active": 10
+      "current_price": 443.5899963378906,
+      "current_pnl_pct": 1.54,
+      "current_value": 887.18,
+      "days_active": 11
     },
     {
       "ticker": "AAPL",
@@ -41,10 +27,10 @@
       "target_2": 371.8,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 355.6300048828125,
-      "current_pnl_pct": 3.43,
-      "current_value": 355.63,
-      "days_active": 8
+      "current_price": 356.2699890136719,
+      "current_pnl_pct": 3.62,
+      "current_value": 356.27,
+      "days_active": 9
     },
     {
       "ticker": "UNH",
@@ -55,10 +41,10 @@
       "target_2": 468.59,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 405.1199951171875,
-      "current_pnl_pct": -1.41,
-      "current_value": 405.12,
-      "days_active": 7
+      "current_price": 407.4599914550781,
+      "current_pnl_pct": -0.84,
+      "current_value": 407.46,
+      "days_active": 9
     },
     {
       "ticker": "ROKU",
@@ -72,7 +58,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 2.68,
       "current_value": 802.6,
-      "days_active": 6
+      "days_active": 7
     },
     {
       "ticker": "ABNB",
@@ -86,7 +72,7 @@
       "current_price": 181.1300048828125,
       "current_pnl_pct": -4.66,
       "current_value": 2354.69,
-      "days_active": 4
+      "days_active": 5
     },
     {
       "ticker": "APP",
@@ -97,10 +83,10 @@
       "target_2": 511.07,
       "opened_at": "10/11/2026",
       "trailing_active": false,
-      "current_price": 404.7699890136719,
-      "current_pnl_pct": -1.28,
-      "current_value": 1214.31,
-      "days_active": 3
+      "current_price": 393.67999267578125,
+      "current_pnl_pct": -3.98,
+      "current_value": 1181.04,
+      "days_active": 4
     },
     {
       "ticker": "TSLA",
@@ -111,10 +97,10 @@
       "target_2": 462.2,
       "opened_at": "10/11/2026",
       "trailing_active": false,
-      "current_price": 390.8399963378906,
-      "current_pnl_pct": 3.38,
-      "current_value": 2345.04,
-      "days_active": 3
+      "current_price": 390.2200012207031,
+      "current_pnl_pct": 3.22,
+      "current_value": 2341.32,
+      "days_active": 4
     },
     {
       "ticker": "DIS",
@@ -125,10 +111,10 @@
       "target_2": 129.1,
       "opened_at": "13/11/2026",
       "trailing_active": false,
-      "current_price": 119.6500015258789,
-      "current_pnl_pct": 0.59,
-      "current_value": 358.95,
-      "days_active": 0
+      "current_price": 118.97000122070312,
+      "current_pnl_pct": 0.02,
+      "current_value": 356.91,
+      "days_active": 1
     },
     {
       "ticker": "XOM",
@@ -139,10 +125,10 @@
       "target_2": 191.48,
       "opened_at": "13/11/2026",
       "trailing_active": false,
-      "current_price": 169.78,
-      "current_pnl_pct": 0.0,
-      "current_value": 169.78,
-      "days_active": 0
+      "current_price": 170.58999633789062,
+      "current_pnl_pct": 0.48,
+      "current_value": 170.59,
+      "days_active": 1
     },
     {
       "ticker": "CAVA",
@@ -153,9 +139,9 @@
       "target_2": 74.73,
       "opened_at": "14/11/2026",
       "trailing_active": false,
-      "current_price": 58.23,
-      "current_pnl_pct": 0.0,
-      "current_value": 174.69,
+      "current_price": 57.349998474121094,
+      "current_pnl_pct": -1.51,
+      "current_value": 172.05,
       "days_active": 0
     },
     {
@@ -167,9 +153,9 @@
       "target_2": 79.27,
       "opened_at": "14/11/2026",
       "trailing_active": false,
-      "current_price": 69.69,
-      "current_pnl_pct": 0.0,
-      "current_value": 139.38,
+      "current_price": 69.12000274658203,
+      "current_pnl_pct": -0.82,
+      "current_value": 138.24,
       "days_active": 0
     },
     {
@@ -181,7 +167,7 @@
       "target_2": 43.59,
       "opened_at": "14/11/2026",
       "trailing_active": false,
-      "current_price": 37.99,
+      "current_price": 37.9900016784668,
       "current_pnl_pct": 0.0,
       "current_value": 189.95,
       "days_active": 0
@@ -726,6 +712,17 @@
       "reason": "STOP_LOSS",
       "opened_at": "11/11/2026",
       "closed_at": "11/11/2026"
+    },
+    {
+      "ticker": "JPM",
+      "entry_price": 343.58,
+      "exit_price": 346.19000244140625,
+      "shares": 1,
+      "pnl": 2.61,
+      "pnl_pct": 0.76,
+      "reason": "TIME_STOP_EXPIRED",
+      "opened_at": "30/10/2026",
+      "closed_at": "14/11/2026"
     }
   ],
   "benchmark": {
@@ -733,5 +730,5 @@
     "current_price": 759.8099975585938,
     "performance_pct": -0.76
   },
-  "last_updated": "13/11/2026"
+  "last_updated": "14/11/2026"
 }
