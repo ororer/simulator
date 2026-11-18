@@ -1,8 +1,8 @@
 {
-  "cash": 1100.17,
+  "cash": 1568.47,
   "initial_capital": 10000.0,
-  "total_equity": 9832.16,
-  "total_performance_pct": -1.68,
+  "total_equity": 9667.62,
+  "total_performance_pct": -3.32,
   "open_positions": [
     {
       "ticker": "AAPL",
@@ -13,24 +13,10 @@
       "target_2": 371.8,
       "opened_at": "05/11/2026",
       "trailing_active": false,
-      "current_price": 352.7799987792969,
-      "current_pnl_pct": 2.6,
-      "current_value": 352.78,
-      "days_active": 12
-    },
-    {
-      "ticker": "UNH",
-      "shares": 1,
-      "entry_price": 410.91,
-      "stop_loss": 387.84,
-      "target_1": 433.98,
-      "target_2": 468.59,
-      "opened_at": "05/11/2026",
-      "trailing_active": false,
-      "current_price": 412.0199890136719,
-      "current_pnl_pct": 0.27,
-      "current_value": 412.02,
-      "days_active": 12
+      "current_price": 351.9100036621094,
+      "current_pnl_pct": 2.35,
+      "current_value": 351.91,
+      "days_active": 13
     },
     {
       "ticker": "ROKU",
@@ -44,7 +30,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 2.68,
       "current_value": 802.6,
-      "days_active": 10
+      "days_active": 11
     },
     {
       "ticker": "ABNB",
@@ -55,10 +41,10 @@
       "target_2": 219.97,
       "opened_at": "09/11/2026",
       "trailing_active": false,
-      "current_price": 186.19000244140625,
-      "current_pnl_pct": -2.0,
-      "current_value": 2420.47,
-      "days_active": 8
+      "current_price": 180.94000244140625,
+      "current_pnl_pct": -4.76,
+      "current_value": 2352.22,
+      "days_active": 9
     },
     {
       "ticker": "APP",
@@ -69,10 +55,10 @@
       "target_2": 511.07,
       "opened_at": "10/11/2026",
       "trailing_active": false,
-      "current_price": 415.2200012207031,
-      "current_pnl_pct": 1.27,
-      "current_value": 1245.66,
-      "days_active": 7
+      "current_price": 398.94000244140625,
+      "current_pnl_pct": -2.7,
+      "current_value": 1196.82,
+      "days_active": 8
     },
     {
       "ticker": "TSLA",
@@ -83,10 +69,10 @@
       "target_2": 462.2,
       "opened_at": "10/11/2026",
       "trailing_active": false,
-      "current_price": 379.739990234375,
-      "current_pnl_pct": 0.45,
-      "current_value": 2278.44,
-      "days_active": 7
+      "current_price": 380.1099853515625,
+      "current_pnl_pct": 0.54,
+      "current_value": 2280.66,
+      "days_active": 8
     },
     {
       "ticker": "DIS",
@@ -97,10 +83,10 @@
       "target_2": 129.1,
       "opened_at": "13/11/2026",
       "trailing_active": false,
-      "current_price": 118.69999694824219,
-      "current_pnl_pct": -0.21,
-      "current_value": 356.1,
-      "days_active": 4
+      "current_price": 116.94000244140625,
+      "current_pnl_pct": -1.69,
+      "current_value": 350.82,
+      "days_active": 5
     },
     {
       "ticker": "XOM",
@@ -111,10 +97,10 @@
       "target_2": 191.48,
       "opened_at": "13/11/2026",
       "trailing_active": false,
-      "current_price": 166.8699951171875,
-      "current_pnl_pct": -1.71,
-      "current_value": 166.87,
-      "days_active": 4
+      "current_price": 167.2100067138672,
+      "current_pnl_pct": -1.51,
+      "current_value": 167.21,
+      "days_active": 5
     },
     {
       "ticker": "CAVA",
@@ -125,10 +111,10 @@
       "target_2": 74.73,
       "opened_at": "14/11/2026",
       "trailing_active": false,
-      "current_price": 55.150001525878906,
-      "current_pnl_pct": -5.29,
-      "current_value": 165.45,
-      "days_active": 3
+      "current_price": 51.97999954223633,
+      "current_pnl_pct": -10.73,
+      "current_value": 155.94,
+      "days_active": 4
     },
     {
       "ticker": "UBER",
@@ -139,24 +125,24 @@
       "target_2": 79.27,
       "opened_at": "14/11/2026",
       "trailing_active": false,
-      "current_price": 69.98999786376953,
-      "current_pnl_pct": 0.43,
-      "current_value": 139.98,
-      "days_active": 3
+      "current_price": 68.80999755859375,
+      "current_pnl_pct": -1.26,
+      "current_value": 137.62,
+      "days_active": 4
     },
     {
       "ticker": "NKE",
-      "shares": 5,
+      "shares": 3,
       "entry_price": 37.99,
-      "stop_loss": 35.75,
+      "stop_loss": 37.99,
       "target_1": 40.23,
       "target_2": 43.59,
       "opened_at": "14/11/2026",
-      "trailing_active": false,
-      "current_price": 38.2599983215332,
-      "current_pnl_pct": 0.71,
-      "current_value": 191.3,
-      "days_active": 3
+      "trailing_active": true,
+      "current_price": 35.849998474121094,
+      "current_pnl_pct": -5.63,
+      "current_value": 107.55,
+      "days_active": 4
     },
     {
       "ticker": "SLB",
@@ -167,10 +153,10 @@
       "target_2": 58.89,
       "opened_at": "16/11/2026",
       "trailing_active": false,
-      "current_price": 50.08000183105469,
-      "current_pnl_pct": -3.08,
-      "current_value": 200.32,
-      "days_active": 1
+      "current_price": 48.95000076293945,
+      "current_pnl_pct": -5.26,
+      "current_value": 195.8,
+      "days_active": 2
     }
   ],
   "closed_trades": [
@@ -734,12 +720,34 @@
       "reason": "STOP_LOSS",
       "opened_at": "03/11/2026",
       "closed_at": "17/11/2026"
+    },
+    {
+      "ticker": "UNH",
+      "entry_price": 410.91,
+      "exit_price": 387.84,
+      "shares": 1,
+      "pnl": -23.07,
+      "pnl_pct": -5.61,
+      "reason": "STOP_LOSS",
+      "opened_at": "05/11/2026",
+      "closed_at": "18/11/2026"
+    },
+    {
+      "ticker": "NKE",
+      "entry_price": 37.99,
+      "exit_price": 40.23,
+      "shares": 2,
+      "pnl": 4.48,
+      "pnl_pct": 5.9,
+      "reason": "TARGET_1_HALF",
+      "opened_at": "14/11/2026",
+      "closed_at": "18/11/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 739.9500122070312,
-    "performance_pct": -3.35
+    "current_price": 732.4400024414062,
+    "performance_pct": -4.33
   },
-  "last_updated": "17/11/2026"
+  "last_updated": "18/11/2026"
 }
