@@ -1,5 +1,5 @@
 {
-  "cash": 2316.56,
+  "cash": 148.56,
   "initial_capital": 10000.0,
   "total_equity": 9671.63,
   "total_performance_pct": -3.28,
@@ -101,6 +101,20 @@
       "current_pnl_pct": -1.33,
       "current_value": 137.52,
       "days_active": 5
+    },
+    {
+      "ticker": "CEG",
+      "shares": 8,
+      "entry_price": 271.0,
+      "stop_loss": 246.89,
+      "target_1": 295.11,
+      "target_2": 331.27,
+      "opened_at": "19/11/2026",
+      "trailing_active": false,
+      "current_price": 271.0,
+      "current_pnl_pct": 0.0,
+      "current_value": 2168.0,
+      "days_active": 0
     }
   ],
   "closed_trades": [
