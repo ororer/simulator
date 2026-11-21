@@ -1,8 +1,8 @@
 {
-  "cash": 497.77,
+  "cash": 8331.56,
   "initial_capital": 10000.0,
-  "total_equity": 9546.45,
-  "total_performance_pct": -4.54,
+  "total_equity": 9134.16,
+  "total_performance_pct": -8.66,
   "open_positions": [
     {
       "ticker": "ROKU",
@@ -16,91 +16,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 2.68,
       "current_value": 802.6,
-      "days_active": 13
-    },
-    {
-      "ticker": "ABNB",
-      "shares": 13,
-      "entry_price": 189.99,
-      "stop_loss": 178.0,
-      "target_1": 201.98,
-      "target_2": 219.97,
-      "opened_at": "09/11/2026",
-      "trailing_active": false,
-      "current_price": 180.2100067138672,
-      "current_pnl_pct": -5.15,
-      "current_value": 2342.73,
-      "days_active": 11
-    },
-    {
-      "ticker": "APP",
-      "shares": 3,
-      "entry_price": 410.0,
-      "stop_loss": 369.57,
-      "target_1": 450.43,
-      "target_2": 511.07,
-      "opened_at": "10/11/2026",
-      "trailing_active": false,
-      "current_price": 390.9100036621094,
-      "current_pnl_pct": -4.66,
-      "current_value": 1172.73,
-      "days_active": 10
-    },
-    {
-      "ticker": "TSLA",
-      "shares": 6,
-      "entry_price": 378.05,
-      "stop_loss": 344.39,
-      "target_1": 411.71,
-      "target_2": 462.2,
-      "opened_at": "10/11/2026",
-      "trailing_active": false,
-      "current_price": 374.4100036621094,
-      "current_pnl_pct": -0.96,
-      "current_value": 2246.46,
-      "days_active": 10
-    },
-    {
-      "ticker": "DIS",
-      "shares": 2,
-      "entry_price": 118.95,
-      "stop_loss": 118.95,
-      "target_1": 123.01,
-      "target_2": 129.1,
-      "opened_at": "13/11/2026",
-      "trailing_active": true,
-      "current_price": 122.36000061035156,
-      "current_pnl_pct": 2.87,
-      "current_value": 244.72,
-      "days_active": 6
-    },
-    {
-      "ticker": "UBER",
-      "shares": 2,
-      "entry_price": 69.69,
-      "stop_loss": 65.86,
-      "target_1": 73.52,
-      "target_2": 79.27,
-      "opened_at": "14/11/2026",
-      "trailing_active": false,
-      "current_price": 68.76000213623047,
-      "current_pnl_pct": -1.33,
-      "current_value": 137.52,
-      "days_active": 6
-    },
-    {
-      "ticker": "CEG",
-      "shares": 8,
-      "entry_price": 271.0,
-      "stop_loss": 246.89,
-      "target_1": 295.11,
-      "target_2": 331.27,
-      "opened_at": "19/11/2026",
-      "trailing_active": false,
-      "current_price": 262.739990234375,
-      "current_pnl_pct": -3.05,
-      "current_value": 2101.92,
-      "days_active": 1
+      "days_active": 14
     }
   ],
   "closed_trades": [
@@ -752,12 +668,78 @@
       "reason": "TIME_STOP_EXPIRED",
       "opened_at": "05/11/2026",
       "closed_at": "20/11/2026"
+    },
+    {
+      "ticker": "ABNB",
+      "entry_price": 189.99,
+      "exit_price": 178.0,
+      "shares": 13,
+      "pnl": -155.87,
+      "pnl_pct": -6.31,
+      "reason": "STOP_LOSS",
+      "opened_at": "09/11/2026",
+      "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "APP",
+      "entry_price": 410.0,
+      "exit_price": 369.57,
+      "shares": 3,
+      "pnl": -121.29,
+      "pnl_pct": -9.86,
+      "reason": "STOP_LOSS",
+      "opened_at": "10/11/2026",
+      "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "TSLA",
+      "entry_price": 378.05,
+      "exit_price": 344.39,
+      "shares": 6,
+      "pnl": -201.96,
+      "pnl_pct": -8.9,
+      "reason": "STOP_LOSS",
+      "opened_at": "10/11/2026",
+      "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "DIS",
+      "entry_price": 118.95,
+      "exit_price": 118.95,
+      "shares": 2,
+      "pnl": 0.0,
+      "pnl_pct": 0.0,
+      "reason": "STOP_LOSS",
+      "opened_at": "13/11/2026",
+      "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "UBER",
+      "entry_price": 69.69,
+      "exit_price": 65.86,
+      "shares": 2,
+      "pnl": -7.66,
+      "pnl_pct": -5.5,
+      "reason": "STOP_LOSS",
+      "opened_at": "14/11/2026",
+      "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "CEG",
+      "entry_price": 271.0,
+      "exit_price": 246.89,
+      "shares": 8,
+      "pnl": -192.88,
+      "pnl_pct": -8.9,
+      "reason": "STOP_LOSS",
+      "opened_at": "19/11/2026",
+      "closed_at": "21/11/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 715.8699951171875,
-    "performance_pct": -6.5
+    "current_price": 689.8099975585938,
+    "performance_pct": -9.9
   },
-  "last_updated": "20/11/2026"
+  "last_updated": "21/11/2026"
 }
