@@ -1,23 +1,9 @@
 {
-  "cash": 1148.43,
+  "cash": 4168.45,
   "initial_capital": 10000.0,
-  "total_equity": 9134.16,
-  "total_performance_pct": -8.66,
+  "total_equity": 8924.77,
+  "total_performance_pct": -10.75,
   "open_positions": [
-    {
-      "ticker": "ROKU",
-      "shares": 5,
-      "entry_price": 156.33,
-      "stop_loss": 156.33,
-      "target_1": 159.84,
-      "target_2": 165.11,
-      "opened_at": "07/11/2026",
-      "trailing_active": true,
-      "current_price": 160.52000427246094,
-      "current_pnl_pct": 2.68,
-      "current_value": 802.6,
-      "days_active": 14
-    },
     {
       "ticker": "AAPL",
       "shares": 7,
@@ -27,24 +13,10 @@
       "target_2": 393.07,
       "opened_at": "23/11/2026",
       "trailing_active": false,
-      "current_price": 350.69,
-      "current_pnl_pct": 0.0,
-      "current_value": 2454.83,
-      "days_active": 0
-    },
-    {
-      "ticker": "APP",
-      "shares": 6,
-      "entry_price": 410.0,
-      "stop_loss": 369.57,
-      "target_1": 450.43,
-      "target_2": 511.07,
-      "opened_at": "23/11/2026",
-      "trailing_active": false,
-      "current_price": 410.0,
-      "current_pnl_pct": 0.0,
-      "current_value": 2460.0,
-      "days_active": 0
+      "current_price": 349.0799865722656,
+      "current_pnl_pct": -0.46,
+      "current_value": 2443.56,
+      "days_active": 1
     },
     {
       "ticker": "TSLA",
@@ -55,10 +27,10 @@
       "target_2": 462.2,
       "opened_at": "23/11/2026",
       "trailing_active": false,
-      "current_price": 378.05,
-      "current_pnl_pct": 0.0,
-      "current_value": 2268.3,
-      "days_active": 0
+      "current_price": 385.4599914550781,
+      "current_pnl_pct": 1.96,
+      "current_value": 2312.76,
+      "days_active": 1
     }
   ],
   "closed_trades": [
@@ -776,12 +748,34 @@
       "reason": "STOP_LOSS",
       "opened_at": "19/11/2026",
       "closed_at": "21/11/2026"
+    },
+    {
+      "ticker": "ROKU",
+      "entry_price": 156.33,
+      "exit_price": 160.52000427246094,
+      "shares": 5,
+      "pnl": 20.95,
+      "pnl_pct": 2.68,
+      "reason": "TIME_STOP_EXPIRED",
+      "opened_at": "07/11/2026",
+      "closed_at": "24/11/2026"
+    },
+    {
+      "ticker": "APP",
+      "entry_price": 410.0,
+      "exit_price": 369.57,
+      "shares": 6,
+      "pnl": -242.58,
+      "pnl_pct": -9.86,
+      "reason": "STOP_LOSS",
+      "opened_at": "23/11/2026",
+      "closed_at": "24/11/2026"
     }
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 689.8099975585938,
-    "performance_pct": -9.9
+    "current_price": 722.2899780273438,
+    "performance_pct": -5.66
   },
-  "last_updated": "21/11/2026"
+  "last_updated": "24/11/2026"
 }

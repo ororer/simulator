@@ -49,12 +49,12 @@
   ],
   "benchmark": {
     "start_price": 771.3499755859375,
-    "current_price": 689.8099975585938,
-    "performance_pct": -10.57
+    "current_price": 722.2899780273438,
+    "performance_pct": -6.36
   },
   "open_positions": [],
   "closed_trades": [],
   "total_equity": 3305.88,
   "total_performance_pct": -66.94,
-  "last_updated": "21/11/2026"
+  "last_updated": "24/11/2026"
 }
