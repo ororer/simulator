@@ -16,7 +16,7 @@
       "current_price": 355.5799865722656,
       "current_pnl_pct": 1.39,
       "current_value": 2489.06,
-      "days_active": 3
+      "days_active": 4
     },
     {
       "ticker": "TSLA",
@@ -30,7 +30,7 @@
       "current_price": 380.1400146484375,
       "current_pnl_pct": 0.55,
       "current_value": 2280.84,
-      "days_active": 3
+      "days_active": 4
     },
     {
       "ticker": "ROKU",
@@ -44,7 +44,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 0.0,
       "current_value": 1444.68,
-      "days_active": 1
+      "days_active": 2
     }
   ],
   "closed_trades": [
@@ -813,5 +813,5 @@
     "current_price": 716.7000122070312,
     "performance_pct": -6.39
   },
-  "last_updated": "26/11/2026"
+  "last_updated": "27/11/2026"
 }
