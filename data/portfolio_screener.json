@@ -1,8 +1,8 @@
 {
   "cash": 985.4,
   "initial_capital": 10000.0,
-  "total_equity": 8754.14,
-  "total_performance_pct": -12.46,
+  "total_equity": 8894.02,
+  "total_performance_pct": -11.06,
   "open_positions": [
     {
       "ticker": "AAPL",
@@ -13,10 +13,10 @@
       "target_2": 393.07,
       "opened_at": "23/11/2026",
       "trailing_active": false,
-      "current_price": 355.5799865722656,
-      "current_pnl_pct": 1.39,
-      "current_value": 2489.06,
-      "days_active": 4
+      "current_price": 358.5400085449219,
+      "current_pnl_pct": 2.24,
+      "current_value": 2509.78,
+      "days_active": 5
     },
     {
       "ticker": "TSLA",
@@ -27,10 +27,10 @@
       "target_2": 462.2,
       "opened_at": "23/11/2026",
       "trailing_active": false,
-      "current_price": 380.1400146484375,
-      "current_pnl_pct": 0.55,
-      "current_value": 2280.84,
-      "days_active": 4
+      "current_price": 400.0,
+      "current_pnl_pct": 5.81,
+      "current_value": 2400.0,
+      "days_active": 5
     },
     {
       "ticker": "ROKU",
@@ -44,7 +44,7 @@
       "current_price": 160.52000427246094,
       "current_pnl_pct": 0.0,
       "current_value": 1444.68,
-      "days_active": 2
+      "days_active": 3
     },
     {
       "ticker": "TTD",
@@ -55,8 +55,8 @@
       "target_2": 19.31,
       "opened_at": "28/11/2026",
       "trailing_active": false,
-      "current_price": 14.44,
-      "current_pnl_pct": 0.0,
+      "current_price": 14.4399995803833,
+      "current_pnl_pct": -0.0,
       "current_value": 837.52,
       "days_active": 0
     },
@@ -69,7 +69,7 @@
       "target_2": 209.49,
       "opened_at": "28/11/2026",
       "trailing_active": false,
-      "current_price": 179.16,
+      "current_price": 179.16000366210938,
       "current_pnl_pct": 0.0,
       "current_value": 716.64,
       "days_active": 0
@@ -838,8 +838,8 @@
   ],
   "benchmark": {
     "start_price": 765.6099853515625,
-    "current_price": 716.7000122070312,
-    "performance_pct": -6.39
+    "current_price": 728.3200073242188,
+    "performance_pct": -4.87
   },
-  "last_updated": "27/11/2026"
+  "last_updated": "28/11/2026"
 }
